@@ -7,21 +7,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>품</title>
-<link rel="icon" href="img/favicon.ico">
-<link rel="stylesheet" href="css/common/reset.css" />
-<link rel="stylesheet" href="css/common/fontawesome-all.css" />
-<link rel="stylesheet" href="css/common/notosanskr.css" />
+<link rel="icon" href="/img/favicon.ico">
+<link rel="stylesheet" href="/css/common/reset.css" />
+<link rel="stylesheet" href="/css/common/fontawesome-all.css" />
+<link rel="stylesheet" href="/css/common/notosanskr.css" />
 <!--slick 이미지슬라이드 css-->
-<link rel="stylesheet" href="css/slick/slick.css" />
+<link rel="stylesheet" href="/css/slick/slick.css" />
 <!--Add the new slick-theme.css if you want the default styling-->
-<link rel="stylesheet" href="css/slick/slick-theme.css?date=201804191" />
-<link rel="stylesheet" href="css/footer.css">
-<link rel="stylesheet" href="css/alert.css" />
-<link rel="stylesheet" href="css/popup_login_join.css?date=201804161" />
+<link rel="stylesheet" href="/css/slick/slick-theme.css?date=201804191" />
+<link rel="stylesheet" href="/css/footer.css">
+<link rel="stylesheet" href="/css/alert.css" />
+<link rel="stylesheet" href="/css/popup_login_join.css?date=201804161" />
 <link rel="stylesheet"
-	href="css/card_giver_level_first.css?date=201804272" />
+	href="/css/card_giver_level_first.css?date=201804272" />
 <link rel="stylesheet"
-	href="css/card_taker_level_first.css?date=201804271" />
+	href="/css/card_taker_level_first.css?date=201804271" />
 <style>
 body {
 	font-family: "Noto Sans KR", sans-serif;
@@ -31,7 +31,7 @@ body {
 #heroImage {
 	width: 100%;
 	height: 600px;
-	background-image: url("../img/hero/heroImage.jpg");
+	background-image: url("/img/hero/heroImage.jpg");
 	background-position: center;
 	display: inline-block;
 	position: relative;
@@ -477,7 +477,7 @@ body {
 										<!--회원가입 입력폼 끝-->
 										<!--로그인 입력폼 시작-->
 										<div id="loginInput" class="on">
-											<form action="login.jsp" method="post">
+											<form action="/login.poom" method="post">
 												<div id="loginText">
 													<h1>"품"에 오신것을 환영해요!</h1>
 													<h2>
@@ -526,8 +526,8 @@ body {
 								</div>
 								<a href="register_service_form.jsp">품 요청/등록</a> <a
 									href="profile.jsp">내프로필</a> <a href="" class="mypage"> <img
-									src="${loginUser.photoUrl }" class="profile"
-									onerror="this.src='img/profile/profile_img.png'" /> <span>${loginUser.nickName }
+									src="/img/profile${loginUser.photoUrl }" class="profile"
+									onerror="this.src='/img/profile/profile_img.png'" /> <span>${loginUser.nickName }
 										<i class="fas fa-angle-down"></i>
 								</span>
 								</a>
@@ -565,10 +565,10 @@ body {
 	<%@ include file="/WEB-INF/view/templates/footer.jsp"%>
 	<%@ include file="/WEB-INF/view/templates/card_level_first.jsp"%>
 	<%@ include file="/WEB-INF/view/templates/js.jsp"%>
-	<script src="js/popup_login_join.js?date=201804162"></script>
-	<script src="js/card_util.js?date=201804283"></script>
-	<script src="js/slick/slick.min.js"></script>
-	<script src="js/slick/slick_helper.js?date=201804283"></script>
+	<script src="/js/popup_login_join.js?date=201804162"></script>
+	<script src="/js/card_util.js?date=201804283"></script>
+	<script src="/js/slick/slick.min.js"></script>
+	<script src="/js/slick/slick_helper.js?date=201804283"></script>
 	<script>
     cardUtil.dataset = {
       "level": 1,

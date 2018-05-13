@@ -13,7 +13,7 @@ public class ServicesController {
     this.servicesService = servicesService;
   }
 
-  @RequestMapping(value = {"/", "/index.poom"})
+  @RequestMapping(value = {"", "/", "/index.poom"})
   public String index() {
     return "index";
   }

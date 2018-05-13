@@ -6,7 +6,7 @@
 %>
 <div id="header">
 	<div class="logo">
-		<a href="index.jsp"> <img src="img/poom_logo.png">
+		<a href="/index.poom"> <img src="/img/poom_logo.png">
 		</a>
 	</div>
 	<div class="search">
@@ -35,7 +35,7 @@
 
 		<a href="register_service_form.jsp">품 요청/등록</a> <a href="profile.jsp">내프로필</a> <a
 			href="" class="mypage"> <img src="<%=loginUser.getPhotoUrl()%>"
-			class="profile" onerror="this.src='img/profile/profile_img.png'" />
+			class="profile" onerror="this.src='/img/profile/profile_img.png'" />
 			<span><%=loginUser.getNickName()%> <i
 				class="fas fa-angle-down"></i></span>
 		</a>
@@ -80,7 +80,7 @@
 								회원으로 가입하시면</br> 품의 모든 서비스를 이용하실 수 있습니다
 							</h2>
 						</div>
-						<form id="joinContent" method="post" action="signup.jsp">
+						<form id="joinContent" method="post" action="/signup.poom">
 							<div class="input_box" id="nameBox">
 								<label for="name">이름</label>
 								<div class="icon_box">
@@ -166,7 +166,7 @@
 					<!--회원가입 입력폼 끝-->
 					<!--로그인 입력폼 시작-->
 					<div id="loginInput" class="on">
-						<form action="login.jsp" method="post">
+						<form action="/login.poom" method="post">
 							<div id="loginText">
 								<h1>"품"에 오신것을 환영해요!</h1>
 								<h2>

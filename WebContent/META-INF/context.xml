@@ -7,7 +7,7 @@
 	name = "oraclexe"
 	auth = "Container"
 	driverClassName = "oracle.jdbc.OracleDriver"
-	username = "test"
+	username = "poom"
 	password = "1111"
 	url = "jdbc:oracle:thin:@localhost:1521:xe"
 	type = "javax.sql.DataSource"

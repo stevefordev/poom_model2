@@ -6,4 +6,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="users">
 
+	<insert id="insert" parameterType="User">
+		INSERT INTO users (no, EMAIL, password, name, nick_name, phone, introduction, coin, photo_url, regdate)
+		VALUES (USERS_SEQ.nextval, #{email}, #{password}, #{name}, #{nickName}, #{phone}, #{introduction}, #{coin}, #{photoUrl}, #{regdate})
+	</insert>
+	
+	<select id="selectLogin" resultType="User" parameterType="User">
+		SELECT no, EMAIL, password, name, nick_name nickName, phone, introduction, coin, photo_url photoUrl, regdate
+		FROM users
+		WHERE email = #{email} 
+		AND password = #{password} 
+	</select>
+
+	<select id="selectListAll" resultType="User">
+		SELECT no, email, password, name, nick_name nickName, phone, introduction,
+		coin, photo_url photoUrl, regdate
+		FROM users
+	</select>
+
 </mapper>

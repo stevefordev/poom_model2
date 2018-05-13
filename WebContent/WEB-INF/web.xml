@@ -47,6 +47,7 @@
 	<servlet-mapping>
 		<servlet-name>poom</servlet-name>
 		<url-pattern>*.poom</url-pattern>
+		<url-pattern>/</url-pattern>
 		<!-- *.ims로 요청올 때만 spring 작동하게끔 -->
 	</servlet-mapping>
 

@@ -1,54 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-<!-- 무조건 쓴다. -->
-<mvc:annotation-driven/>
+	<!-- 무조건 쓴다. -->
+	<mvc:annotation-driven />
 
-<!-- Controller에서 /WEB-INF/view/와 .jsp가 반복 -->
-<mvc:view-resolvers>
-	<mvc:jsp
-		prefix="/WEB-INF/view/"
-		suffix=".jsp"/>
-</mvc:view-resolvers>
+	<!-- Controller에서 /WEB-INF/view/와 .jsp가 반복 -->
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp" />
+	</mvc:view-resolvers>
 
-<!-- interceptor 등록 -->
-<mvc:interceptors>
-	<mvc:interceptor>
-		<mvc:mapping path=""/>
-		<bean
-			class="com.coddington.poom.interceptor.LoginCheckInterceptor"
-		/>
-	</mvc:interceptor>
-</mvc:interceptors>
+	<!-- interceptor 등록 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="" />
+			<bean class="com.coddington.poom.interceptor.LoginCheckInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
+	<!-- Controller가 필요없이 그냥 JSP뷰(InternalResourceView)를 이용 -->
+	<!-- <mvc:view-controller path="/index.ims" /> -->
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/img/" mapping="/img/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/fonts/" mapping="/fonts/**" />
 
+	<!-- MultipartResovler -->
+	<bean id="multipartResolver" p:defaultEncoding="UTF-8"
+		p:maxUploadSize="104857600"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
-<!-- MultipartResovler -->
-<bean id="multipartResolver"
-p:defaultEncoding="UTF-8"
-p:maxUploadSize="104857600"
-class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!-- Controller를 등록 -->
+	<bean p:coinTransactionsService-ref="coinTransactionsService"
+		class="com.coddington.poom.controller.CoinsController" />
 
-<!-- Controller를 등록 -->
-<bean
-p:coinTransactionsService-ref="coinTransactionsService"
-class="com.coddington.poom.controller.CoinsController"
-/>
+	<bean p:servicesService-ref="servicesService"
+		class="com.coddington.poom.controller.ServicesController" />
 
-<bean
-p:servicesService-ref="servicesService"
-class="com.coddington.poom.controller.ServicesController"
-/>
-
-<bean
-p:usersService-ref="usersService"
-class="com.coddington.poom.controller.UsersController"
-/>
+	<bean p:usersService-ref="usersService"
+		class="com.coddington.poom.controller.UsersController" />
 
 
 </beans>
