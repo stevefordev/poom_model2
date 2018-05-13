@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
+
+<!-- Spring관련 설정하는 곳 -->
+
+<!-- WAS(Tomcat)가 context.xml로 만든 DataSource를 
+	 JNDI기술로 얻어오는(불러오는) 설정 -->
+<jee:jndi-lookup 
+id="dataSource" 
+jndi-name="java:comp/env/oraclexe"
+/>
+	 
+<!-- SqlSessionFactory 설정 -->
+<bean
+id="sqlSessionFactory"
+p:dataSource-ref="dataSource"
+p:configLocation="WEB-INF/mybatis-config.xml"
+class="org.mybatis.spring.SqlSessionFactoryBean"
+/>
+
+<!-- SqlSession 설정 -->
+<bean
+id="sqlSession"
+class="org.mybatis.spring.SqlSessionTemplate">
+	<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+</bean>
+
+<!-- DAO 설정 -->
+<bean
+id="coinTransactionsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.CoinTransactionsDAOImpl"
+/>
+<bean
+id="contractSchedulesDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.ContractSchedulesDAOImpl"
+/>
+<bean
+id="contractsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.ContractsDAOImpl"
+/>
+<bean
+id="likeServicesDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.LikeServicesDAOImpl"
+/>
+<bean
+id="photosDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.PhotosDAOImpl"
+/>
+<bean
+id="questionsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.QuestionsDAOImpl"
+/>
+<bean
+id="relationshipsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.RelationshipsDAOImpl"
+/>
+<bean
+id="reviewsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.ReviewsDAOImpl"
+/>
+<bean
+id="schedulesDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.SchedulesDAOImpl"
+/>
+<bean
+id="servicesDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.ServicesDAOImpl"
+/>
+<bean
+id="serviceTagsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.ServiceTagsDAOImpl"
+/>
+<bean
+id="tagsDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.TagsDAOImpl"
+/>
+<bean
+id="usersDAO"
+p:session-ref="sqlSession"
+class="com.coddington.poom.dao.UsersDAOImpl"
+/>
+
+
+<!-- Service 설정 -->
+<bean
+id="coinTransactionsService"
+p:coinTransactionsDAO-ref="coinTransactionsDAO"
+class="com.coddington.poom.service.CoinTransactionsServiceImpl"
+/>
+
+<bean
+id="servicesService"
+p:servicesDAO-ref="servicesDAO"
+class="com.coddington.poom.service.ServicesServiceImpl"
+/>
+
+<bean
+id="usersService"
+p:usersDAO-ref="usersDAO"
+class="com.coddington.poom.service.UsersServiceImpl"
+/>
+
+</beans>

@@ -1,0 +1,211 @@
+#content {
+    /*#content 상하 띄우기*/
+    
+}
+
+#coinWrap {
+    width: 810px;
+    float: left;
+    margin:0 45px;
+}
+
+#holdingCoinWrap {
+    /*background-color: #FFC107;*/
+    width: 810px;
+    height: 100px;
+    position: relative;
+
+}
+
+#holdingCoinBox {
+    /*background-color: #E91E63;*/
+    width: 500px;
+    height: 80px;
+
+    font-size: 35px;
+    line-height: 80px;
+    text-align: left;
+    vertical-align: middle;
+
+    position: absolute;
+    top: 10px;
+    left: 30px;
+}
+
+#currentHoldingCoinAmount {
+    display: inline-block;
+    width: 320px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 60px;
+    font-weight: 700;
+    text-align: right;
+
+    border-bottom: 2px solid black;
+}
+
+#holdingCoinWrap .btn {
+    background-color: #1f2b43;
+    width: 100px;
+    height: 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    vertical-align: middle;
+
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+
+    position: absolute;
+    top: 25px;
+}
+
+#holdingCoinWrap .exchange {
+    right: 140px;
+}
+
+#holdingCoinWrap .charge {
+    right: 30px;
+}
+
+#coinGraphWrap {
+    /*background-color: #4CAF50;*/
+    width: 800px;
+    min-height: 450px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.coin_graph {
+    /*background-color: #f2c641;*/
+    width: 700px;
+    height: 400px;
+    position: absolute;
+    top: 25px;
+    left: 35px;
+}
+
+#coinHistoryWrap {
+    /*background-color: #f6699e;*/
+    width: 800px;
+    min-height: 570px;
+    margin-top: 10px;
+
+    /*table과의 마진겹침현상 해결*/
+    overflow: hidden;
+
+    position: relative;
+}
+
+#coinHistoryGnb {
+    /*background-color: steelblue;*/
+    width: 540px;
+    height: 100px;
+
+    position: absolute;
+    top: 20px;
+    left: 10px;
+}
+
+#coinHistoryGnb li {
+    /*background-color: yellow;*/
+
+    width: 160px;
+    height: 80px;
+    float: left;
+
+    position: relative;
+    top: 10px;
+    left: 10px;
+}
+
+#coinHistoryGnb #coinTransferHistoryGnb {
+    width: 200px;
+}
+
+#coinHistoryGnb li .history_gnb {
+    /*background-color: #ee9200;*/
+    display: block;
+    width: 160px;
+    height: 80px;
+
+    color: black;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 80px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#coinHistoryGnb li .history_gnb.on {
+    background-color: #2e7965;
+    color: #fff;
+}
+
+#coinHistoryGnb #coinTransferHistoryGnb {
+    width: 200px;
+}
+
+.history_table {
+    border-collapse: collapse;
+    display: none;
+    /*background-color: #80D8FF;*/
+    margin: 140px auto 80px auto;
+
+    /*table width값 고정*/
+    table-layout: fixed;
+    width: 700px;
+    /*height: 442px;*/
+}
+
+.history_table.on {
+    display: block;
+}
+
+.history_table tr, th, td {
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.history_table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.history_table th {
+    font-size: 25px;
+    background-color: #2e7965;
+    /*font-weight: bold;*/
+    color: #fff;
+}
+
+/* 각 th가 table에서 차지할 % */
+.row_coin {
+    width: 140px;
+}
+.row_nickname {
+    width: 105px;
+}
+.row_service {
+    width: 210px;
+}
+.row_date {
+    width: 245px;
+}
+.row_kind {
+    width: 105px;
+}
+.row_money {
+    width: 210px;
+}
+
+.history_table td {
+    font-size: 20px;
+    line-height: normal;
+
+    vertical-align: middle;
+}

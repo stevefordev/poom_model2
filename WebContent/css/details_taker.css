@@ -1,0 +1,909 @@
+#content {
+	padding: 20px 0;
+}
+
+#detailsTitle {
+	/*background-color: #80D8FF;*/
+	width: 1050px;
+	min-height: 100px;
+	margin: auto;
+	font-size: 70px;
+	font-weight: 900;
+	line-height: 100px;
+	text-align: center;
+}
+
+#detailsProfileBox {
+	/*background-color: #f2c641;*/
+	width: 400px;
+	height: 400px;
+	margin: 20px 20px 0 20px;
+	float: left;
+}
+
+#userProfile {
+	/*background-color: #80D8FF;*/
+	width: 300px;
+	height: 400px;
+	margin: auto;
+}
+
+#userProfile #giverProfileImg {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	background-image: url("../img/profile/kimbum.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#userProfile a {
+	display: inline-block;
+	/*background-color: #00C853;*/
+	width: 300px;
+	height: 320px;
+	text-decoration: none;
+	text-align: center;
+	color: #1f2b43;
+}
+
+#userProfile i {
+	font-size: 300px;
+}
+
+#userNickname {
+	/*background-color: #bfbfbf;*/
+	font-size: 80px;
+	margin-top: 20px;
+}
+
+#detailsInfoBox {
+	background-color: #2e7965;
+	width: 740px;
+	min-height: 500px;
+	float: left;
+	margin: 20px 0;
+	position: relative;
+}
+
+#detailsInfo {
+	/*background-color: lightpink;*/
+	width: 380px;
+	min-height: 300px;
+	margin: 30px 30px 20px 30px;
+	color: white;
+	font-size: 25px;
+}
+
+#detailsInfo ul {
+	/*background-color: #80D8FF;*/
+	width: 380px;
+	min-height: 300px;
+	/*마진겹침현상 해결*/
+	overflow: hidden;
+}
+
+#detailsInfo ul li {
+	/*background-color: #757575;*/
+	width: 380px;
+	min-height: 60px;
+	line-height: 60px;
+	margin: 5px 0 5px 0;
+}
+
+#detailsInfo ul li:nth-child(1) {
+	font-size: 39px;
+}
+
+#detailsInfo ul li:nth-child(1) .icon_big {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-size: contain;
+	vertical-align: text-bottom;
+	margin-bottom: 3px;
+}
+
+#detailsInfo ul li:nth-child(1) .icon_big.sun {
+	background-image: url("../img/sun.svg");
+}
+
+#detailsInfo ul li:nth-child(1) .icon_big.cloudy {
+	background-image: url("../img/cloudy.svg");
+}
+
+#detailsInfo ul li:nth-child(1) .icon_big.clouds {
+	background-image: url("../img/clouds.svg");
+}
+
+#detailsInfo ul li:nth-child(1) .icon_big.rain {
+	background-image: url("../img/rain.svg");
+}
+
+#detailsInfo ul li:nth-child(2) {
+	font-size: 35px;
+}
+
+#detailsInfo ul li:nth-child(3), #detailsInfo ul li:nth-child(4) {
+	font-size: 30px;
+}
+
+#detailsInfo ul li:nth-child(6) {
+	width: 300px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 100px;
+	font-weight: 900;
+	text-align: center;
+	position: absolute;
+	top: 140px;
+	right: 15px;
+}
+
+#scheduleBox {
+	/*background-color: #FFC107;*/
+	width: 660px;
+	min-height: 100px;
+	margin: 0 auto 30px auto;
+	padding: 10px;
+}
+
+#calendarWrap {
+	/*background-color: #80D8FF;*/
+	width: 100%;
+	min-height: 200px;
+	font-size: 40px;
+	/*position: relative;*/
+	/*#calendar height 늘어나는 대로 #calendarBox가
+      포함하기 위해*/
+	padding-bottom: 70px;
+}
+
+#calendarWrap h5 {
+	/*background-color: #80D8FF;*/
+	width: 210px;
+	height: 70px;
+	line-height: 70px;
+	color: #fff;
+	float: left;
+	text-align: center;
+}
+
+#calendarWrap h5 i {
+	font-size: 45px;
+}
+
+#calendarSettingBox {
+	/*background-color: #7e57c2;*/
+	width: 350px;
+	height: 70px;
+	color: #fff;
+	text-align: center;
+	float: right;
+}
+
+#calendarSettingBox ul {
+	/*background-color: #FFDE2F;*/
+	width: 350px;
+	height: 70px;
+}
+
+#calendarSettingBox ul li {
+	/*background-color: #f6699e;*/
+	width: 70px;
+	height: 70px;
+	float: left;
+}
+
+#calendarSettingBox ul li button {
+	background-color: #2e7965;
+	/*background-color: #ee9200;*/
+	width: 70px;
+	height: 70px;
+	color: #fff;
+	border: none;
+	outline: none;
+	padding: 0;
+	font-size: 60px;
+	cursor: pointer;
+}
+
+#calendarSettingBox ul li button:hover {
+	color: #f2c641;
+}
+
+#calendarSettingBox ul li:nth-child(3) button {
+	font-size: 45px;
+}
+
+#calendarSettingBox ul li.disabled button {
+	color: #9E9E9E;
+}
+
+#calendarSettingBox ul li.disabled:hover button {
+	color: #9E9E9E;
+	cursor: default;
+}
+
+.box_calendar {
+	/*background-color: #76FF03;*/
+	width: 644px;
+	min-height: 100px;
+	padding: 8px;
+	position: relative;
+	top: 70px;
+	left: 0;
+}
+
+.box_calendar .box_calendar_month {
+	/*background-color: #f6699e;*/
+	width: 200px;
+	height: 60px;
+	color: #f2c641;
+	font-size: 60px;
+	line-height: 60px;
+	text-align: left;
+	position: absolute;
+	top: 5px;
+	left: 8px;
+}
+
+.box_calendar .box_calendar_month .calendar_month {
+	font-weight: 700;
+}
+
+.box_calendar .calendar_schedule {
+	/*background-color: #f6699e;*/
+	color: #fff;
+}
+
+.box_calendar .calendar_schedule tr, th, td {
+	outline: 1px solid #fff;
+	width: 92px;
+	font-size: 30px;
+}
+
+.box_calendar .calendar_schedule .day_of_week {
+	background-color: #1f2b43;
+	font-size: 30px;
+	height: 100px;
+	line-height: 100px;
+	font-weight: 700;
+}
+
+.calendar_schedule .box_date {
+	min-height: 292px;
+	/*
+    (.schedule_date의 height 92px)+
+    (.schedule_hour의 height 50px X 4) = 292px
+    */
+}
+
+.calendar_schedule .box_date .schedule_date {
+	text-align: center;
+	height: 92px;
+	line-height: 90px;
+	font-size: 60px;
+	outline: 1px solid #fff;
+	background-color: #3f475a;
+}
+
+.calendar_schedule .box_date .schedule_hour {
+	background-color: #2e7965;
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+	width: 92px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 24px;
+	color: #fff;
+	border-collapse: collapse;
+}
+
+.calendar_schedule .box_date .schedule_hour:hover {
+	background-color: #fff;
+	color: #1f2b43;
+}
+
+.calendar_schedule .box_date .schedule_hour.selected {
+	background-color: #f2c641;
+	color: #000;
+}
+
+#selectedScheduleBox {
+	/*background-color: #00ACC1;*/
+	width: 660px;
+	/*min-height: 50px;*/
+	margin-top: 10px;
+}
+
+#selectedScheduleBox ul {
+	/*background-color: #b74b4b;*/
+	width: 660px;
+}
+
+#selectedScheduleBox ul li {
+	/*background-color: #bfbfbf;*/
+	width: 490px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 25px;
+	color: #fff;
+	margin: 5px;
+	padding: 5px;
+}
+
+#detailsFunction {
+	/*background-color: #7e57c2;*/
+	width: 100%;
+	height: 80px;
+}
+
+#detailsFunction ul {
+	/*background-color: #80D8FF;*/
+	width: 100%;
+	height: 80px;
+}
+
+#detailsFunction ul li {
+	background-color: transparent;
+	width: 370px;
+	height: 80px;
+	line-height: 80px;
+	float: left;
+}
+
+#likeBtn, #sendContractBtn {
+	background-color: transparent;
+	border: none;
+	width: 370px;
+	height: 80px;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
+	line-height: 80px;
+	font-weight: 700;
+}
+
+#likeBtn {
+	font-size: 60px;
+	color: red;
+	border-top: 2px solid lightgrey;
+	border-right: 1px solid lightgrey;
+}
+
+#sendContractBtn {
+	font-size: 35px;
+	border-top: 2px solid lightgrey;
+	border-left: 1px solid lightgrey;
+}
+
+#sendContractBtn:hover {
+	color: #f2c641;
+}
+
+#detailsBoardWrap {
+	background-color: lightgrey;
+	width: 1080px;
+	min-height: 200px;
+	clear: both;
+	margin: auto;
+	/*마진겹침현상해결*/
+	overflow: hidden;
+}
+
+#detailsBoardGnb {
+	/*background-color: #f6699e;*/
+	width: 1080px;
+	height: 80px;
+}
+
+#detailsBoardGnb ul {
+	background-color: #fff;
+	width: 1080px;
+	height: 80px;
+}
+
+#detailsBoardGnb ul li {
+	/*background-color: #7e57c2;*/
+	width: 360px;
+	height: 80px;
+	line-height: 80px;
+	font-size: 35px;
+	text-align: center;
+	float: left;
+}
+
+#detailsBoardGnb ul li .board_gnb {
+	display: inline-block;
+	/*background-color: #2e7965;*/
+	width: 360px;
+	height: 80px;
+	text-decoration: none;
+	color: #000;
+}
+
+#detailsBoardGnb ul li .board_gnb.on {
+	background-color: #2e7965;
+	color: #fff;
+}
+
+#detailsBoardWrap .box_board {
+	background-color: #fff;
+	width: 1020px;
+	min-height: 400px;
+	margin: 10px auto;
+	padding: 20px;
+	display: none;
+}
+
+#detailsBoardWrap .box_board.on {
+	display: block;
+}
+
+#detailsBoardWrap .box_board .contents_board {
+	/*background-color: #E91E63;*/
+	width: 1020px;
+	min-height: 400px;
+}
+
+#detailsBoardWrap .box_board .contents_board_reference {
+	font-size: 35px;
+	line-height: 45px;
+	/* 엔터 친 값 그대로 들어가게끔
+       그리고 넘어가는 글자 내려가게끔*/
+	white-space: pre-wrap;
+	/* 한글,중국어,일본어가 아닌 영어같은 경우
+       띄어쓰기를 안하면 한 묶음을 하나의 단어로 인식하므로
+       word-break속성을 줘 줄바꿈이 일어나게 함 */
+	word-break: break-all;
+	text-align: left;
+}
+
+#detailsBoardWrap .contents_board ul {
+	/*background-color: #80D8FF;*/
+	width: 1020px;
+	min-height: 400px;
+}
+
+#detailsBoardWrap .contents_board ul li {
+	/*background-color: #76FF03;*/
+	width: 1020px;
+	min-height: 100px;
+	margin: 30px 0;
+	overflow: hidden;
+}
+
+#detailsBoardBox .box_contents {
+	background-color: #9E9E9E;
+	width: 860px;
+	min-height: 110px;
+	padding: 20px;
+	font-size: 40px;
+	line-height: 50px;
+	position: relative;
+	margin: 20px 0;
+}
+
+#detailsBoardBox .box_contents .btn_reply {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: #000;
+	color: #fff;
+	width: 100px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#detailsBoardBox .contents_board_question .box_btn_question_popup {
+	/*background-color: #311B92;*/
+	height: 80px;
+	position: relative;
+}
+
+#detailsBoardBox .btn_question_popup {
+	background-color: #1f2b43;
+	border: none;
+	outline: none;
+	width: 200px;
+	height: 80px;
+	color: #fff;
+	font-size: 30px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 10px;
+}
+
+.box_reply {
+	background-color: #ee9200;
+	width: 860px;
+	min-height: 110px;
+	padding: 20px;
+	font-size: 40px;
+	line-height: 50px;
+	margin: 20px 0 20px 120px;
+}
+
+#recommendationsBox {
+	/*background-color: #FFDE2F;*/
+	width: 1080px;
+	min-height: 300px;
+	margin: 20px auto 0 auto;
+	/*자식 높이 찾게 하기 위해*/
+	overflow: hidden;
+}
+
+#recommendationsBox h3 {
+	/*background-color: #9d7a6d;*/
+	width: 220px;
+	height: 70px;
+	text-align: center;
+	font-size: 40px;
+	line-height: 70px;
+	margin: 8px 0 0 8px;
+}
+
+#recommendationsBox ul {
+	/*background-color: #80D8FF;*/
+	overflow: hidden;
+}
+
+.recommendations {
+	background-color: #f2c641;
+	width: 350px;
+	height: 350px;
+	margin: 10px 5px;
+	float: left;
+}
+
+.profile_img {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	background-image: url("../img/profile/kimbum.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#profileName2 {
+	text-decoration: none;
+	font: 600 19px 'Noto Sans KR', sans-serif;
+	color: #2e7965;
+	width: auto;
+	height: auto;
+	position: absolute;
+	left: 15px;
+	bottom: 0px;
+}
+
+#profileName3 {
+	text-decoration: none;
+	font: 600 20px 'Noto Sans KR', sans-serif;
+	color: #2e7965;
+	width: auto;
+	height: auto;
+	position: absolute;
+	left: 6px;
+	bottom: 0px;
+}
+
+.review_1 {
+	padding: 5px;
+	border-radius: 5px;
+	min-height: 95px;
+	width: 700px;
+	background: #1f2b43;
+	color: #fff;
+	position: absolute;
+	left: 100px;
+	top: auto;
+	font-size: 18px;
+}
+
+.review_1:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-top: 10px solid transparent;
+	border-right: 10px solid #1f2b43;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+	position: absolute;
+	top: 20px;
+	left: -18px;
+}
+
+.review_2 {
+	padding: 5px;
+	border-radius: 5px;
+	min-height: 95px;
+	width: 700px;
+	background: #3f475a;
+	color: #fff;
+	position: absolute;
+	left: 280px;
+	top: auto;
+	font-size: 18px;
+}
+
+.review_2:before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border-top: 10px solid transparent;
+	border-right: 10px solid #3f475a;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+	position: absolute;
+	top: 20px;
+	left: -18px;
+}
+
+.question_box {
+	background: #f2c641;
+	width: 1000px;
+	min-height: 80px;
+	margin: auto;
+	position: relative;
+}
+
+.question_box .btn_reply {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: #2e7965;
+	color: #fff;
+	height: 27px;
+	font-size: 12px;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	border-radius: 5px;
+}
+
+.question_box2 {
+	background: #f2c641;
+	width: 1000px;
+	margin: auto;
+	min-height: 80px;
+}
+
+.question_mark {
+	width: 100px;
+	height: 100px;
+	margin-left: 63px;
+	float: left;
+	color: #fff;
+	font-size: 75px;
+	text-align: center;
+	background: #1f2b43;
+}
+
+.question_box2 .question_mark {
+	width: 100px;
+	height: 100px;
+	margin-left: 63px;
+	float: left;
+	color: #fff;
+	font-size: 75px;
+	text-align: center;
+	background: #3f475a;
+}
+
+.question_1 {
+	padding: 20px;
+	border-radius: 5px;
+	min-height: 70px;
+	width: 800px;
+	background: #1f2b43;
+	color: #fff;
+	font-size: 18px;
+	margin-left: auto;
+	margin-bottom: 20px;
+	line-height: 40px;
+	position: relative;
+}
+
+.question_2 {
+	padding: 20px;
+	border-radius: 5px;
+	min-height: 70px;
+	width: 800px;
+	background: #3f475a;
+	color: #fff;
+	font-size: 18px;
+	margin-left: auto;
+	margin-bottom: 20px;
+	line-height: 40px;
+}
+
+#recommendationsBox #cardBox {
+	width: 1080px;
+}
+
+#detailsContractPopupWrap {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	display: none;
+	z-index: 9998;
+	overflow: auto;
+}
+
+#detailsContractPopup {
+	width: 430px;
+	min-height: 615px;
+	background: #f2c641;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -230px;
+	margin-left: -190px;
+	z-index: 9999;
+	display: none;
+}
+
+#detailsContractPopup dl {
+	width: 350px;
+	min-height: 100px;
+	position: absolute;
+	left: 30px;
+	top: 25px;
+}
+
+#detailsContractPopup dl>dd {
+	width: 232px;
+	min-height: 60px;
+	position: relative;
+	float: left;
+	line-height: 20px;
+}
+
+#detailsContractPopup dl dt {
+	padding: 4px;
+	text-align: center;
+	height: 60px;
+	width: 100px;
+	color: #1f2b43;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+	vertical-align: middle;
+	line-height: 60px;
+	float: left;
+	clear: left;
+}
+
+#detailsContractPopup #giverName {
+	text-decoration: none;
+	position: absolute;
+	top: 23px;
+	left: 70px;
+	color: #1f2b43;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailsContractPopup #takerName {
+	text-decoration: none;
+	position: absolute;
+	top: 23px;
+	left: 70px;
+	color: #1f2b43;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailContractProfileImg {
+	width: 50px;
+	height: 50px;
+	background-image: url("../img/profile/kimbum.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	display: inline-block;
+	position: absolute;
+	left: 10px;
+	top: 8px;
+}
+
+#detailContractProfileImg2 {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-image: url("../img/profile/oh.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	left: 10px;
+	top: 8px;
+}
+
+#detailsContractPopup button {
+	padding: 6px 10px;
+	outline: none;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+	transition: .2ms;
+}
+
+#detailsContractPopup button:hover {
+	cursor: pointer;
+}
+
+#detailsContractPopup #detailsSendContractBtn {
+	background: #1f2b43;
+	position: absolute;
+	right: 18px;
+	bottom: 10px;
+}
+
+#detailsContractPopup #detailsSendContractBtn:active {
+	background: #3f475a;
+}
+
+#detailsContractPopup #calendar {
+	color: #1f2b43;
+	position: absolute;
+	left: 10px;
+	top: 12px;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailsContractPopup #price {
+	color: #1f2b43;
+	position: absolute;
+	left: 10px;
+	top: 23px;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailsContractPopup #price #poomvalue {
+	width: 190px;
+	padding: 20px;
+	margin: 0px 0px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	height: 50px;
+}
+
+#detailsContractPopup #area {
+	color: #1f2b43;
+	position: absolute;
+	left: 10px;
+	top: 23px;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailsContractPopup #comment {
+	color: #1f2b43;
+	position: absolute;
+	left: 10px;
+	top: 15px;
+	font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailsContractPopup #comment textarea {
+	padding: 20px;
+	width: 214px;
+	height: 105px;
+	font-family: "Noto Sans KR", serif;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	resize: none;
+}

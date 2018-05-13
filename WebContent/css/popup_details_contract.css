@@ -1,0 +1,22 @@
+#detailsContractPopupWrap {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display:none;
+    z-index: 9999;
+}
+
+#detailsContractPopup {
+    background-color: #fff;
+    width: 480px;
+    min-height: 300px;
+
+    /*브라우저 기준 정렬*/
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -240px;
+}

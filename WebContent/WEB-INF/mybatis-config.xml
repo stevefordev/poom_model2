@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"
+>
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="CoinTransaction" type="com.coddington.poom.vo.CoinTransaction"/>
+		<typeAlias alias="Contract" type="com.coddington.poom.vo.Contract"/>
+		<typeAlias alias="ContractSchedule" type="com.coddington.poom.vo.ContractSchedule"/>
+		<typeAlias alias="LikeService" type="com.coddington.poom.vo.LikeService"/>
+		<typeAlias alias="Photo" type="com.coddington.poom.vo.Photo"/>
+		<typeAlias alias="Question" type="com.coddington.poom.vo.Question"/>
+		<typeAlias alias="Relationship" type="com.coddington.poom.vo.Relationship"/>
+		<typeAlias alias="Review" type="com.coddington.poom.vo.Review"/>
+		<typeAlias alias="Schedule" type="com.coddington.poom.vo.Schedule"/>
+		<typeAlias alias="Service" type="com.coddington.poom.vo.Service"/>
+		<typeAlias alias="ServiceTag" type="com.coddington.poom.vo.ServiceTag"/>
+		<typeAlias alias="Tag" type="com.coddington.poom.vo.Tag"/>
+		<typeAlias alias="User" type="com.coddington.poom.vo.User"/>
+		<typeAlias alias="Card" type="com.coddington.poom.vo.Card"/>
+	</typeAliases>
+
+
+	<!-- 데이터베이스 연결 환경설정 : spring설정으로 이동! -->
+	<!-- <environments></environments> -->
+
+
+	<!-- mapper 파일들의 경로 설정 -->
+	<mappers>
+		<mapper resource = "com/coddington/poom/mapper/coinTransactions.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/contracts.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/contractSchedules.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/likeServices.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/photos.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/questions.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/relationships.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/reviews.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/schedules.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/services.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/serviceTags.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/tags.xml"/>
+		<mapper resource = "com/coddington/poom/mapper/users.xml"/>
+	</mappers>
+
+</configuration>

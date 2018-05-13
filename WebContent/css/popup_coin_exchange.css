@@ -1,0 +1,131 @@
+#coinExchangePopupWrap {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display:none;
+    z-index: 9999;
+}
+
+#coinExchangePopup {
+    background-color: #fff;
+    width: 450px;
+    height: 600px;
+    /*브라우저 기준 가운데 고정*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -300px;
+    margin-left: -225px;
+}
+
+#coinExchangePopup h4 {
+    /*background-color: #03A9F4;*/
+    width: 380px;
+    height: 60px;
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+    text-align: center;
+
+    position: absolute;
+    top: 30px;
+    left: 35px;
+}
+
+#holdingCoin {
+    background-color: lightgrey;
+    width: 380px;
+    height: 60px;
+    line-height: 60px;
+    font-size: 30px;
+    text-align: center;
+
+    position: absolute;
+    top: 100px;
+    left: 35px;
+}
+
+#holdingCoinAmount {
+    font-weight: 700;
+}
+
+#notes {
+    /*background-color: #f6699e;*/
+    width: 380px;
+    min-height: 60px;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: justify;
+
+    position: absolute;
+    top: 170px;
+    left: 35px;
+}
+
+#contact {
+    /*background-color: #7e57c2;*/
+    width: 380px;
+    height: 20px;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: justify;
+
+    position: absolute;
+    top: 235px;
+    left: 35px;
+}
+
+#coinExchangeForm {
+    /*background-color: #E91E63;*/
+    width: 380px;
+    height: 300px;
+
+    position: absolute;
+    top: 270px;
+    left: 35px;
+}
+
+#coinExchangeForm label {
+    background-color: lightgrey;
+    display: inline-block;
+    width: 140px;
+    height: 57px;
+    font-size: 18px;
+    /*font-weight: 900;*/
+    line-height: 57px;
+    text-align: center;
+
+    /*정렬할 모든 요소에 준다*/
+    vertical-align: middle;
+}
+
+#exchangingCoinAmount, #accountHolder, #bank, #accountNumber {
+    padding: 2px;
+    width: 227px;
+    height: 37px;
+    font-size: 15px;
+
+    /*정렬할 모든 요소에 준다*/
+    vertical-align: middle;
+}
+
+#bank {
+    /* select요소 특성때문에 따로 지정*/
+    width: 235px;
+    height: 45px;
+}
+
+#coinExchangeBtn {
+    outline: none;
+    border: none;
+    background-color:  #1f2b43;
+    width: 380px;
+    height: 60px;
+    font-size: 25px;
+    cursor: pointer;
+    margin-top: 12px;
+    color: #fff;
+}

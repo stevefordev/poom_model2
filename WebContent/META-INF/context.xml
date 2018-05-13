@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+<!-- connection pool 설정 -->
+
+	<Resource 
+	name = "oraclexe"
+	auth = "Container"
+	driverClassName = "oracle.jdbc.OracleDriver"
+	username = "test"
+	password = "1111"
+	url = "jdbc:oracle:thin:@localhost:1521:xe"
+	type = "javax.sql.DataSource"
+	maxIdle = "20"
+	maxActive = "20"
+	maxWait = "-1"
+	/>
+
+</Context>

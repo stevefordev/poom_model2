@@ -1,0 +1,183 @@
+/*taker 2단 프로필 카드 css입니다.*/
+.taker_profile_card {
+    border-radius: 5px;
+    background: #2e7965;
+    height: 280px;
+    width: 630px;
+    padding: 10px;
+    margin: 20 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.taker_box, .taker_profile_card>a {
+    float: left;
+}
+
+.taker_box {
+    width: 250px;
+    height: 280px;
+    /*background-color: #3399FF;*/
+    position: relative;
+}
+
+.taker_profile_card .taker_box .fa-heart {
+    font-size: 20px;
+    cursor: pointer;
+    color: #eb1a33;
+}
+
+.taker_profile_card .taker_box .box_heart {
+    position: absolute;
+    border-radius: 3px;
+    top: 7px;
+    right: -20px;
+    min-width: 65px;
+    padding: 0px 2px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 150;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 29px;
+    transition: 0.3s ease;
+}
+
+.taker_box .box_heart:hover {
+    cursor: pointer;
+    background-color: rgba(290, 290, 290, 0.6);
+    color: #000000;
+}
+
+.taker_img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-image: url("../img/profile/profileImg2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 45px auto 15px auto;
+}
+
+.taker_name {
+    height: 40px;
+    text-decoration: none;
+    font: 700 30px/36px 'Noto Sans KR', sans-serif;
+    color: #f2c641;
+    text-align: center;
+    /*margin: 10px auto;*/
+    /*background-color: #CCCCCC;*/
+    /*vertical-align: middle;*/
+}
+
+
+.taker_profile_card a {
+    display: inline-block;
+    width: 350px;
+    height: 280px;
+    margin-left: 30px;
+    text-decoration: none;
+    /*background-color: fuchsia;*/
+}
+
+.taker_service_inform {
+    width: 350px;
+    height: 280px;
+    /*margin-left: 10px;*/
+    /*background-color: #004D40;*/
+}
+
+.taker_profile_card ul {
+    width: 350px;
+    height: 280px;
+    /*background-color: chartreuse;*/
+}
+
+.taker_profile_card ul li {
+    /*background-color: #dd6641;*/
+    padding: 2px;
+    color: #fff;
+    height: 26px;
+    font: 600 17px 'Noto Sans KR', sans-serif;
+    line-height: 30px;
+}
+
+.taker_profile_card ul li:nth-child(1) {
+    color: #f2c641;
+    font-size: 28px;
+    height: 76px;
+    line-height: 40px;
+	
+    /*한줄말고 여러 줄일 때 (여기선 2줄)
+    ellipsis 처리*/
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.taker_profile_card ul li:nth-child(2) {
+    /*글자수 넘어가는 거 ellipsis처리*/
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/*평점 아이콘*/
+.taker_profile_card ul li:nth-child(2) .icon_small {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    vertical-align: middle;
+    margin-bottom: 4px;
+}
+.taker_profile_card ul li:nth-child(2) .icon_small.sun {
+    background-image: url("../img/sun.svg");
+}
+.taker_profile_card ul li:nth-child(2) .icon_small.cloudy {
+    background-image: url("../img/cloudy.svg");
+}
+.taker_profile_card ul li:nth-child(2) .icon_small.clouds {
+    background-image: url("../img/clouds.svg");
+}
+.taker_profile_card ul li:nth-child(2) .icon_small.rain {
+    background-image: url("../img/rain.svg");
+}
+
+.taker_profile_card ul li:nth-child(5) {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 36px;
+    /*padding-top: 12px;*/
+    color: #1f2b43;
+    font-size: 19px;
+    line-height: 45px;
+}
+
+.taker_profile_card ul li:nth-child(6) {
+    font-size: 50px;
+    font-weight: 900;
+    height: 66px;
+    line-height: 66px;
+    max-width: 196px;
+}
+
+.taker_profile_card .btn_contract_list {
+	background-color: #3f475a;
+	border: none;
+	color: #fff;
+	font: 600 16px 'Noto Sans KR', sans-serif;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 4px 8px;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,620 @@
+#menuFileterWrap {
+	left: 0;
+	width: 100%;
+	background-color: #f3f3f3;
+	position: absolute;
+}
+
+/*content안 전체 div*/
+#menuContents {
+	width: 1200px;
+}
+
+#menuFilter {
+	margin: auto;
+	width: 1200px;
+	height: 330px;
+	position: relative;
+}
+
+#menuFilter .tui-datepicker {
+	z-index: 120;
+}
+
+#menucard {
+	padding-top: 360px;
+}
+/*a 링크 css*/
+.filter_area a:link {
+	color: red;
+	text-decoration: none;
+}
+
+.filter_area a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+.filter_detail a:link {
+	color: red;
+	text-decoration: none;
+}
+
+.filter_detail a:visited {
+	color: black;
+	text-decoration: none;
+}
+
+/*역할 부분*/
+.filter_role {
+	width: 600px;
+	height: 100px;
+	display: inline-block;
+	float: left;
+	color: #fff;
+}
+
+.filter_role h3 {
+	background: #2e7965;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	display: inline-block;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 25px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.btn_role {
+	background: #aa2222;
+	float: left;
+	width: 189px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 25px;
+	margin-right: 25px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+/*제공분야*/
+.filter_providing {
+	width: 600px;
+	height: 100px;
+	float: left;
+}
+
+.filter_providing h3 {
+	background: #2e7965;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 25px;
+	margin-right: 25px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/*서비스 가사 교육 심부름 버튼*/
+.btn_providing {
+	background: #aa2222;
+	float: left;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 25px;
+	margin-right: 25px;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+}
+
+.filter_schedule {
+	width: 600px;
+	height: 100px;
+	float: left;
+}
+
+/*날짜일정*/
+.filter_schedule h3 {
+	background: #2e7965;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	display: inline-block;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-top: 25px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+/*달력 캘린더,달력 주 월 달 버튼*/
+.btn_date {
+	background: #aa2222;
+	float: left;
+	width: 60px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 25px;
+	margin-right: 15px;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+}
+
+h1 {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-size: 30px;
+}
+
+.row {
+	float: left;
+	background: #00bb00;
+	margin-top: 25px;
+	margin-right: 20px;
+}
+
+.tui-datepicker-input {
+	height: 48px;
+	outline: 0;
+}
+
+#datepicker-input2 {
+	font-size: 20px;
+	font-weight: bold;
+	outline: none;
+}
+
+/*지역부분*/
+.filter_area {
+	width: 600px;
+	height: 100px;
+	float: left;
+}
+
+.box_area h3 {
+	background: #2e7965;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 25px;
+	margin-right: 25px;
+	text-align: center;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.box_area {
+	width: 600px;
+	min-height: 100px;
+	float: left;
+	position: relative;
+}
+
+.address1 {
+	width: 170px;
+	height: 50px;
+	line-height: 50px;
+	background: #f9f9f9;
+	border: 1px solid #dbdbdb;
+	float: left;
+	margin-right: 25px;
+	margin-top: 25px;
+	font-size: 22px;
+	padding: 0 10px;
+}
+
+.address1 i {
+	position: absolute;
+	left: 330px;
+	top: 15px;
+}
+
+.address1 .fa-sort-down {
+	display: inline;
+	position: absolute;
+	top: 37px;
+}
+
+.address1 .fa-sort-up {
+	display: none;
+	position: absolute;
+	top: 25px;
+}
+
+.address1.on .fa-sort-up {
+	display: inline;
+	position: absolute;
+	top: 45px;
+}
+
+.address1.on .fa-sort-down {
+	display: none;
+	position: absolute;
+	top: 37px;
+}
+
+.address2 {
+	width: 170px;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 25px;
+	background: #f9f9f9;
+	border: 1px solid #dbdbdb;
+	float: left;
+	margin-right: 25px;
+	padding: 0 10px;
+	font-size: 22px;
+}
+
+.address2 i {
+	position: absolute;
+	left: 550px;
+	top: 17px;
+}
+
+.address2 .fa-sort-down {
+	display: inline;
+	position: absolute;
+	top: 37px;
+}
+
+.address2 .fa-sort-up {
+	display: none;
+	position: absolute;
+	top: 20px;
+}
+
+.address2.on .fa-sort-up {
+	display: inline;
+	position: absolute;
+	top: 45px;
+}
+
+.address2.on .fa-sort-down {
+	display: none;
+	position: absolute;
+	top: 12px;
+}
+
+.filter_area .list_address1 {
+	width: 409px;
+	min-height: 100px;
+	position: absolute;
+	top: 90px;
+	left: 165px;
+	display: none;
+	background: #fff;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+}
+
+.list_address1.on {
+	display: block;
+}
+
+.filter_area .list_address2 {
+	width: 409px;
+	min-height: 100px;
+	background: #fff;
+	position: absolute;
+	top: 90px;
+	left: 165px;
+	display: none;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+}
+
+.list_address2.on {
+	display: block;
+}
+
+.item_area {
+	width: 100px;
+	font-size: 22px;
+	text-align: center;
+	float: left;
+	margin: 10px;
+}
+
+/*/////////////////////////////상세필터 입니다//////////////////////////////*/
+.filter_detail {
+	width: 800px;
+	height: 100px;
+	float: left;
+}
+
+.btn_detail {
+	background: #2e7965;
+	width: 120px;
+	height: 50px;
+	line-height: 50px;
+	float: left;
+	display: inline-block;
+	margin-left: 25px;
+	margin-top: 25px;
+	text-align: center;
+	outline: 0;
+	border: 0;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.list_detail {
+	width: 600px;
+	height: 100px;
+	display: none;
+	font-size: 20px;
+	vertical-align: middle;
+	overflow: hidden;
+	float: left;
+}
+
+.list_detail h3 {
+	margin-left: 20px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	margin-right: 15px;
+	font-size: 22px;
+	margin-top: 25px;
+	float: left;
+}
+
+.list_detail select {
+	width: 130px;
+	height: 40px;
+	font-size: 20px;
+	line-height: 40px;
+	float: left;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	outline: none;
+	padding-left: 10px;
+	box-sizing: content-box;
+	background: transparent;
+	cursor: pointer;
+}
+
+.item_detail1 {
+	text-align: center;
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	margin-top: 27px;
+	margin-right: 10px;
+	float: left;
+	border: 1px solid #dbdbdb;
+}
+
+.item_detail2 {
+	text-align: center;
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+	margin-right: 10px;
+	margin-top: 27px;
+	float: left;
+	border: 1px solid #dbdbdb;
+}
+
+/* 화살표 변화 시키기 */
+.list_detail  .fa-sort-down {
+	position: relative;
+	left: 55px;
+	top: -41px;
+	display: inline;
+	z-index: -1;
+}
+
+.list_detail  .fa-sort-up {
+	position: relative;
+	left: 46px;
+	top: -34px;
+	display: none;
+	z-index: -1;
+}
+
+.list_detail  .fa-sort-up.on {
+	position: relative;
+	left: 55px;
+	top: -34px;
+	display: inline;
+}
+
+.list_detail  .fa-sort-down.on {
+	position: relative;
+	left: 45px;
+	top: -41px;
+	display: none;
+}
+
+/*select option css*/
+.item_detail option {
+	font-size: 22px;
+}
+
+/*상세필터 +- 버튼 변화 시키기*/
+.btn_detail .fa-minus {
+	display: none;
+}
+
+.filter_detail.on .list_detail {
+	display: block;
+}
+
+.filter_detail.on .fa-minus {
+	display: inline;
+}
+
+.filter_detail.on .fa-plus {
+	display: none;
+}
+
+/*1차카드 부분 감싸는 div입니다*/
+#menucard {
+	width: 1200px;
+}
+
+.box_sort {
+	width: 190px;
+	height: 50px;
+	border: 1px solid #dbdbdb;
+	position: relative;
+	left: 983px;
+}
+
+.box_sort select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	width: 190px;
+	height: 50px;
+	position: relative;
+	display: inline-block;
+	font-size: 20px;
+	padding: 0 10px;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.box_sort .fa-sort-down {
+	display: inline;
+	position: relative;
+	font-size: 25px;
+	left: 165px;
+	top: -38px;
+	z-index: -1;
+}
+
+.box_sort .fa-sort-up {
+	display: none;
+	position: relative;
+	font-size: 25px;
+	left: 144px;
+	top: -29px;
+	z-index: -1;
+}
+
+.box_sort .fa-sort-up.on {
+	display: inline;
+	position: relative;
+	font-size: 25px;
+	left: 165px;
+}
+
+.box_sort .fa-sort-down.on {
+	display: none;
+	position: relative;
+	font-size: 25px;
+	left: 144px;
+}
+
+.box_sort option {
+	font-size: 20px;
+}
+
+#cardBox {
+	width: 1160px;
+	min-height: 350px;
+	overflow: hidden;
+	margin: auto;
+	padding: 20px;
+}
+
+#cardBox .card {
+	float: left;
+	margin-left: 27.5px;
+	margin-bottom: 27.5px;
+}
+
+.paginate {
+	width: 1200px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 16px;
+}
+
+/*----------------- 역할 버튼 부분 css-----------------*/
+.filter_role button:nth-child(2) {
+	background: #f2c641;
+}
+
+.filter_role.on button:nth-child(2) {
+	background: #5f5f5f;
+}
+
+.filter_role button:nth-child(3) {
+	background: #5f5f5f;
+}
+
+.filter_role.on button:nth-child(3) {
+	background: #f2c641;
+}
+
+/*--------------제공 분야 버튼 부분 css---------------*/
+.filter_providing button:nth-child(2) {
+	background: #f2c641;
+}
+
+.filter_providing button:nth-child(2).on {
+	background: #5f5f5f;
+}
+
+.filter_providing button:nth-child(3) {
+	background: #5f5f5f;
+}
+
+.filter_providing button:nth-child(3).on {
+	background: #f2c641;
+}
+
+.filter_providing button:nth-child(4) {
+	background: #5f5f5f;
+}
+
+.filter_providing button:nth-child(4).on {
+	background: #f2c641;
+}
+
+/*////////////////////날짜일정 부분 버튼 css/////////////////////////////////////*/
+.filter_schedule button.on {
+	background: #f2c641;
+}
+
+.filter_schedule button {
+	background: #5f5f5f;
+}

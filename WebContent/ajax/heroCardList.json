@@ -1,0 +1,122 @@
+[
+	{
+		"isLike" : false,
+		"countLike": "22",
+		"photos": [
+			"img/edu/edu1.jpg",
+			"img/edu/edu2.jpg",
+			"img/edu/edu2.jpg"
+		],
+		"profilePic": "img/profile/person21.jpg",
+		"nickname": "김치소주",
+		"title": "소규모 그룹으로 프로그래밍 기초부터",
+		"tags": "#교육 #스터디그룹 #개발",
+		"scoreTotal": "91",
+		"countScore": "12",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "20",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "10",
+		"photos": [
+			"img/edu/swim1.jpg",
+			"img/edu/swim2.jpg",
+			"img/edu/swim3.jpg"
+		],
+		"profilePic": "img/profile/person22.jpg",
+		"nickname": "심장맥박",
+		"title": "수영 기초부터 마스터가 될때까지~",
+		"tags": "#교육 #수영 #정다래",
+		"scoreTotal": "97",
+		"countScore": "20",
+		"icon" : "sun",
+		"area1": "경기",
+		"area2": "부천시",
+		"poom": "50",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "19",
+		"photos": [
+			"img/house/cleaning/cleaning13.jpg",
+			"img/house/cleaning/cleaning14.jpg",
+			"img/house/cleaning/cleaning15.jpg"
+		],
+		"profilePic": "img/profile/person23.jpg",
+		"nickname": "김꼬뚜래",
+		"title": "집청소 하나부터 열까지 한번에 해결",
+		"tags": "#가사 #대청소 #마스터",
+		"scoreTotal": "89",
+		"countScore": "6",
+		"icon" : "cloudy",
+		"area1": "대구",
+		"area2": "달성군",
+		"poom": "35",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "32",
+		"photos": [
+			"img/house/cleaning/cleaning10.jpg",
+			"img/house/cleaning/cleaning11.jpg",
+			"img/house/cleaning/cleaning12.jpg"
+		],
+		"profilePic": "img/profile/person24.jpg",
+		"nickname": "박상면이",
+		"title": "에어컨 청소부터 수리 해결해드립니다",
+		"tags": "#가사 #에어컨청소 #수리",
+		"scoreTotal": "94",
+		"countScore": "9",
+		"icon" : "sun",
+		"area1": "인천",
+		"area2": "남구",
+		"poom": "40",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "45",
+		"photos": [
+			"img/delivery/delivery1.jpg",
+			"img/delivery/delivery2.jpg",
+			"img/delivery/delivery3.jpg"
+		],
+		"profilePic": "img/profile/profilehyuna.jpg",
+		"nickname": "왕밤바",
+		"title": "장볼 시간이 없으세요? 저를 찾으세요!!",
+		"tags": "#심부름 #장보기 #마트",
+		"scoreTotal": "88",
+		"countScore": "10",
+		"icon" : "cloudy",
+		"area1": "서울",
+		"area2": "구로구",
+		"poom": "45",
+		"isGiver" : true
+	},
+	{
+		"isLike" : true,
+		"countLike": "22",
+		"photos": [
+			"img/delivery/delivery4.jpg",
+			"img/delivery/delivery5.jpg",
+			"img/delivery/delivery6.jpg"
+		],
+		"profilePic": "img/profile/person29.jpg",
+		"nickname": "오르막길",
+		"title": "무엇이든 간편하게 배달 해드립니다.~",
+		"tags": "#심부름 #배달 #퀵",
+		"scoreTotal": "99",
+		"countScore": "12",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "강남구",
+		"poom": "50",
+		"isGiver" : true
+	}
+]

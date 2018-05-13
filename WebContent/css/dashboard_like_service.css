@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.wrap_likelist {
+    background-color: #9E9E9E;
+    width: 770px;
+    min-height: 280px;
+    padding: 20px;
+    float: right;
+    margin: 0px 45px 0 0;
+}
+
+.content_likelist {
+    background-color: #fff;
+    width: 770px;
+    min-height: 580px;
+    overflow: hidden;
+}
+ 
+ .content_likelist>ul {
+    /*background-color: #ee9200;*/
+    width: 770px;
+    min-height: 580px;
+    overflow: hidden;
+}
+
+.content_likelist>ul .profile_card {
+    width: 650px;
+    min-height: 280px;
+    margin: 30px auto;
+}
+.content_likelist>ul .taker_profile_card {
+    width: 630px;
+    min-height: 280px;
+    margin: 30px auto;
+}
+
+.content_likelist .box_paging {
+    background-color: #311B92;
+    width: 400px;
+    height: 50px;
+    margin: 0 auto 30px auto;
+}

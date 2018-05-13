@@ -1,0 +1,93 @@
+.wrap_popup_reply {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.7);
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 9999;
+}
+
+.popup_reply {
+    background-color:  #fff;
+    width: 450px;
+    min-height: 600px;
+    /*outline: 2px solid #1f2b43;*/
+
+    /*브라우저기준 정렬*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -225px;
+    margin-top: -300px;
+}
+
+.box_reply_info {
+    /*background-color: #4CAF50;*/
+    width: 450px;
+    min-height: 600px;
+}
+
+.box_reply_info dl {
+    /*background-color: #9E9E9E;*/
+    width: 450px;
+    min-height: 500px;
+}
+
+.box_reply_info dt {
+    /*background-color: #f6699e;*/
+    width: 130px;
+    height: 130px;
+    padding: 10px;
+    line-height: 130px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    float: left;
+
+}
+
+.box_reply_info dd {
+    /*background-color: #7e57c2;*/
+    width: 280px;
+    min-height: 130px;
+    line-height: 130px;
+    padding: 10px;
+    font-size: 25px;
+    float: right;
+}
+
+.box_reply_info i {
+    font-size: 55px;
+}
+
+.box_reply_info .reply_contents {
+    height: 330px;
+    line-height: 40px;
+}
+
+.box_reply_info .reply_contents textarea {
+    resize: none;
+    width: 272px;
+    height: 322px;
+    border: 2px solid #424242;
+    font-size: 25px;
+    outline: none;
+}
+
+.box_reply_info .reply_contents textarea:focus {
+    background-color: #efefef;
+}
+
+.btn_reply_register {
+    border: none;
+    outline: none;
+    background-color: #1f2b43;
+    width: 120px;
+    height: 60px;
+    font-size: 30px;
+    color: #fff;
+    margin: 20px 0 0 310px;
+    cursor: pointer;
+}

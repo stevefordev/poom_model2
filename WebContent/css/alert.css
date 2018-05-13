@@ -1,0 +1,510 @@
+/*! CSS Used from: https://ssl.pstatic.net/cmstatic/webclient/dres/20180322173509/css/band.css?_=20180322173509 */
+article,header{display:block;}
+em{font-style:normal;}
+._newsItem {
+    text-decoration: none;
+}
+
+
+.gSrOnly{overflow:hidden!important;position:absolute!important;height:1px!important;width:1px!important;clip:rect(1px,1px,1px,1px);}
+.cRecentList{display:none;z-index:1000;position:absolute;width:400px;top:70px;left:-10px;background:#fff;box-shadow:0 5px 10px 0 rgba(0,0,0,.1);border:solid 1px rgba(0,0,0,.35);}
+.cRecentList:after,.cRecentList:before{display:block;position:absolute;width:0;height:0;left:10px;right:auto;content:'';}
+.cRecentList:before{top:-7px;height:0;width:0;border-color:transparent transparent rgba(0,0,0,.35);border-style:solid;border-width:0 6px 6px;}
+.cRecentList:after{top:-6px;height:0;width:0;border-color:transparent transparent #fff;border-style:solid;border-width:0 6px 6px;}
+.cRecentList header{position:relative;height:45px;padding-left:20px;line-height:45px;border-bottom:1px solid #ebebeb;}
+.cRecentList header h1{float:left;font-size:14px;font-weight:600;color:#222;}
+.cRecentList header button{position:absolute;top:0;right:7px;width:38px;height:45px;}
+
+.cRecentList .main{overflow:hidden;overflow-y:auto;max-height:590px;line-height:1.43;}
+
+.cRecentList .main>ul>li{
+    position:relative;
+    padding:10px 0 11px
+}
+.cRecentList .main>ul>li:hover{
+    background:rgba(0,0,0,.01)
+}
+.cRecentList .main>ul>li.loading{
+    min-height:0!important
+}
+.cRecentList .main>ul>li+li{
+    border-top:1px solid #ebebeb
+}
+.cRecentList .main>ul>li a{
+    display:-webkit-box;
+    display:-webkit-flex;
+    display:-ms-flexbox;
+    display:flex;
+    width:100%;
+    -webkit-box-align:center;
+    -webkit-align-items:center;
+    -ms-flex-align:center;
+    align-items:center
+}
+.cRecentList .main>ul>li a>*{
+    display:block;
+    -webkit-box-flex:0;
+    -webkit-flex:0 0 auto;
+    -ms-flex:0 0 auto;
+    flex:0 0 auto
+}
+.cRecentList .main>ul>li .item.-thum{
+    position:relative;
+    width:70px;
+    text-align:center
+}
+.cRecentList .main>ul>li .item.-thum img{
+    border-radius:50%;
+    vertical-align:top
+}
+.cRecentList .main>ul>li .item.-thum .bandLoginPlatform{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-492px 0
+}
+.cRecentList .main>ul>li .item.-thum .vote{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-92px -445px
+}
+.cRecentList .main>ul>li .item.-thum .calendar{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-276px -445px
+}
+.cRecentList .main>ul>li .item.-thum .n{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-184px -445px
+}
+.cRecentList .main>ul>li .item.-thum .birthday{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-492px -92px
+}
+.cRecentList .main>ul>li .item.-thum .bandCreate{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-286px -397px
+}
+.cRecentList .main>ul>li .item.-thum .notice{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-492px -138px
+}
+.cRecentList .main>ul>li .item.-thum .attendance{
+    width:40px;
+    height:40px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    text-indent:-999px;
+    background-image:url('../img/spr_svg2png.png');
+    background-position:0 -445px
+}
+.cRecentList .main>ul>li .item.-thum .profile40,.cRecentList .main>ul>li .item.-thum .publicProfile40{
+    overflow:hidden;
+    position:relative;
+    display:inline-block;
+    width:40px;
+    height:40px;
+    background:#ebebeb;
+    border-radius:50%;
+    vertical-align:top
+}
+.cRecentList .main>ul>li .item.-thum .profile40:before,.cRecentList .main>ul>li .item.-thum .publicProfile40:before{
+    position:absolute;
+    left:50%;
+    top:50%;
+    -webkit-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+}
+.cRecentList .main>ul>li .item.-thum .profile40:before{
+    width:20px;
+    height:20px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:0 -597px
+}
+.cRecentList .main>ul>li .item.-thum .publicProfile40:before{
+    width:22px;
+    height:22px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-336px -569px
+}
+.cRecentList .main>ul>li .item.-main{
+    -webkit-box-flex:1;
+    -webkit-flex:1 1 auto;
+    -ms-flex:1 1 auto;
+    flex:1 1 auto;
+    width:100%;
+    min-width:0
+}
+.cRecentList .main>ul>li .item.-main>*{
+    width:100%
+}
+.cRecentList .main>ul>li .item:last-child{
+    padding-right:20px
+}
+.cRecentList .main>ul>li .item.-pic{
+    padding-left:10px;
+    text-align:right
+}
+.cRecentList .main>ul>li .item.-pic span{
+    position:relative;
+    display:inline-block
+}
+.cRecentList .main>ul>li .item.-pic span.video:before{
+    width:20px;
+    height:20px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-555px -569px;
+    position:absolute;
+    left:50%;
+    top:50%;
+    -webkit-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%)
+}
+.cRecentList .main>ul>li .item.-pic img{
+    vertical-align:top
+}
+.cRecentList .main>ul>li .item.-pic em{
+    position:absolute;
+    right:0;
+    bottom:0;
+    padding:0 4px;
+    background:rgba(0,0,0,.5);
+    line-height:1.3;
+    font-size:11px;
+    font-weight:400;
+    color:#fff
+}
+.cRecentList .main>ul>li .item .tit>*{
+
+    display:-webkit-inline-flex;
+    display:-ms-inline-flexbox;
+    display:inline-flex;
+    max-width:100%
+}
+.cRecentList .main>ul>li .item .tit strong{
+    font-size:13px;
+    font-weight:600;
+    color:#333
+}
+.cRecentList .main>ul>li .item .tit strong>span{
+    -webkit-box-flex:0;
+    -webkit-flex:0 1 auto;
+    -ms-flex:0 1 auto;
+    flex:0 1 auto;
+    display:block;
+    overflow:hidden;
+    min-width:0;
+    white-space:nowrap;
+    word-break:normal;
+    word-wrap:normal;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis
+}
+.cRecentList .main>ul>li .item .tit strong>em{
+    margin-left:4px;
+    white-space:nowrap;
+    font-size:13px;
+    font-weight:400;
+    color:#333
+}
+.cRecentList .main>ul>li .item .tit strong>em .comment{
+    overflow:hidden;
+    position:relative;
+    display:inline-block;
+    height:15px;
+    padding:0 6px;
+    background:#ccc;
+    border-radius:8px;
+    line-height:15px;
+    vertical-align:-3px;
+    font-size:10px;
+    font-weight:500;
+    color:#fff
+}
+.cRecentList .main>ul>li .item .tit strong>em .comment:before{
+    position:relative;
+    top:2px;
+    margin:0 2px 0 0;
+    width:11px;
+    height:11px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-655px -421px
+}
+.cRecentList .main>ul>li .item .tit strong>em mark{
+    background:0 0;
+    color:#2e7965
+}
+.cRecentList .main>ul>li .item .tit~.body{
+    margin-top:2px
+}
+.cRecentList .main>ul>li .item .gSrOnly:first-child+.body{
+    margin-top:3px
+}
+.cRecentList .main>ul>li .item .body{
+    display:block;
+    overflow:hidden;
+    max-width:100%;
+    white-space:nowrap;
+    word-break:normal;
+    word-wrap:normal;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    color:#333;
+    font-size:13px;
+    line-height:1.31
+}
+.cRecentList .main>ul>li .item .body.mLine2{
+    overflow:hidden;
+    display:block;
+    display:-webkit-box;
+    max-height:34.06px;
+    font-size:13px;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    line-height:1.31;
+    word-break:keep-all;
+    word-wrap:break-word;
+    white-space:normal;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical
+}
+.cRecentList .main>ul>li .item .body.mLine3{
+    overflow:hidden;
+    display:block;
+    display:-webkit-box;
+    max-height:51.09px;
+    font-size:13px;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    line-height:1.31;
+    word-break:keep-all;
+    word-wrap:break-word;
+    white-space:normal;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical
+}
+.cRecentList .main>ul>li .item .body+.body{
+    margin:0
+}
+.cRecentList .main>ul>li .item .body strong{
+    font-weight:400;
+    color:#34cc6c
+}
+.cRecentList .main>ul>li .item>.comment,.cRecentList .main>ul>li .item>.tag{
+    font-size:13px;
+    display:block;
+    overflow:hidden;
+    max-width:100%;
+    white-space:nowrap;
+    word-break:normal;
+    word-wrap:normal;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    color:#777
+}
+.cRecentList .main>ul>li .item>.comment~.origin{
+    margin-top:0
+}
+.cRecentList .main>ul>li .item>.origin{
+    font-size:12px;
+    display:block;
+    margin:3px 0 0 0;
+    color:#999
+}
+.cRecentList .main>ul>li .item>.origin em{
+    overflow:hidden;
+    display:inline-block;
+    height:15px;
+    margin:0 2px 0 0;
+    padding:0 8px;
+    background:#b3b3b3;
+    border-radius:8px;
+    line-height:15px;
+    vertical-align:top;
+    font-size:10px;
+    font-weight:700;
+    color:#fff
+}
+.cRecentList .main>ul>li .item>.origin>span{
+    position:relative;
+    vertical-align:top;
+    display:inline-block;
+    overflow:hidden;
+    max-width:249px;
+    white-space:nowrap;
+    word-break:normal;
+    word-wrap:normal;
+    -o-text-overflow:ellipsis;
+    text-overflow:ellipsis
+}
+.cRecentList .main>ul>li .item>.origin>span:after{
+    content:'';
+    margin:7px 4px 0;
+    vertical-align:top;
+    width:2px;
+    height:2px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-331px -284px
+}
+.cRecentList .main>ul>li.chat .item.-etc{
+    -webkit-align-self:flex-start;
+    -ms-flex-item-align:start;
+    align-self:flex-start;
+    text-align:right;
+    padding-top:3px
+}
+.cRecentList .main>ul>li.chat .item.-etc time{
+    display:block;
+    margin:0 0 0 13px;
+    font-size:11px;
+    font-weight:400;
+    color:#999
+}
+.cRecentList .main>ul>li.chat .item.-etc .count{
+    display:inline-block;
+    min-width:21px;
+    height:15px;
+    margin:2px 0 0 13px;
+    padding:0 6px;
+    background:#2e7965;
+    border-radius:10px;
+    line-height:15px;
+    text-align:center;
+    vertical-align:top;
+    font-size:10px;
+    font-weight:400;
+    color:#fff
+}
+.cRecentList .main>ul>li.chat .item .origin{
+    margin-top:5px;
+    line-height:1.3
+}
+.cRecentList .main>ul>li.chat .item .origin>span:after{
+    display:none
+}
+.cRecentList .main>ul>li.chat.-active .option,.cRecentList .main>ul>li.chat:hover .option{
+    display:block
+}
+.cRecentList .main>ul>li.chat.-active .item:last-child,.cRecentList .main>ul>li.chat:hover .item:last-child{
+    padding-right:34px
+}
+.cRecentList .main>ul>li.chat.-active{
+    z-index:10
+}
+.cRecentList .main>ul>li.chat.-pinned .item.-thum:before{
+    z-index:10;
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:4px 0 0 4px;
+    width:18px;
+    height:18px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-630px -362px
+}
+.cRecentList .main>ul>li.-unread{
+    background:#fffff2
+}
+.cRecentList .main>ul>li.-unread:hover{
+    background:#ffffe5
+}
+.cRecentList .main>ul>li.-unread .item .tit strong>em span{
+    background:#2e7965
+}
+.cRecentList .main>ul>li .option{
+    display:none;
+    position:absolute;
+    right:8px;
+    top:15px;
+    z-index:5
+}
+.cRecentList .main>ul>li .option .btnShowOption{
+    padding:0 5px;
+    vertical-align:top
+}
+.cRecentList .main>ul>li .option .btnShowOption:before{
+    width:15px;
+    height:15px;
+    overflow:hidden;
+    display:inline-block;
+    background-repeat:no-repeat;
+    content:'';
+    background-image:url('../img/spr_svg2png.png');
+    background-position:-244px -623px
+}
+.cRecentList .main>ul>li .option .lyMenu{
+    display:none;
+    position:absolute;
+    right:5px;
+    top:20px;
+    z-index:100
+}
+.cRecentList .main>ul>li .option .lyMenu.-top{
+    top:auto;
+    bottom:24px
+}

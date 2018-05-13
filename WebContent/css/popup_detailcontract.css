@@ -1,0 +1,163 @@
+.popup_bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    display: none;
+    z-index: 9998;
+    overflow: auto;
+}
+
+#detailContractPopup {
+    width: 380px;
+    min-height: 500px;
+    background: #f2c641;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -230px;
+    margin-left: -190px;
+    z-index: 9999;
+}
+
+#detailContractPopup dl {
+    width: 350px;
+    min-height: 100px;
+    position: absolute;
+    left: 30px;
+    top: 25px;
+}
+
+#detailContractPopup dl > dd {
+    width: 232px;
+    min-height: 60px;
+    position: relative;
+    float: left;
+}
+
+#detailContractPopup dl dt {
+
+    padding: 4px;
+    text-align: center;
+    height: 60px;
+    width: 100px;
+    color: #1f2b43;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+    vertical-align: middle;
+    line-height: 60px;
+    float: left;
+    clear: left;
+}
+
+#giverName {
+    text-decoration: none;
+    position: absolute;
+    top: 23px;
+    left: 70px;
+    color: #1f2b43;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#takerName {
+    text-decoration: none;
+    position: absolute;
+    top: 23px;
+    left: 70px;
+    color: #1f2b43;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#detailContractProfileImg {
+    width: 50px;
+    height: 50px;
+    background-image: url("../img/profile/kimbum.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+
+#detailContractProfileImg2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url("../img/profile/oh.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+
+#detailContractPopup button {
+    padding: 6px 10px;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+    transition: .2ms;
+}
+
+#detailContractPopup button:hover {
+    cursor: pointer;
+}
+
+#detailokBtn {
+    background:#1f2b43;
+    position: absolute;
+    left: 260px;
+    top: 450px;
+}
+#detailContractPopup #detailokBtn:active {
+    background:#3f475a;
+
+}
+#detailnoBtn {
+    background:#1f2b43;
+    position: absolute;
+    left: 320px;
+    top: 450px;
+}
+
+#calendar {
+    color: #1f2b43;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#price {
+    color: #1f2b43;
+    position: absolute;
+    left: 10px;
+    top: 23px;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#area {
+    color: #1f2b43;
+    position: absolute;
+    left: 10px;
+    top: 23px;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}
+
+#comment {
+    color: #1f2b43;
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font: 600 15px 'Noto Sans KR', sans-serif;
+}

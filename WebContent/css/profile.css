@@ -1,0 +1,252 @@
+
+#content{
+    padding:20px 0px;
+    background-color: #eef0f3;
+    font-family: "Noto Sans KR", sans-serif;
+    overflow: hidden;
+}
+
+.profile_content{
+    float: left;
+}
+
+#profilePicBox{
+    position: relative;
+    /*top: 150px;*/
+    /*left: 80px;*/
+    /*리모콘으로 고정시키기 위해 position fixed로 위치지정*/
+    width: 300px;
+    height: 550px;
+    background-color: #2e7965;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 0 20px;
+}
+
+#profilePic{
+    width: 300px;
+    height: 250px;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    /*profilwPic을 포지셔닝 컨텍스트로 지정해서 사진수정버튼의 위치를 지정*/
+    margin-bottom: 20px;
+    color: white;
+}
+
+#profilePicBox #pic  {
+    background-image: url("../img/profile/profile_img.png");
+    background-size: contain;
+   	margin:auto;  
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    
+}
+#profilePicBox span.on {
+    display: none;
+}
+#profilePicBox span{
+    display: block;
+    width: 163px;
+    margin: auto;
+}
+#profileNickname{
+    width: 200px;
+    height: 30px;
+    display: none;
+    margin: auto;
+    text-align: center;
+}
+#profileNickname.on{
+    display: block;
+}
+#nicknameEditInput{
+    position: absolute;
+    top: 198px;
+    left: 75px;
+    width: 150px;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1.5px solid #FBC02D;
+    display: none;
+    outline: none;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: "Noto Sans KR", sans-serif;
+}
+#nicknameEditInput.on{
+    display: block;
+}
+.edit_btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #1f2b43;
+    color: white;
+    border: none;
+    font-size: 17px;
+    line-height: 30px;
+    text-align: center;
+    position: absolute;
+    cursor: pointer;
+    outline: none;
+    /*display: none;*/
+}
+/*프로필 사진수정 자기소개 수정 닉네임수정 버튼 css*/
+.edit_btn .on{
+    display: block;
+}
+/*자기 프로필일때 각각의 수정버튼이 보일수있도록 on클레스사용*/
+#picEdit{
+    display: none;
+}
+#profilePicBox label{
+    position: absolute;
+    right: 75px;
+    top: 155px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    background-color: #1f2b43;
+    cursor: pointer;
+    line-height: 30px;
+}
+#nicknameEdit{
+    right: 40px;
+    top: 200px;
+}
+#introduceEdit{
+    right: 20px;
+    top: 430px;
+}
+
+/*각 버튼들 위치지정*/
+
+#introduceText{
+    width: 210px;
+    height: 150px;
+    border-top: 1px solid #FBC02D;
+    border-bottom: 1px solid #FBC02D;
+    margin: auto;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-radius: 2px;
+    color: white;
+    display: none;
+    font-size: 20px;
+    line-height: 30px;
+}
+#introduceText.on{
+    display: block;
+}
+#introduceEditInput{
+    width: 210px;
+    height: 150px;
+    border-left: none;
+    border-right: none;
+
+    border-radius: 2px;
+    border-top: 2px solid #FBC02D;
+    border-bottom: 2px solid #FBC02D;
+    background-color: #2e7965;
+    color: white;
+    position: absolute;
+    font-size: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    left: 50px;
+    top: 285px;
+    padding: 10px;
+
+    resize: none;
+}
+#profilePicBox form {
+    display: none;
+
+}
+#profilePicBox form.on{
+    display: block;
+    height: 172px;
+    margin-bottom: 30px;
+}
+#introduceEditInput:focus{
+    outline: none;
+}
+
+#followBox{
+    width: 255px;
+    height: 70px;
+    margin: auto;
+    /*display: none;*/
+}
+#followBox.on{
+    display: block;
+}
+/*자신의 프로필이 아닐때 팔로우,차단버튼이 보일수있도록하기위해 on클래스*/
+
+#followBox button{
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    background-color: transparent;
+    float: left;
+    border: 1px solid #fff;
+    cursor: pointer;
+    font-family: "Noto Sans KR", sans-serif;
+    transition: 0.3s ease;
+}
+#followBox button:hover{
+    background-color: #2b597d;
+}
+#followBox #follow{
+    outline: none;
+    font-size: 15px;
+    border-radius: 3px;
+    color: #fff;
+    margin-right:15px;
+}
+#followBox #block{
+    outline: none;
+    font-size: 15px;
+    border-radius: 5px;
+    color: #fff;
+}
+#profileStatus{
+    width: 800px;
+    height: 170px;
+    padding-top: 10px;
+}
+#profileStatus ul{
+    width: 266.6666666px;
+    height: 150px;
+    /*background-color: white;*/
+    float: left;
+    line-height: 40px;
+}
+/*해당프로필유저의 계약과 관련한 내용이 들어있는 박스의 css로 평점 계약건수 리뷰가 ul로 묶여있음*/
+#profileStatus #score{
+    line-height: 65px;
+}
+#profileStatus li{
+    text-align: center;
+    font-size: 30px;
+}
+#profileContent{
+    width: 800px;
+    min-height: 500px;
+    background-color: #d1d1d1;
+}
+.emphasisContent{
+    font-weight: bold;
+    color: #ebb545;
+}
+#profileStatus .emphasisContent{
+    font-size: 37px;
+}

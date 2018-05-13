@@ -1,0 +1,264 @@
+/*팔로잉 부분 css입니다*/
+/*메뉴 링크 부분 */
+#content {
+	overflow: hidden;
+}
+
+a:link {
+   
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+h4 {
+    display: none;
+}
+/*메뉴*/
+#profileMenu {
+
+    width: 800px;
+    margin:auto ;
+    min-height: 500px;
+    top: 50px;
+
+
+
+}
+
+
+#profileMenu #followingBox {
+    width: 750px;
+    min-height: 400px;
+    padding: 25px;
+    background: #7b8184;
+    position: relative;
+    display: none;
+}
+
+#profileMenu.on #followingBox {
+    display: block;
+}
+
+#profileMenu #myWritingBox {
+    width: 800px;
+    min-height: 400px;
+    position: relative;
+    display: block;
+}
+
+#profileMenu.on #myWritingBox {
+    display: none;
+}
+
+/* 글작성,팔로워 탭*/
+.tab_exchange {
+    width: 800px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tab_exchange li {
+    width: 400px;
+    float: left;
+    height: 50px;
+
+    line-height: 50px;
+}
+
+.tab_exchange li a {
+    width: 400px;
+    height: 50px;
+    float: left;
+    background: #7b8184;
+    display: block;
+    color: #fff;
+}
+
+.tab_exchange li a:hover {
+    background: #0055aa;
+}
+
+#profileMenu .tab_exchange li:nth-child(1) a {
+    background: #1f2b43;
+}
+
+#profileMenu.on .tab_exchange li:nth-child(1) a {
+    background: #3f475a;
+}
+
+#profileMenu .tab_exchange li:nth-child(2) a {
+    background: #3f475a;
+}
+
+#profileMenu.on .tab_exchange li:nth-child(2) a {
+    background: #1f2b43;
+}
+
+/* 팔로워 리스트 */
+.list_follow {
+    width: 750px;
+    min-height: 500px;
+    background: #fff;
+    /*내용을 꽉채우고 넘치면 자르고 자른부분을 숨김 */
+    overflow: hidden;
+    font-style: normal;
+    font-weight: bold;
+}
+
+/*팔로워 리스트 안에 item_user 의 이미지를 css 함 */
+.list_follow .item_user img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right:10px ;
+
+    /*vertical-align CSS 속성은 inline 또는 table-cell box에서의 수직 정렬을 지정합니다.*/
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/*팔로위 유저*/
+.item_user span {
+    vertical-align: middle;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.item_user i {
+    vertical-align: middle;
+    font-size: 30px;
+    position: absolute;
+    right: 50px;
+    top: 25px;
+}
+
+.item_user i:hover {
+   
+    cursor: pointer;
+    
+    transition: 1.2s;
+}
+
+.item_user {
+    width: 375px;
+    float: left;
+    position: relative;
+}
+.item_user a{
+    display: inline-block;
+    width: 375px;
+    height: 60px;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.item_user img , a>span {
+    position: relative;
+    left: 30px;
+
+}
+
+/*!*버튼 css*!*/
+/*.list_follow button {*/
+/*background: #f2c641;*/
+/*width: 37px;*/
+/*height: 37px;*/
+/*border-radius: 50%;*/
+/*vertical-align: middle;*/
+/*outline: 0;*/
+/*border: 0;*/
+/*}*/
+
+.tab_service {
+    width: 800px;
+    vertical-align: middle;  
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+
+
+}
+
+.tab_service li {
+
+    background: #4b96e6;
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+
+}
+
+.tab_service li a {
+    width: 400px;
+    height: 50px;
+    float: left;
+    background: #5286bc;
+    display: block;
+    color: #fff;
+}
+
+.tab_service li a:hover {
+    background: #0055aa;
+}
+#myWritingBox .tab_service li:nth-child(1) a {
+    background: #f2c641;
+}
+
+#myWritingBox.on .tab_service li:nth-child(1) a {
+    background:   #908f8f
+}
+
+#myWritingBox .tab_service li:nth-child(2) a {
+    background: #908f8f;
+}
+
+#myWritingBox.on .tab_service li:nth-child(2) a {
+    background: #f2c641;
+}
+#myWritingBox .list_giver_pay {
+    width: 800px;
+    min-height: 400px;
+    padding: 75px 0 25px 0;
+    display: block;
+    background: #7b8184;
+
+}
+#myWritingBox .list_taker_pay {
+    width: 800px;
+    min-height: 400px;
+    background: #7b8184;
+    /*position: absolute;*/
+    display: none;
+    padding: 75px 0 25px 0;
+}
+#myWritingBox.on .list_giver_pay {
+    display: none;
+
+}
+#myWritingBox.on .list_taker_pay {
+    display: block;
+
+}
+/*#profileMenu.on .tab_exchange li:nth-child(1) a*/
+/*팔로잉 부분 css 종료 부분입니다*/
+.pay_contents{
+    background: white;
+    overflow: hidden;
+    width: 750px;
+    min-height: 350px;
+    margin: auto;
+}
+.taker_profile_card {
+   margin: 20px auto;  
+}
+.profile_card{
+    margin: 20px auto;
+}

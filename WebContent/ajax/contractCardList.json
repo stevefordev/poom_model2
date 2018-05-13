@@ -1,0 +1,46 @@
+[
+	{
+		"isLike" : true,
+		"countLike": "22",
+		"photos": [
+			"img/edu/edu1.jpg",
+			"img/edu/edu2.jpg",
+			"img/edu/edu2.jpg"
+		],
+		"profilePic": "img/profile/person21.jpg",
+		"nickname": "김치소주",
+		"title": "코딩 과외! HTML, CSS, Javascript, Java, Spring, SQL",
+		"tags": "#코딩 #풀스텍 #코딩이너무좋아요",
+		"schedule" :"2018-04-28 오후 6-7시 외 5개 일정",
+		"contract" : "진행 중인 계약 6건 | 완료된 계약 21건",
+		"scoreTotal": "91",
+		"countScore": "12",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "20",
+		"isGiver":true
+	},
+	{
+		"isLike" : true,
+		"countLike": "10",
+		"photos": [
+			"img/edu/swim1.jpg",
+			"img/edu/swim2.jpg",
+			"img/edu/swim3.jpg"
+		],
+		"profilePic": "img/profile/person22.jpg",
+		"nickname": "심장맥박",
+		"title": "수영 기초부터 마스터가 될때까지~",
+		"tags": "#교육 #수영 #정다래",
+		"schedule" :"2018-04-28 오후 6-7시 외 5개 일정",
+		"contract" : "진행 중인 계약 6건 | 완료된 계약 21건",
+		"scoreTotal": "97",
+		"countScore": "20",
+		"icon" : "sun",
+		"area1": "경기",
+		"area2": "부천시",
+		"poom": "50",
+		"isGiver":false
+	}
+]

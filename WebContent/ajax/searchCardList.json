@@ -1,0 +1,122 @@
+[
+	{
+		"isLike" : false,
+		"countLike": "18",
+		"photos": [
+			"img/house/laundry/laundry1.jpg",
+			"img/house/laundry/laundry2.jpg",
+			"img/house/laundry/laundry3.jpg"
+		],
+		"profilePic": "img/profile/person9.jpg",
+		"nickname": "김치소주",
+		"title": "이 세상 모든 옷빨래는 나에게 맡겨라!",
+		"tags": "#가사 #빨래 #옷빨래",
+		"scoreTotal": "91",
+		"countScore": "12",
+		"area1": "서울",
+		"area2": "관악구",
+		"icon" : "sun",
+		"poom": "40",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "30",
+		"photos": [
+			"img/house/laundry/laundry4.jpg",
+			"img/house/laundry/laundry5.jpg",
+			"img/house/laundry/laundry6.jpg"
+		],
+		"profilePic": "img/profile/person8.jpg",
+		"nickname": "심장맥박",
+		"title": "대한민국에서 빨래 1등이라 할 수 있습니다!",
+		"tags": "#가사 #빨래 #1등",
+		"scoreTotal": "97",
+		"countScore": "20",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "50",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "9",
+		"photos": [
+			"img/house/cleaning/toilet1.jpg",
+			"img/house/cleaning/toilet2.jpg",
+			"img/house/cleaning/toilet3.jpg"
+		],
+		"profilePic": "img/profile/person7.jpg",
+		"nickname": "김꼬뚜래",
+		"title": "화장실은 더 이상 더러운 곳이 아니다!!",
+		"tags": "#가사 #화장실청소 #광택",
+		"scoreTotal": "89",
+		"countScore": "6",
+		"icon" : "cloudy",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "35",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "12",
+		"photos": [
+			"img/house/cleaning/toilet4.jpg",
+			"img/house/cleaning/toilet5.jpg",
+			"img/house/cleaning/toilet6.jpg"
+		],
+		"profilePic": "img/profile/person6.jpg",
+		"nickname": "박상면이",
+		"title": "내 손만 거치면 화장실에서 주무실 수도 있습니다.",
+		"tags": "#가사 #화장실 #깨끗함",
+		"scoreTotal": "94",
+		"countScore": "9",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "40",
+		"isGiver" : true
+	},
+	{
+		"isLike" : false,
+		"countLike": "15",
+		"photos": [
+			"img/house/cleaning/toilet7.jpg",
+			"img/house/cleaning/toilet8.jpg",
+			"img/house/cleaning/toilet9.jpg"
+		],
+		"profilePic": "img/profile/person5.jpg",
+		"nickname": "왕밤바",
+		"title": "향기로운 화장실로 만들어 드리겠습니다.",
+		"tags": "#가사 #화장실 #향기",
+		"scoreTotal": "88",
+		"countScore": "10",
+		"icon" : "cloudy",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "45",
+		"isGiver" : true
+	},
+	{
+		"isLike" : true,
+		"countLike": "51",
+		"photos": [
+			"img/house/cleaning/cleaning21.jpg",
+			"img/house/cleaning/cleaning14.jpg",
+			"img/house/cleaning/cleaning32.jpg"
+		],
+		"profilePic": "img/profile/person2.png",
+		"nickname": "해먹남",
+		"title": "이 구역 집청소, 대청소 주인공은 나야 나! 나야 나!",
+		"tags": "#가사 #집청소 #대청소",
+		"scoreTotal": "99",
+		"countScore": "12",
+		"icon" : "sun",
+		"area1": "서울",
+		"area2": "관악구",
+		"poom": "50",
+		"isGiver" : true
+	}
+]

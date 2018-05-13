@@ -1,0 +1,228 @@
+@charset "UTF-8";
+
+ /* 팝업 바탕 반투명 */
+        .popup.containerContractProgressive {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            /* 브라우저에 고정되게 하는 속성 */
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            /*처음에는 보이지 않게*/
+            display: none;
+            z-index: 9990;
+            
+        }
+        /*실제 계약서 진행 내용 틀*/
+        #containerContractProgressive {
+            width: 500px;
+            min-height: 600px;
+            /*border: 4px solid #1f2b43;*/
+            background: #ccc;
+            margin: 50px auto;
+        }
+        /**
+         * 일정 진행 바
+         *progressbar  https://www.youtube.com/watch?v=DYevj6UGNWA */
+        .progressbar {
+            counter-reset: step;
+            min-height: 80px;
+            padding-top:20px
+        }
+        /* */
+        .progressbar li{
+            list-style-type: none;
+            float: left;
+            width: 33.33%;
+            position: relative;
+            text-align: center;
+        }
+        /* 진행 번호(원형)*/
+        .progressbar li:before{
+            content: counter(step);
+            counter-increment: step;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #828282;
+            display: block;
+            text-align: center;
+            margin: 0 auto 10px auto;
+            border-radius: 50%;
+            background: white;
+            z-index: 10;
+            position: relative;
+        }
+        /* 진행 선 */
+        .progressbar li:after{
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 4px;
+            background: #ddd;
+            top:15px;
+            left: -80px;
+        }
+        .progressbar li:first-child:after {
+            content: none;
+        }
+        /* 완료된 진행의 숫자 색상이 변경*/
+        .progressbar li.active {
+            color:#2e7965;
+        }
+        /* 완료된 진행의 원형 보더 색상 변경*/
+        .progressbar li.active:before {
+            border: 4px solid #2e7965;
+        }
+        /* 완료된 진행의 직선 색상 변경*/
+        .progressbar li.active + li:after {
+            background: #2e7965;
+        }
+
+        #containerContractProgressive dl {
+            position: relative;
+            margin-top: 10px;
+        }
+        #containerContractProgressive dt,
+        #containerContractProgressive dd.user{
+            font-weight: bold;
+            font-size: 24px;
+        }
+        #containerContractProgressive dd {
+            font-size: 20px;
+        }
+        #containerContractProgressive dt.user {
+
+            line-height: 50px;
+        }
+        #containerContractProgressive dd.user {
+            position: relative;
+        }
+
+        #containerContractProgressive dt.user,
+        #containerContractProgressive dd.user {
+            min-height: 50px;
+            width: 250px;
+            text-align: center;
+        }
+        #containerContractProgressive .user .profile {
+            width:50px;
+            height:50px;
+            border-radius:50%;
+        }
+        #containerContractProgressive dd>img {
+            position: absolute;
+            left: 40px;
+        }
+        #containerContractProgressive dd.user>span {
+            position: absolute;
+            top: 10px;
+            left: 106px;
+        }
+        #containerContractProgressive dt.user.giver {
+            position: relative;
+        }
+        #containerContractProgressive dt.user.taker {
+            border-left: 2px solid #828282;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+        #containerContractProgressive dd.user.taker {
+            border-left: 2px solid #828282;
+            position: absolute;
+            right: 00px;
+            top: 50px;
+        }
+
+        #containerContractProgressive dt.user.giver.on:after {
+            content: '\f00c';
+            font-family: "Font Awesome 5 Free";
+            color: red;
+            position: absolute;
+            right: 20px;
+        }
+
+        #containerContractProgressive dt.user.taker.on:after {
+            content: '\f00c';
+            font-family: "Font Awesome 5 Free";
+            color: red;
+            position: absolute;
+            right: 20px;
+        }
+        #containerContractProgressive dt.info,
+        #containerContractProgressive dd.info {
+            margin-top: 20px;
+
+        }
+
+        #containerContractProgressive dt.info {
+            width: 100px;
+            height: 50px;
+            float: left;
+            clear: left;
+            text-align: right;
+            line-height: 50px;
+        }
+
+        #containerContractProgressive dd.info {
+            width: 310px;
+            min-height: 50px;
+            line-height: 44px;
+            margin-left: 140px;
+        }
+
+        #containerContractProgressive dd.info.price {
+
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        #containerContractProgressive dd.info.msg {
+            line-height: 28px;
+        }
+
+        #containerContractProgressive .btn_group {
+            margin-top: 30px;
+            width: 500px;
+            height: 140px;
+            position: relative;
+        }
+        #containerContractProgressive .btn_group>button {
+            outline: none;
+            background: #424242;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            position: absolute;
+            width: 220px;
+            cursor: pointer;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            border-radius: 6px;
+        }
+
+        /*신고*/
+        #containerContractProgressive button:nth-child(1) {
+            left: 20px;
+            top: 10px;
+            height: 50px;
+            font-size: 20px;
+        }
+        /*계약중지*/
+        #containerContractProgressive button:nth-child(2) {
+            left: 20px;
+            bottom: 10px;
+            height: 50px;
+            font-size: 20px;
+        }
+        /*평점*/
+        #containerContractProgressive button:nth-child(3) {
+            height: 120px;
+            top: 10px;
+            right: 20px;
+        }
+        #containerContractProgressive button:nth-child(4) {
+
+        }

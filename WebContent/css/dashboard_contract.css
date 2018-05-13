@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+.wrap_dashboard {
+    width: 810px;
+    min-height: 900px;
+    left: 300px;
+   	float: left;
+    margin: 0px 45px;
+}
+
+.top_tab ul>li {
+    background: #ccc;
+    float: left;
+    height: 100px;
+    width: 270px;
+    text-align: center;
+    line-height: 100px;
+    font-weight: bold;
+    font-size: 30px;
+    border-radius: 10px 10px 0 0;
+    color: #3f475a;
+    cursor: pointer;
+}
+.top_tab ul>li.on {
+    background: #2e7965;
+    color: #fff;
+    position:relative;
+}
+.top_tab ul>li.on:after {
+    content: "";
+    display:block;
+    position:absolute;
+    width:0;
+    height:0;
+    top:100px;
+    right:120px;
+    border-color: #2e7965 transparent transparent;
+    border-style:solid;
+    border-width:15px 15px 0px;
+}
+.wrap_dashboard div.box_contract {
+    width: 770px;
+    min-height: 860px;
+    display: none;
+    font-weight: bold;
+    font-size: 50px;
+    padding: 20px;
+    float: left;
+    background: #9E9E9E;
+}
+
+.wrap_dashboard div.box_contract.on {
+    display: block;
+}
+
+/*내부 내용*/
+.box_content {
+	background-color: #fff;
+	min-height: 840px;
+	padding: 10px;
+	overfliow: hidden;
+}
+
+.box_btn_service {
+	/*background-color: fuchsia*/;
+	width: 352px; 
+	height: 80px;
+	padding: 10px;
+}
+
+.box_btn_service .btn_service {
+    width: 170px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #2e7965;
+    font: 600 17px 'Noto Sans KR', sans-serif;
+}
+
+.box_btn_service .btn_service.on {
+    background: #2e7965;
+    color: #fff;
+}
+
+.box_content .contract_service {
+	/*background-color: orange*/;
+	width: 750px;
+	min-height: 750px;
+}
+
+.box_content .contract_service>ul {
+	/*background-color: lightpink;*/
+	width: 750px;
+	min-height: 750px; 
+	overflow: hidden;
+	display: none;
+}
+
+.box_content .contract_service>ul.on {
+	/*background-color: lightpink;*/
+	display: block;
+}
+
+
+
+.box_content .contract_service>ul>li {
+
+	width: 650px;
+	min-height: 300px; 
+	margin: 30px auto;
+}
+
+.box_content .contract_service>ul>li:nth-child(1) {
+	margin: 15px auto 30px auto;
+}
+
+.box_content .contract_service .box_paging {
+	background-color: purple;
+	width: 400px;
+	height: 100px;
+	margin: 0 auto 20px auto;
+}
+
+.contract_list {
+	background-color: #fff;
+	width: 650px;
+	min-height: 0;
+}
+
+.contract_list li {
+	width: 650px;
+	height: 80px;
+	font-size: 20px;
+	position: relative;
+}
+
+.contract_list li .contract_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image: url("../img/profile/profileImg2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 20px;
+    top: 15px;
+}
+
+.contract_list li .box_schedule {
+	min-width: 150px;
+	max-widt: 200px;
+	height: 40px;
+	position: absolute;
+    top: 20px;
+    left: 160px;
+}
+
+.contract_list li span {
+	position: absolute;
+    top: 30px;
+    left: 80px;
+}
+
+.contract_list li strong {
+	font-size: 30px;
+	position: absolute;
+    top: 25px;
+    left: 355px;
+}
+
+
+
+.contract_list .btn_contract {
+	font: 600 20px 'Noto Sans KR', sans-serif;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    background: #1f2b43;
+    border: none;
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+}
+
+
+.contract_list .btn_contract_accept {
+	left: 435px;
+}
+.contract_list .btn_contract_reject {
+	left: 503px;
+}
+.contract_list .btn_contract_cancel {
+	left: 503px;
+}
+.contract_list .btn_contract_detail {
+	right: 20px;
+}

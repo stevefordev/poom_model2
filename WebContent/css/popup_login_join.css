@@ -1,0 +1,266 @@
+#popupBackground{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    left: 0px;
+    top: 0px;
+    display: none;
+    z-index: 99999;
+    overflow: auto;
+}
+/*팝업 뒷배경*/
+#loginJoinWrap{
+	
+    font-family: "Noto Sans KR", sans-serif;
+    color: #424242;
+    margin:30px auto;
+    width: 440px;
+    overflow: auto;
+}
+/*회원가입 로그인 팝업 전체를 감싸는 div*/
+#joinInput{
+    display: none;
+    width: 360px;
+    height: 700px;
+    border: 1px solid #424242;
+    border-top: 1px solid transparent;
+    padding : 25px 39px 25px 39px;
+    border-radius: 0px 0px 10px 10px;
+    background-color: #f1f1f1;
+    font-size: 15px;
+    font-weight: normal;
+    color: #424242;
+}
+/*회원가입 박스*/
+#loginJoinWrap .tab{
+    float:left;
+    width: 218px;
+    height: 50px;
+    border: 1px solid #424242;
+    border-bottom: none;
+    text-align: center;
+    background-color: #bcbcbc;
+    font-size: 20px;
+    font-weight: bolder;
+    line-height: 50px;
+    border-radius: 15px 15px 0px 0px;
+    transition: 0.3s ease;
+    color: #424242;
+    cursor: pointer;
+}
+/*로그인 회원가입 tab css*/
+#loginJoinWrap .tab.on {
+    background: #f1f1f1;
+}
+/*탭을 클릭했을시 색 변경*/
+#loginJoinWrap h2{
+    height: 30px;
+}
+#loginJoinWrap .input_box{
+    position: relative;
+    height: 82px;
+}
+/*이름 닉네임 전화번호 등 회원가입 input박스 각각의 박스*/
+#loginJoinWrap .msg{
+    font-size: 15px;
+    font-weight: normal;
+    display: none;
+}
+#loginJoinWrap #phoneNum{
+    width: 244px;
+    margin-right: 10px;
+}
+#joinBtn{
+    width: 360px;
+    height: 40px;
+    background-color: #3F51B5;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+}
+/*회원가입 버튼 css*/
+#loginJoinWrap .formBtn{
+    width: 50px;
+    height: 35px;
+    background-color: crimson;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+/*전화번호 전송,인증 버튼css*/
+#loginJoinWrap .formBtn, #phoneNum{
+    vertical-align: middle;
+}
+/*전화번호 인풋박스와 버튼 수평정렬*/
+#loginJoinWrap label{
+    display: inherit;
+    height: 23px;
+} 
+#loginJoinWrap #certificate{
+    width: 280px;
+    margin-right: 10px;
+}
+#loginJoinWrap .icon_box{
+    float: left;
+    width: 35px;
+    height: 34px;
+    border: 1px solid #acacac;
+    border-radius: 5px 0px 0px 5px;
+    border-right: none;
+    background-color: #dddddd;
+    color:#909090;
+    line-height: 34px;
+    text-align: center;
+    font-size: 18px;
+}
+#loginJoinWrap .icon_box>i{
+	line-height: 34px;
+}
+
+/*인풋박스 옆 아이콘박스 css*/
+#joinText{
+    text-align: center;
+}
+#joinText h1{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#joinText h2{
+    padding-bottom: 15px;
+}
+.alert_box{
+    position: absolute;
+    left: 37px;
+    width: 340px;
+    height: 20px;
+    margin-top: 3px;
+}
+/*유효성검사시 나오는 문구가 들어가는 박스*/
+#recapchaBox{
+    width: 302px;
+    height: 90px;
+    margin: auto;
+}
+#loginInput{
+    height: 350px;
+    border: 1px solid #424242;
+    border-top: 1px solid transparent;
+    padding: 25px 0px 25px 38px;
+    border-radius: 0px 0px 10px 10px;
+    font-size: 15px;
+    font-weight: normal;
+    display: none;
+    background-color: #f1f1f1;
+}
+#loginBtn{
+    width: 361px;
+    height: 40px;
+    background-color: #3F51B5;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+}
+#loginEmailBox{
+    height: 90px;
+    /*background-color: #3F51B5;*/
+}
+#loginPasswordBox{
+
+    height: 90px;
+    /*background-color: crimson;*/
+}
+#loginJoinWrap input{
+    margin: auto;
+    width: 310px;
+    height: 30px;
+    padding-left: 10px;
+}
+#loginText{
+    width: 350px;
+    height: 70px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+/*로그인 팝업 상단에 텍스트*/
+#loginText h1{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+#loginText h2{
+    font-size: 15px;
+    font-weight: normal;
+}
+#joinInput.on{
+    display: block;
+}
+#loginInput.on{
+    display: block;
+}
+.msg.bad {
+    font-size: 13px;
+    color:#E91E63;
+    display: none;
+}
+.msg.good {
+    font-size: 13px;
+    color:#2196F3;
+    display: none;
+}
+
+#nameAlert.good .good{
+    display: inline;
+}
+#nameAlert.bad .bad{
+    display: inline;
+}
+
+#nicknameAlert.good .good{
+    display: inline;
+}
+#nicknameAlert.bad .bad{
+    display: inline;
+}
+
+#phoneNumAlert.good .good{
+    display: inline;
+}
+#phoneNumAlert.bad .bad{
+    display: inline;
+}
+
+#certificateAlert.good .good{
+    display: inline;
+}
+#certificateAlert.bad .bad{
+    display: inline;
+}
+
+
+#mailAlert.good .good{
+    display: inline;
+}
+#mailAlert.bad .bad{
+    display: inline;
+}
+
+#passwordAlert.good .good{
+    display: inline;
+}
+#passwordAlert.bad .bad{
+    display: inline;
+} 
