@@ -3,11 +3,11 @@
 }
 
 #detailsTitle {
-	/*background-color: #80D8FF;*/
-	width: 1050px;
+	background-color: beige;
+	width: 1200px;
 	min-height: 100px;
 	margin: auto;
-	font-size: 70px;
+	font-size: 40px;
 	font-weight: 900;
 	line-height: 100px;
 	text-align: center;
@@ -16,7 +16,7 @@
 #detailsImgBox {
 	width: 400px;
 	height: 400px;
-	margin: 20px;
+	margin: 20px 20px 0 0;
 	float: left;
 	position: relative;
 }
@@ -78,8 +78,8 @@
 }
 
 #detailsInfoBox {
-	background-color: #2e7965;
-	width: 740px;
+	background-color: #fff;
+	width: 780px;
 	min-height: 500px;
 	float: left;
 	margin: 20px 0;
@@ -126,7 +126,6 @@
 	width: 380px;
 	min-height: 300px;
 	margin: 30px 30px 20px 30px;
-	color: white;
 	font-size: 25px;
 }
 
@@ -197,7 +196,7 @@
 
 #scheduleBox {
 	/*background-color: #FFC107;*/
-	width: 660px;
+	/* width: 660px; */
 	min-height: 100px;
 	margin: 0 auto 30px auto;
 	padding: 10px;
@@ -281,12 +280,12 @@
 }
 
 .box_calendar {
-	/*background-color: #76FF03;*/
-	width: 644px;
+	background-color: #2e7965;
+	/* width: 644px; */
 	min-height: 100px;
 	padding: 8px;
 	position: relative;
-	top: 70px;
+	top: 10px;
 	left: 0;
 }
 
@@ -310,12 +309,17 @@
 .box_calendar .calendar_schedule {
 	/*background-color: #f6699e;*/
 	color: #fff;
+	width: 100%;
 }
 
 .box_calendar .calendar_schedule tr, th, td {
 	outline: 1px solid #fff;
-	width: 92px;
 	font-size: 30px;
+	background: #e3e3e3;
+}
+
+.box_calendar .calendar_schedule th, td {
+	width: 107px;
 }
 
 .box_calendar .calendar_schedule .day_of_week {
@@ -338,7 +342,7 @@
 	text-align: center;
 	height: 92px;
 	line-height: 90px;
-	font-size: 60px;
+	font-size: 40px;
 	outline: 1px solid #fff;
 	background-color: #3f475a;
 }
@@ -348,7 +352,7 @@
 	text-decoration: none;
 	text-align: center;
 	display: inline-block;
-	width: 92px;
+	width:100%;	
 	height: 50px;
 	line-height: 50px;
 	font-size: 24px;
@@ -384,7 +388,7 @@
 	height: 40px;
 	line-height: 40px;
 	font-size: 25px;
-	color: #fff;
+	/* color: #fff; */
 	margin: 5px;
 	padding: 5px;
 }
@@ -403,7 +407,7 @@
 
 #detailsFunction ul li {
 	background-color: transparent;
-	width: 370px;
+	width: 390px;
 	height: 80px;
 	line-height: 80px;
 	float: left;
@@ -412,9 +416,8 @@
 #likeBtn, #sendContractBtn {
 	background-color: transparent;
 	border: none;
-	width: 370px;
+	width: 390px;
 	height: 80px;
-	color: #fff;
 	cursor: pointer;
 	outline: none;
 	line-height: 80px;
@@ -440,7 +443,7 @@
 
 #detailsBoardWrap {
 	background-color: lightgrey;
-	width: 1080px;
+	width: 1200px;
 	min-height: 200px;
 	clear: both;
 	margin: auto;
@@ -450,19 +453,19 @@
 
 #detailsBoardGnb {
 	/*background-color: #f6699e;*/
-	width: 1080px;
+	width: 1200px;
 	height: 80px;
 }
 
 #detailsBoardGnb ul {
 	background-color: #fff;
-	width: 1080px;
+	width: 1200px;
 	height: 80px;
 }
 
 #detailsBoardGnb ul li {
 	/*background-color: #7e57c2;*/
-	width: 360px;
+	width: 400px;
 	height: 80px;
 	line-height: 80px;
 	font-size: 35px;
@@ -473,7 +476,7 @@
 #detailsBoardGnb ul li .board_gnb {
 	display: inline-block;
 	/*background-color: #2e7965;*/
-	width: 360px;
+	width: 400px;
 	height: 80px;
 	text-decoration: none;
 	color: #000;
@@ -485,10 +488,9 @@
 }
 
 #detailsBoardWrap .box_board {
-	background-color: #fff;
-	width: 1020px;
+	background-color: #fff;	
 	min-height: 400px;
-	margin: 10px auto;
+	margin: 10px;
 	padding: 20px;
 	display: none;
 }
@@ -499,12 +501,12 @@
 
 #detailsBoardWrap .box_board .contents_board {
 	/*background-color: #E91E63;*/
-	width: 1020px;
+	/* width: 1020px; */
 	min-height: 400px;
 }
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard {
-	width: 1000px;
+	width: calc(100% - 20px);
 	min-height: 300px;
 	border: 10px solid #f2c641;
 	float: left;
@@ -512,7 +514,7 @@
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard .box_review_dashboard_area
 	{
-	width: 333px;
+	width: 373px;
 	height: 300px;
 	text-align: center;
 	font-size: 30px;
@@ -554,7 +556,7 @@
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard #reviewNum #box
 	{
-	width: 333px;
+	width: 373px;
 	height: 100px;
 	line-height: 50px;
 	float: left;

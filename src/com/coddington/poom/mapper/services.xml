@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
->
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="services">
+
+	<select id="selectByNo" parameterType="int" resultType="Service">
+		SELECT s.no, s.user_no userNo, s.title, s.area1, s.area2, s.detail_address1	detailAddress1, s.detail_address2 detailAddress2,
+		s.latitude, s.longitude, s.poom, s.content, s.category, s.photo_url	photoUrl, s.role, s.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+		FROM services s, users u
+		WHERE s.user_no = u.no 
+		AND s.no = #{no} 
+	</select>
 	
 </mapper>
 

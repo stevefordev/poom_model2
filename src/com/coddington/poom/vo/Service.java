@@ -42,7 +42,7 @@ public class Service {
 
   private int no, userNo, poom, category, role;
   private String title, area1, area2, detailAddress1, detailAddress2, latitude, longitude, content,
-      photoUrl;
+      photoUrl, userNickName, userPhotoUrl;
   private Date regdate;
 
   public int getNo() {
@@ -100,7 +100,6 @@ public class Service {
         break;
     }
   }
-
 
   public int getRole() {
     return role;
@@ -199,8 +198,24 @@ public class Service {
   public void setRegdate(Date regdate) {
     this.regdate = regdate;
   }
+  
+  public String getUserNickName() {
+	return userNickName;
+}
 
-  @Override
+public void setUserNickName(String userNickName) {
+	this.userNickName = userNickName;
+}
+
+public String getUserPhotoUrl() {
+	return userPhotoUrl;
+}
+
+public void setUserPhotoUrl(String userPhotoUrl) {
+	this.userPhotoUrl = userPhotoUrl;
+}
+
+@Override
   public String toString() {
     // TODO Auto-generated method stub
     return FieldUtil.getAllFields(this).toString();

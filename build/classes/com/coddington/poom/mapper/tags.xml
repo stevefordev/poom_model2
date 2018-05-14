@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd"
->
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tags">
 
+	<select id="selectListByServiceNo" resultType="Tag" parameterType="int">
+		SELECT t.no, t.name, t.regdate
+		FROM tags t, service_tags st
+		WHERE t.no = st.tag_no 
+		AND st.service_no = #{serviceNo}
+	</select>
 
 </mapper>
  

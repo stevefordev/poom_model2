@@ -76,66 +76,74 @@ getScheduleCalendar();
 
 
 //화살표 클릭 시 14, 28일 간격으로 이동
-var $calendarSettingBtn = $("#calendarSettingBox li");
+
 //$calendarSettingBtn jquery객체가 배열형태이므로 each문
-$.each($calendarSettingBtn, function (index) {
-
-    $(this).on("click", function (evt) {
+$("#calendarWrap").on("click", '#calendarSettingBox li', function (evt) {
+	var $calendarSettingBtn = $("#calendarSettingBox li");
+	var index = $calendarSettingBtn.index(this); 
+	console.log("index:", $calendarSettingBtn.index(this));
+    //만일 클릭한 버튼에 disabled클래스가 있다면
+    if($(this).hasClass("disabled")) {
+        //changeDate값이 변하지 않게 하고 종료
+        return false;
+    }
+    console.log("index:",index);
     
-        //만일 클릭한 버튼에 disabled클래스가 있다면
-        if($(this).hasClass("disabled")) {
-            //changeDate값이 변하지 않게 하고 종료
-            return false;
-        }
+    //버튼 index에 따라 넘어가는 일수 다르게
+    if(index != 2) {
+        changeDate += (14 * index - 28);
+    } else {
+        // '+= 0'는 없으니 '= 0'으로 따로 빼줌
+        changeDate = 0;
+    }
+    getScheduleCalendar();
 
-        //버튼 index에 따라 넘어가는 일수 다르게
-        if(index != 2) {
-            changeDate += (14 * index - 28);
-        } else {
-            // '+= 0'는 없으니 '= 0'으로 따로 빼줌
-            changeDate = 0;
-        }
-        getScheduleCalendar();
+    console.log("changeDate:", changeDate);
+    //오늘 날짜로부터 56일 뒤까지만 일정 볼 수 있게 버튼 설정
+    //오늘보다 이전 날짜, 56일 뒤 일정은 볼 수 없음
+    var $calendarSettingBtn = $("#calendarSettingBox li");
+    if(changeDate==0) {
+    	console.log("changeDate:", 1);
+        $calendarSettingBtn.eq(0).addClass("disabled");
+        $calendarSettingBtn.eq(1).addClass("disabled");
+        $calendarSettingBtn.eq(2).addClass("disabled");
+        $calendarSettingBtn.eq(3).removeClass("disabled");
+        $calendarSettingBtn.eq(4).removeClass("disabled");
+    } else if(changeDate==14) {
+    	console.log("changeDate:", 2);
+        $calendarSettingBtn.eq(0).addClass("disabled");
+        $calendarSettingBtn.eq(1).removeClass("disabled");
+        $calendarSettingBtn.eq(2).removeClass("disabled");
+        $calendarSettingBtn.eq(3).removeClass("disabled");
+        $calendarSettingBtn.eq(4).removeClass("disabled");
+    } else if(changeDate==28) {
+    	console.log("changeDate:", 3);
+        $calendarSettingBtn.eq(0).removeClass("disabled");
+        $calendarSettingBtn.eq(1).removeClass("disabled");
+        $calendarSettingBtn.eq(2).removeClass("disabled");
+        $calendarSettingBtn.eq(3).removeClass("disabled");
+        $calendarSettingBtn.eq(4).removeClass("disabled");
+    } else if(changeDate==42) {
+    	console.log("changeDate:", 4);
+        $calendarSettingBtn.eq(0).removeClass("disabled");
+        $calendarSettingBtn.eq(1).removeClass("disabled");
+        $calendarSettingBtn.eq(2).removeClass("disabled");
+        $calendarSettingBtn.eq(3).removeClass("disabled");
+        $calendarSettingBtn.eq(4).addClass("disabled");
+    } else if(changeDate==56) {
+    	console.log("changeDate:", 5);
+        $calendarSettingBtn.eq(0).removeClass("disabled");
+        $calendarSettingBtn.eq(1).removeClass("disabled");
+        $calendarSettingBtn.eq(2).removeClass("disabled");
+        $calendarSettingBtn.eq(3).addClass("disabled");
+        $calendarSettingBtn.eq(4).addClass("disabled");
+    } else {
+    	console.log("changeDate:", 6);
+    }
+    //if~else if end
 
-        //오늘 날짜로부터 56일 뒤까지만 일정 볼 수 있게 버튼 설정
-        //오늘보다 이전 날짜, 56일 뒤 일정은 볼 수 없음
-        if(changeDate==0) {
-            $calendarSettingBtn.eq(0).addClass("disabled");
-            $calendarSettingBtn.eq(1).addClass("disabled");
-            $calendarSettingBtn.eq(2).addClass("disabled");
-            $calendarSettingBtn.eq(3).removeClass("disabled");
-            $calendarSettingBtn.eq(4).removeClass("disabled");
-        } else if(changeDate==14) {
-            $calendarSettingBtn.eq(0).addClass("disabled");
-            $calendarSettingBtn.eq(1).removeClass("disabled");
-            $calendarSettingBtn.eq(2).removeClass("disabled");
-            $calendarSettingBtn.eq(3).removeClass("disabled");
-            $calendarSettingBtn.eq(4).removeClass("disabled");
-        } else if(changeDate==28) {
-            $calendarSettingBtn.eq(0).removeClass("disabled");
-            $calendarSettingBtn.eq(1).removeClass("disabled");
-            $calendarSettingBtn.eq(2).removeClass("disabled");
-            $calendarSettingBtn.eq(3).removeClass("disabled");
-            $calendarSettingBtn.eq(4).removeClass("disabled");
-        } else if(changeDate==42) {
-            $calendarSettingBtn.eq(0).removeClass("disabled");
-            $calendarSettingBtn.eq(1).removeClass("disabled");
-            $calendarSettingBtn.eq(2).removeClass("disabled");
-            $calendarSettingBtn.eq(3).removeClass("disabled");
-            $calendarSettingBtn.eq(4).addClass("disabled");
-        } else if(changeDate==56) {
-            $calendarSettingBtn.eq(0).removeClass("disabled");
-            $calendarSettingBtn.eq(1).removeClass("disabled");
-            $calendarSettingBtn.eq(2).removeClass("disabled");
-            $calendarSettingBtn.eq(3).addClass("disabled");
-            $calendarSettingBtn.eq(4).addClass("disabled");
-        }//if~else if end
-
-    });//$(this).on("click") end;
-
-});//$.each() end
-
-
+});//$(this).on("click") end;
+ 
 
 
 //캘린더 시간 클릭 시

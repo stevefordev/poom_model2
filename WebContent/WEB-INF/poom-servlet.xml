@@ -27,7 +27,7 @@
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/fonts/" mapping="/fonts/**" />
-
+	<mvc:resources location="/webfonts/" mapping="/webfonts/**" />
 	<!-- MultipartResovler -->
 	<bean id="multipartResolver" p:defaultEncoding="UTF-8"
 		p:maxUploadSize="104857600"

@@ -108,6 +108,7 @@ class="com.coddington.poom.service.CoinTransactionsServiceImpl"
 <bean
 id="servicesService"
 p:servicesDAO-ref="servicesDAO"
+p:tagsDAO-ref="tagsDAO"
 class="com.coddington.poom.service.ServicesServiceImpl"
 />
 
