@@ -6,5 +6,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="reviews">
 
+	<select id="selectList" parameterType="int" resultType="Review">
+	
+		SELECT r.no,r.user_no userNo, r.service_no serviceNo, r.content, r.reply, r.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+		FROM reviews r, users u
+		WHERE r.user_no = u.no 
+		AND service_no = #{no}
+		ORDER BY regdate DESC
+	</select>
 
 </mapper>

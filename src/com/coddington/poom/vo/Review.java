@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Review {
 	private int no, serviceNo, userNo, type;
-	private String content, reply;
+	private String content, reply, userNickName, userPhotoUrl;
 	private Date regdate;
 	public int getNo() {
 		return no;
@@ -48,6 +48,18 @@ public class Review {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+  public String getUserNickName() {
+    return userNickName;
+  }
+  public void setUserNickName(String userNickName) {
+    this.userNickName = userNickName;
+  }
+  public String getUserPhotoUrl() {
+    return userPhotoUrl;
+  }
+  public void setUserPhotoUrl(String userPhotoUrl) {
+    this.userPhotoUrl = userPhotoUrl;
+  }
 	
 	
 }

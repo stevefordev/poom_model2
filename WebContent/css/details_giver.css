@@ -109,7 +109,6 @@
 	width: 200px;
 	height: 200px;
 	border-radius: 50%;
-	background-image: url("../img/profile/kimbum.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -158,20 +157,20 @@
 	margin-bottom: 3px;
 }
 
-#detailsInfo ul li:nth-child(1) .icon_big.sun {
-	background-image: url("../img/sun.svg");
+.icon_big.sun {
+	background-image: url("/img/sun.svg");
 }
 
-#detailsInfo ul li:nth-child(1) .icon_big.cloudy {
-	background-image: url("../img/cloudy.svg");
+.icon_big.cloudy {
+	background-image: url("/img/cloudy.svg");
 }
 
-#detailsInfo ul li:nth-child(1) .icon_big.clouds {
-	background-image: url("../img/clouds.svg");
+.icon_big.clouds {
+	background-image: url("/img/clouds.svg");
 }
 
-#detailsInfo ul li:nth-child(1) .icon_big.rain {
-	background-image: url("../img/rain.svg");
+.icon_big.rain {
+	background-image: url("/img/rain.svg");
 }
 
 #detailsInfo ul li:nth-child(2) {
@@ -539,7 +538,6 @@
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard #gradeSymbol #box #gradeSymbolImg
 	{
-	background-image: url("../img/sun.svg");
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;

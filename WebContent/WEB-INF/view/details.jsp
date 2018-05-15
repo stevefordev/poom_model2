@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1"%>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
 <link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=201805151" />
+<link rel="stylesheet" href="css/details_giver.css?date=201805154" />
 <link rel="stylesheet" href="css/popup_details_question.css" />
 <link rel="stylesheet" href="css/popup_details_reply.css" />
 <link rel="stylesheet" href="css/slick/slick.css" />
@@ -66,18 +67,18 @@ body {
 		<div id="userProfile">
 			<h4 class="screen_out">프로필</h4>
 			<a href="#">
-				<div id=giverProfileImg></div>
+				<img id="giverProfileImg" src="/img/profile/person28.jpg"/>
 				<div id="userNickname">${service.userNickName }</div>
 			</a>
 		</div>
 		<div id="detailsInfo">
 			<h4 class="screen_out">상세정보내용</h4>
 			<ul>
-				<li>총 평점 : <span class="icon_big sun"></span> 98%(21)
+				<li>총 평점 : <span class="icon_big ${scoreAndCountContract.ICON }"></span><c:choose><c:when test="${service.role == 1 }"> ${scoreAndCountContract.SCOREGIVER }%(${scoreAndCountContract.COUNTDONE })</c:when></c:choose>
 				</li>
 				<li>지역 : ${service.area1 } ${service.area2 }</li>
-				<li>진행 중인 계약 4건</li>
-				<li>완료된 계약 21건</li>
+				<li>진행 중인 계약 ${scoreAndCountContract.COUNTPROGRESS }건</li>
+				<li>완료된 계약 ${scoreAndCountContract.COUNTDONE }건</li>
 				<li><c:forEach items="${tags }" var="tag">
 					#${tag.name } 
 				</c:forEach>
@@ -181,13 +182,13 @@ body {
 					<div class="box_review_dashboard">
 						<div class="box_review_dashboard_area" id="gradeSymbol">
 							<div id="box">
-								<div id="gradeSymbolImg"></div>
-								<span>95%(21)</span>
+								<div id="gradeSymbolImg" class="icon_big ${scoreAndCountContract.ICON }"></div>
+								<span><c:choose><c:when test="${service.role == 1 }"> ${scoreAndCountContract.SCOREGIVER }%(${scoreAndCountContract.COUNTDONE })</c:when></c:choose></span>
 							</div>
 						</div>
 						<div class="box_review_dashboard_area" id="reviewNum">
 							<div id="box">
-								<span>21</span>명이
+								<span>${fn:length(reviews)}</span>명이
 								<p>리뷰를 남겼습니다.</p>
 							</div>
 						</div>
@@ -195,6 +196,34 @@ body {
 					</div>
 
 					<ul>
+					<c:forEach items="${reviews }" var="review">
+						<li>
+							<div class="box_contents box_contents_review">
+								<dl>
+									<dt class="profile_img_name">
+										<a href="">
+											<div class="profile_img"></div>
+										</a><a id="profileName2" href="">${review.userNickName }</a>
+									</dt>
+									<dd class="review_1">
+										<span>${review.content }</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="box_reply box_reply_review">
+								<dl>
+									<dt id="profileImgName2">
+										<a href="">
+											<div class="profile_img"></div>
+										</a><a id="profileName3" href="">${service.userNickName }</a>
+									</dt>
+									<dd class="review_2">
+										<span>${review.reply }</span>
+									</dd>
+								</dl>
+							</div>
+						</li>
+					</c:forEach>
 						<li>
 							<div class="box_contents box_contents_review">
 								<dl>
@@ -537,7 +566,7 @@ body {
 			categories : [ "친절성", "성실성", "가격", "숙련도" ],
 			series : [ {
 				name : '넬준',
-				data : [ 7, 7, 8, 10 ]
+				data : [ ${scoreAndCountContract.SCOREKIND}, ${scoreAndCountContract.SCOREHONEST}, ${scoreAndCountContract.SCOREPRICE}, ${scoreAndCountContract.SCOREKNOWHOW} ]
 			} ]
 		};
 

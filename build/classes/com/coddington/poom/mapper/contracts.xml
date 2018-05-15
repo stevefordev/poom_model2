@@ -6,4 +6,33 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="contracts">
 
+	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="Map">
+		SELECT (scoreUser / countDone * 100) scoreTaker, 
+		       ((scorePrice + scoreKind + scoreKnowhow + scoreHonest) / (4 * countDone) * 100) scoreGiver,
+		       (scorePrice / countDone * 100) scorePrice, 
+		       (scoreKind  / countDone * 100) scoreKind, 
+		       (scoreKnowhow / countDone * 100) scoreKnowhow, 
+		       (scoreHonest / countDone * 100) scoreHonest,        
+		        countWait, 
+		        countProgress, 
+		        countDenied, 
+		        countStop, 
+		        countDone
+		FROM(SELECT
+		    COUNT(CASE WHEN c.status = 9 AND c.score_user = 1 THEN 1 END) AS scoreUser,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_price = 1 THEN 1 END) AS scorePrice,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_kind = 1 THEN 1 END) AS scoreKind,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_knowhow = 1 THEN 1 END) AS scoreKnowhow,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_honest = 1 THEN 1 END) AS scoreHonest,
+		    COUNT(CASE WHEN c.status = 0 THEN 1 END) countWait,
+		    COUNT(CASE WHEN c.status = 1 THEN 1 END) countProgress,
+		    COUNT(CASE WHEN c.status = 4 THEN 1 END) countDenied,
+		    COUNT(CASE WHEN c.status = 5 THEN 1 END) countStop,
+		    COUNT(CASE WHEN c.status = 9 THEN 1 END) countDone
+		    FROM 
+		    services s, contracts c
+		    WHERE s.no = c.SERVICE_NO
+		    AND s.no = 1)
+	</select>
+ 
 </mapper>
