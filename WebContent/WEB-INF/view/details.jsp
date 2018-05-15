@@ -8,7 +8,7 @@
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
 <link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=2018051417" />
+<link rel="stylesheet" href="css/details_giver.css?date=201805151" />
 <link rel="stylesheet" href="css/popup_details_question.css" />
 <link rel="stylesheet" href="css/popup_details_reply.css" />
 <link rel="stylesheet" href="css/slick/slick.css" />
@@ -75,11 +75,14 @@ body {
 			<ul>
 				<li>총 평점 : <span class="icon_big sun"></span> 98%(21)
 				</li>
-				<li>지역 : 서울 마포구</li>
+				<li>지역 : ${service.area1 } ${service.area2 }</li>
 				<li>진행 중인 계약 4건</li>
 				<li>완료된 계약 21건</li>
-				<li>#청소 #화장실청소 #욕실청소</li>
-				<li>30품</li>
+				<li><c:forEach items="${tags }" var="tag">
+					#${tag.name } 
+				</c:forEach>
+				</li>
+				<li>${service.poom } 품</li>
 			</ul>
 		</div>
 		<div id="scheduleBox">

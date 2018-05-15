@@ -325,8 +325,8 @@
 .box_calendar .calendar_schedule .day_of_week {
 	background-color: #1f2b43;
 	font-size: 30px;
-	height: 100px;
-	line-height: 100px;
+	height: 60px;
+	line-height: 60px;
 	font-weight: 700;
 }
 
