@@ -2,6 +2,8 @@ package com.coddington.poom.dao;
 
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
+import com.coddington.poom.vo.Contract;
+import com.coddington.poom.vo.ContractSchedule;
 
 public class ContractsDAOImpl implements ContractsDAO {
 
@@ -15,5 +17,11 @@ public class ContractsDAOImpl implements ContractsDAO {
   public Map<String, Object> selectScoreAndCountByServiceNo(int serviceNo) {
     // TODO Auto-generated method stub
     return session.selectOne("contracts.selectScoreAndCountByServiceNo", serviceNo);
+  }
+  
+  @Override
+  public int insert(Contract contract) {
+    // TODO Auto-generated method stub
+    return session.insert("contracts.insert", contract);
   }
 }

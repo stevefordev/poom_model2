@@ -5,101 +5,109 @@ import java.util.Calendar;
 import com.coddington.poom.util.FieldUtil;
 
 public class Schedule {
-	private int no, serviceNo;
-	private String type;// 실제 디비에서는 필요 없음, js 객체를 위해 사용
+  private int no, serviceNo;
+  private String type;// 실제 디비에서는 필요 없음, js 객체를 위해 사용
 
-	private String serviceDay, serviceDateStr, serviceDayOfWeek, serviceDayHour, serviceDayHourExpression;
+  private String serviceDay, serviceDateStr, serviceDayOfWeek, serviceHour, serviceHourExpression;
 
-	private Timestamp serviceStartdate, serviceDate, regdate;
+  private Timestamp serviceStartdate, serviceDate, regdate;
 
-	private Calendar cal;
+  private Calendar cal;
 
-	public Schedule() {
-		cal = Calendar.getInstance();
+  public Schedule() {
+    cal = Calendar.getInstance();
 
-	}
+  }
 
-	public int getNo() {
-		return no;
-	}
+  public int getNo() {
+    return no;
+  }
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+  public void setNo(int no) {
+    this.no = no;
+  }
 
-	public String getType() {
+  public String getType() {
 
-		return this.serviceDay == null ? "single" : "repeat";
-	}
+    return this.serviceDay == null ? "single" : "repeat";
+  }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+  public void setType(String type) {
+    this.type = type;
+  }
 
-	public int getServiceNo() {
-		return serviceNo;
-	}
+  public int getServiceNo() {
+    return serviceNo;
+  }
 
-	public void setServiceNo(int serviceNo) {
-		this.serviceNo = serviceNo;
-	}
+  public void setServiceNo(int serviceNo) {
+    this.serviceNo = serviceNo;
+  }
 
-	public String getServiceDay() {
-		return serviceDay;
-	}
+  public String getServiceDay() {
+    return serviceDay;
+  }
 
-	public void setServiceDay(String serviceDay) {
-		this.serviceDay = serviceDay;
-	}
-	
-	public String getServiceDayOfWeek() {
+  public void setServiceDay(String serviceDay) {
+    this.serviceDay = serviceDay;
+  }
 
-		return this.serviceDay.substring(0, 3);
-	}
+  public String getServiceDayOfWeek() {
 
-	public String getServiceDayHour() {
+    return this.serviceDay != null ? this.serviceDay.substring(0, 3) : "";
+  }
 
-		return this.serviceDay.substring(3, 5);
-	}
+  public String getServiceHour() {
 
-	public String getServiceDayHourExpression() {
+    if (this.serviceDay != null) {
+      return this.serviceDay.substring(3, 5);
+    } else {
+      return String.format("%02d", getServiceDateHour());
+    }
+  }
 
-		int hour = Integer.parseInt(getServiceDayHour());		
-		return String.format("%02d-%02d시", hour, hour + 1);
-	}
+  public String getServiceHourExpression() {
 
-	public Timestamp getServiceStartdate() {
-		return serviceStartdate;
-	}
+    if (getServiceHour().isEmpty()) {
+      return "";
+    } else {
+      int hour = Integer.parseInt(getServiceHour());
+      return String.format("%02d-%02d시", hour, hour + 1);
+    }
+  }
 
-	public void setServiceStartdate(Timestamp serviceStartdate) {
-		this.serviceStartdate = serviceStartdate;
-	}
+  public Timestamp getServiceStartdate() {
+    return serviceStartdate;
+  }
 
-	public Timestamp getServiceDate() {
-		return serviceDate;
-	}
+  public void setServiceStartdate(Timestamp serviceStartdate) {
+    this.serviceStartdate = serviceStartdate;
+  }
 
-	public int getServiceDateHour() {
-		return cal.get(Calendar.HOUR_OF_DAY);
-	}
+  public Timestamp getServiceDate() {
+    return serviceDate;
+  }
 
-	public void setServiceDate(Timestamp serviceDate) {
-		this.serviceDate = serviceDate;
-		cal.setTime(this.serviceDate);
-	}
+  public int getServiceDateHour() {
+    return cal.get(Calendar.HOUR_OF_DAY);
+  }
 
-	public Timestamp getRegdate() {
-		return regdate;
-	}
+  public void setServiceDate(Timestamp serviceDate) {
+    this.serviceDate = serviceDate;
+    cal.setTime(this.serviceDate);
+  }
 
-	public void setRegdate(Timestamp regdate) {
-		this.regdate = regdate;
-	}
+  public Timestamp getRegdate() {
+    return regdate;
+  }
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return FieldUtil.getAllFields(this).toString();
-	}
+  public void setRegdate(Timestamp regdate) {
+    this.regdate = regdate;
+  }
+
+  @Override
+  public String toString() {
+    // TODO Auto-generated method stub
+    return FieldUtil.getAllFields(this).toString();
+  }
 }

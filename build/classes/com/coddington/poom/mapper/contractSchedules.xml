@@ -6,7 +6,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="contractSchedules">
 
-
-
+	<insert id="insert" parameterType="ContractSchedule">
+		INSERT INTO contract_schedules (no, schedule_no, contract_no, service_date, regdate)
+		VALUES (contract_schedules_seq.nextval, #{scheduleNo},#{contractNo},#{serviceDate}, systimestamp)
+	</insert>
 
 </mapper>

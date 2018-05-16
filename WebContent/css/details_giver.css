@@ -507,8 +507,7 @@
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard {
 	width: calc(100% - 20px);
 	min-height: 300px;
-	border: 10px solid #f2c641;
-	float: left;
+	border: 10px solid #f2c641;	
 }
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard .box_review_dashboard_area
@@ -588,7 +587,7 @@
 #detailsBoardWrap .contents_board ul li {
 	/*background-color: #76FF03;*/
 	min-height: 100px;
-	margin: 30px 0;
+	margin: 20px 0 0 0;
 	overflow: hidden;
 }
 
@@ -641,9 +640,8 @@
 	position: relative;
 }
 
-#detailsBoardBox .contents_board_question .box_btn_question_popup textarea
-	{
-	width: 916px;
+#detailsBoardBox .contents_board_question .box_btn_question_popup textarea {
+	width: 920px;
 	height: 80px;
 	padding: 10px 10px;
 	border: 1px solid #ccc;
@@ -667,7 +665,7 @@
 	cursor: pointer;
 	position: absolute;
 	top: 0;
-	right: 10px;
+	right: 0;
 }
 
 .box_reply {
@@ -794,7 +792,7 @@
 #detailContractProfileImg {
 	width: 50px;
 	height: 50px;
-	background-image: url("../img/profile/kimbum.png");
+	/* background-image: url("../img/profile/kimbum.png"); */
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -809,7 +807,7 @@
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
-	background-image: url("../img/profile/oh.png");
+	/* background-image: url("../img/profile/oh.png"); */
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -983,15 +981,13 @@
 	left: -18px;
 }
 
-.question_box {
-	background: #f2c641;
+.question_box {	
 	min-height: 80px;
 	margin: auto;
 	position: relative;
 }
 
 .question_box2 {
-	background: #f2c641;
 	margin-left: 50px;
 	min-height: 80px;
 }
@@ -1001,10 +997,10 @@
 	height: 50px;
 	float: left;
 	font-size: 20px;
-	text-align: center;	
-	margin-left: 50px;
+	text-align: center;
 	line-height: 50px;
 	color: #fff;
+	border-radius: 5px 0 0 5px;
 }
 
 .question_box .question_mark {
@@ -1016,27 +1012,27 @@
 }
 
 .question_1 {
-	padding: 10px 30px 40px	30px;
-	border-radius: 5px;
+	padding: 20px 40px 40px	40px;
+	border-radius: 0 5px 5px 5px;
 	min-height: 40px;
 	background: #1f2b43;
 	color: #fff;
 	font-size: 18px;
-	margin-left: 96px;
+	margin-left: 50px;
 	margin-bottom:10px;
-	line-height: 30px;
+	line-height: 40px;
 	position: relative;
 }
 
 .question_2 {
-	padding: 10px 30px;
-	border-radius: 5px;
+	padding: 20px 40px;
+	border-radius: 0 5px 5px 5px;
 	min-height: 30px;
 	background: #3f475a;
 	color: #fff;
 	font-size: 18px;
-	margin-left: 96px;
-	line-height: 30px;
+	margin-left: 50px;
+	line-height: 40px;
 }
 
 .question_box button {

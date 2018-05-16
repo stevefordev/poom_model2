@@ -7,12 +7,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="contracts">
 
 	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="com.coddington.poom.util.CamelHashMap">
-		SELECT (score_user / count_done * 100) score_taker, 
-		       ((score_price + score_kind + score_knowhow + score_honest) / (4 * count_done) * 100) score_giver,
-		       (score_price / count_done * 100) score_price, 
-		       (score_kind  / count_done * 100) score_kind, 
-		       (score_knowhow / count_done * 100) score_knowhow, 
-		       (score_honest / count_done * 100) score_honest,        
+		SELECT (CASE WHEN count_done > 0 THEN (score_user / count_done * 100) ELSE 0 END) score_taker, 
+		       (CASE WHEN count_done > 0 THEN ((score_price + score_kind + score_knowhow + score_honest) / (4 * count_done) * 100) ELSE 0 END) score_giver,
+		       (CASE WHEN count_done > 0 THEN (score_price / count_done * 100) ELSE 0 END) score_price, 
+		       (CASE WHEN count_done > 0 THEN (score_kind  / count_done * 100) ELSE 0 END) score_kind, 
+		       (CASE WHEN count_done > 0 THEN (score_knowhow / count_done * 100) ELSE 0 END) score_knowhow, 
+		       (CASE WHEN count_done > 0 THEN (score_honest / count_done * 100) ELSE 0 END) score_honest,        
 		        count_wait, 
 		        count_progress, 
 		        count_denied, 
@@ -34,5 +34,14 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		    WHERE s.no = c.SERVICE_NO
 		    AND s.no = #{s.no})
 	</select>
+	
+	<insert id="insert" parameterType="Contract">
+		INSERT INTO contracts (no, giver_no, taker_no, service_no, poom, status, content, 
+			score_user, score_price, score_kind, score_knowhow, score_honest,
+			area1, area2, detail_address1, detail_address2, latitude, longitude, regdate)
+		VALUES (contracts_seq.nextval, #{giverNo}, #{takerNo}, #{serviceNo}, #{poom}, 0, #{content},
+		0, 0, 0, 0, 0,
+		'', '', '', '', '', '', systimestamp)
+	</insert>
  
 </mapper>

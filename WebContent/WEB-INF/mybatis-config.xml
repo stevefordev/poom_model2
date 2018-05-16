@@ -5,6 +5,9 @@ PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
 >
 
 <configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
 
 	<typeAliases>
 		<typeAlias alias="CoinTransaction" type="com.coddington.poom.vo.CoinTransaction"/>

@@ -64,4 +64,14 @@
 	<bean id="usersService" p:usersDAO-ref="usersDAO"
 		class="com.coddington.poom.service.UsersServiceImpl" />
 
+	<bean id="contractsService" 
+	p:contractsDAO-ref="contractsDAO"
+	p:contractSchedulesDAO-ref="contractSchedulesDAO" 
+	class="com.coddington.poom.service.ContractsServiceImpl"/>
+	
+	<bean id="questionsService" p:questionsDAO-ref="questionsDAO"
+	class="com.coddington.poom.service.QuestionsServiceImpl"/>
+	
+	<bean id="reviewsService" p:reviewsDAO-ref="reviewsDAO"
+	class="com.coddington.poom.service.ReviewsServiceImpl"/>
 </beans>

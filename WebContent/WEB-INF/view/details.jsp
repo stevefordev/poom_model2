@@ -9,7 +9,7 @@
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
 <link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=2018051638" />
+<link rel="stylesheet" href="css/details_giver.css?date=2018051635" />
 <link rel="stylesheet" href="css/popup_details_question.css" />
 <link rel="stylesheet" href="css/popup_details_reply.css" />
 <link rel="stylesheet" href="css/slick/slick.css" />
@@ -120,31 +120,35 @@ body {
 							<dl>
 								<dt>품 주는사람</dt>
 								<dd>
-									<div id="detailContractProfileImg"></div>
-									<a id="giverName" href="">김 범</a>
+									<img id="detailContractProfileImg" src="/img/profile/${service.userPhotoUrl }"></img>
+									<a id="giverName" href="">${service.userNickName}</a>
 								</dd>
 								<dt>품 받는사람</dt>
 								<dd>
-									<div id="detailContractProfileImg2"></div>
-									<a id="takerName" href="">오연서</a>
+									<img id="detailContractProfileImg2" src="/img/profile/${loginUser.photoUrl }"></img>
+									<a id="takerName" href="">${loginUser.nickName }</a>
 								</dd>
 								<dt>지 역</dt>
 								<dd>
 									<div id="area">
-										<span>서울시</span><span> 관악구</span>
+										<span>${service.area1}</span><span> ${service.area2}</span>
 									</div>
 								</dd>
 								<dt>일 정</dt>
 								<dd class="schedule">
-									<span>2018-04-26 / 17-18시</span> <span>2018-04-26 /
-										20-21시</span> <span>2018-04-29 / 16-17시</span> <span>2018-04-29
-										/ 17-18시</span> <span>2018-05-02 / 17-18시</span> <span>2018-05-02
-										/ 18-19시 </span>
+								<!--
+									<span>2018-04-26 / 17-18시</span> 
+									<span>2018-04-26 / 20-21시</span> 
+									<span>2018-04-29 / 16-17시</span> 
+									<span>2018-04-29 / 17-18시</span> 
+									<span>2018-05-02 / 17-18시</span>
+									<span>2018-05-02 / 18-19시</span>
+									  -->
 								</dd>
 								<dt>가 격</dt>
 								<dd>
 									<div id="price">
-										<input id="poomvalue" type="number" placeholder="품을입력해주세요." />
+										<input id="poomvalue" type="number" placeholder="품을입력해주세요."  value="${service.poom }"/>
 										&nbsp;품
 									</div>
 								</dd>
@@ -244,9 +248,8 @@ body {
 					<div class="box_btn_question_popup">
 						<textarea id="inputQuestion" placeholder="내용을 입력하시오"></textarea>
 						<button class="btn_question_popup">문의하기</button>
-						<!--//#detailsQuestionPopupWrap-->
 					</div>
-					<ul>
+					<ul id="questionsWrap">
 						<c:forEach items="${questions }" var="question">
 							<li>
 								<div class="question_box">
@@ -344,7 +347,7 @@ body {
                                         <@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
                                         selected
                                     <@}} @>"
-
+									   data-schedule_no="<@=scheduleForCalendar.schedule.no @>"
                                        data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
                                         <!--화살표 버튼 클릭해서 .box_calendar가 다시 markup되더라도 selected되었던
                                         .schedule_hour에는 selected클래스를 주어 css효과가 유지되게 함-->
@@ -371,6 +374,7 @@ body {
 									<@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
 									selected
                                     <@}} @>"
+										data-schedule_no="<@=scheduleForCalendar.schedule.no @>"
                                        data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
                                         <@=scheduleForCalendar.schedule.expression @>
                                     </a>
@@ -385,39 +389,34 @@ body {
         </table>
     </div><!--//.box_calendar-->
 </script>
-	<script type="text/template" id="replyTmp">
+<script type="text/template" id="replyTmp">
 
     <div class="box_reply">답변</div>
 
 </script>
 
-	<script type="text/template" id="questionTmp">
-
+<script type="text/template" id="questionTmp">
+<@_.each(questions, function(question) {@>
     <li>
-        <div class="box_contents box_contents_question">
-            문의
-            <button class="btn_reply btn_question_reply">답변하기</button>
-            <div class="wrap_popup_reply">
-                <div class="popup_reply">
-                    <h5 class="screen_out">답변하기</h5>
-                    <div class="box_reply_info">
-                        <dl>
-                            <dt>등록자</dt>
-                            <dd>
-                                <i class="fas fa-user-circle"></i> 최선이냐?
-                            </dd>
-                            <dt class="reply_contents">내용</dt>
-                            <dd class="reply_contents">
-                                <textarea placeholder="내용을 입력하시오"></textarea>
-                            </dd>
-                        </dl>
-                        <button class="btn_reply_register">답변</button>
-                    </div><!--//.box_reply_info-->
-                </div><!--//.popup_reply-->
-            </div><!--//.wrap_popup_reply-->
-        </div><!--.box_contents-->
-    </li>
-
+		<div class="question_box">
+			<div class="question_mark">Q.</div>
+				<div class="question_1">
+					<span><@=question.content @></span>
+				</div>
+				<@ if(question.reply == null) {@>
+					<button class="btn_reply btn_question_reply">답변하기</button>
+				<@}@>
+			</div>
+			<@ if(question.reply != null) {@>
+				<div class="question_box2">
+					<div class="question_mark">A.</div>
+					<div class="question_2">
+						<span><@=question.reply @></span>
+					</div>
+				</div>
+			<@}@>							
+	</li>
+<@})@>
 </script>
 
 	<%@ include file="/WEB-INF/view/templates/card_level_first.jsp"%>
@@ -429,8 +428,17 @@ body {
 	<script src="/js/chart/tui-chart.js"></script>
 	<script src="/js/card_util.js?date=201804283"></script>
 	<script src="/js/slick/slick.min.js"></script>
-	<script src="/js/slick/slick_helper.js?date=201804283"></script>
-	<script src="/js/details_giver.js?date=2018051610"></script>
+	<script src="/js/slick/slick_helper.js?date=201804288"></script>
+	<script>
+		var loginUserNo = '${loginUser.no}';
+		var serviceNo = '${service.no}';
+		var serviceUserNo = '${service.userNo}';
+		var serviceRole = '${service.role}';
+		var giverNo = serviceRole == 1 ? serviceUserNo : loginUserNo;
+		var takerNo = serviceRole == 2 ? serviceUserNo : loginUserNo;
+		var poom = '${service.poom}';
+	</script>
+	<script src="/js/details_giver.js?date=2018051618"></script>
 	<script>
 		var data = {
 			categories : [ "친절성", "성실성", "가격", "숙련도" ],
@@ -457,6 +465,7 @@ body {
 		 var schedules = new Array();
 		 var scheduleListForCalendar = new Array();
 		 
+		 // java list to javascript array
 		 <c:forEach items="${schedules}" var="schedule">
 		 	var json = new Object();
 		 		json.no = "${schedule.no}";
@@ -464,8 +473,8 @@ body {
 		 		json.serviceStartdate = "${schedule.serviceStartdate}";
 		 		json.serviceDay = "${schedule.serviceDay}";
 		 		json.serviceDayOfWeek = "${schedule.serviceDayOfWeek}";	
-		 		json.serviceDayHour = "${schedule.serviceDayHour}";
-		 		json.serviceDayHourExpression = "${schedule.serviceDayHourExpression}";
+		 		json.serviceHour = "${schedule.serviceHour}";
+		 		json.serviceHourExpression = "${schedule.serviceHourExpression}";
 		 		json.serviceDate = "${schedule.serviceDate}";
 		 		json.regdate = "${schedule.regdate}";		 		
 		 	schedules.push(json);
@@ -474,23 +483,46 @@ body {
 		 
 		 var currDate = moment();
 		 var lastDate = currDate.clone().add(70, 'days');
+		 
+		 // 오늘 부터 두달 뒤까지 하루하루 비교하여 새로운 스케줄 배열을 만든다
 		 while(currDate.add(1, 'days').diff(lastDate) < 0) {
-			 console.log(currDate.format("YYYY-MM-DD"));
 			 
 			 var dayOfWeek = currDate.format('dddd').toLowerCase();
-			 console.log(dayOfWeek);
+			 //console.log(dayOfWeek);
+
 			 _.each(schedules, function (each) {
-				console.log(each.serviceDayOfWeek);
-				if (dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
-					//{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
-					var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceDayHour, expression: each.serviceDayHourExpression };
-					scheduleListForCalendar.push({ "schedule" : schedule });	
-				}
+				 // 요일별 반복 날짜 검사
+				if (each.serviceDayOfWeek.length > 0) {
+				  if(dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
 				
-			});			 
+					//{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
+					var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , no:each.no};
+					scheduleListForCalendar.push({ "schedule" : schedule });	
+					}
+				} else {
+					 // 단일 날짜 검사
+					 //console.log(each.serviceDate);
+					 //console.log(currDate.format("YYYY-MM-DD"));
+
+					 if (each.serviceDate.substring(0,10) == currDate.format("YYYY-MM-DD")) {
+					   var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , no:each.no};
+					   scheduleListForCalendar.push({ "schedule" : schedule });	
+					 }
+				}				
+			});
+			 
 		 }
 		 
 		 getScheduleCalendar(scheduleListForCalendar);
+		 
+
+		//'문의하기'버튼 클릭 시 
+		$(".contents_board").on("click", ".btn_question_popup", function () {
+		    var questionContent = $("#inputQuestion").val();
+		    console.log(questionContent);
+		    
+		    registerQuestion('${service.no}', 1, questionContent);
+		});
 		 
 	</script>
 </body>

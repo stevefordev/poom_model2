@@ -13,5 +13,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		AND q.service_no = #{no}
 		ORDER BY q.regdate DESC
 	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="Question">
+		SELECT q.no, q.service_no serviceNo, q.user_no userNo, q.type, q.content, q.reply, q.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+		FROM questions q, users u
+		WHERE q.user_no = u.no 
+		AND q.no = #{no}		
+	</select>
 
+	<insert id="insert" parameterType="Question">
+		INSERT INTO questions (no, service_no, user_no, type, content, reply, regdate)
+		VALUES (questions_seq.nextval, #{serviceNo}, #{userNo}, #{type}, #{content}, #{reply}, systimestamp)
+	</insert>
+	
+	<update id="update" parameterType="Question">
+		UPDATE questions SET type = #{type}, content = #{content}, reply = #{reply})
+		WHERE no=#{no}		
+	</update>
+	
 </mapper>

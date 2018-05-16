@@ -1,5 +1,7 @@
 package com.coddington.poom.dao;
 
-public interface ContractSchedulesDAO {
+import com.coddington.poom.vo.ContractSchedule;
 
+public interface ContractSchedulesDAO {
+  public int insert(ContractSchedule contractSchedule);
 }
