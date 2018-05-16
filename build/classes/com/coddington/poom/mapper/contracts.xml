@@ -6,33 +6,33 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="contracts">
 
-	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="Map">
-		SELECT (scoreUser / countDone * 100) scoreTaker, 
-		       ((scorePrice + scoreKind + scoreKnowhow + scoreHonest) / (4 * countDone) * 100) scoreGiver,
-		       (scorePrice / countDone * 100) scorePrice, 
-		       (scoreKind  / countDone * 100) scoreKind, 
-		       (scoreKnowhow / countDone * 100) scoreKnowhow, 
-		       (scoreHonest / countDone * 100) scoreHonest,        
-		        countWait, 
-		        countProgress, 
-		        countDenied, 
-		        countStop, 
-		        countDone
+	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="com.coddington.poom.util.CamelHashMap">
+		SELECT (score_user / count_done * 100) score_taker, 
+		       ((score_price + score_kind + score_knowhow + score_honest) / (4 * count_done) * 100) score_giver,
+		       (score_price / count_done * 100) score_price, 
+		       (score_kind  / count_done * 100) score_kind, 
+		       (score_knowhow / count_done * 100) score_knowhow, 
+		       (score_honest / count_done * 100) score_honest,        
+		        count_wait, 
+		        count_progress, 
+		        count_denied, 
+		        count_stop, 
+		        count_done
 		FROM(SELECT
-		    COUNT(CASE WHEN c.status = 9 AND c.score_user = 1 THEN 1 END) AS scoreUser,
-		    COUNT(CASE WHEN c.status = 9 AND c.score_price = 1 THEN 1 END) AS scorePrice,
-		    COUNT(CASE WHEN c.status = 9 AND c.score_kind = 1 THEN 1 END) AS scoreKind,
-		    COUNT(CASE WHEN c.status = 9 AND c.score_knowhow = 1 THEN 1 END) AS scoreKnowhow,
-		    COUNT(CASE WHEN c.status = 9 AND c.score_honest = 1 THEN 1 END) AS scoreHonest,
-		    COUNT(CASE WHEN c.status = 0 THEN 1 END) countWait,
-		    COUNT(CASE WHEN c.status = 1 THEN 1 END) countProgress,
-		    COUNT(CASE WHEN c.status = 4 THEN 1 END) countDenied,
-		    COUNT(CASE WHEN c.status = 5 THEN 1 END) countStop,
-		    COUNT(CASE WHEN c.status = 9 THEN 1 END) countDone
+		    COUNT(CASE WHEN c.status = 9 AND c.score_user = 1 THEN 1 END) AS score_user,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_price = 1 THEN 1 END) AS score_price,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_kind = 1 THEN 1 END) AS score_kind,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_knowhow = 1 THEN 1 END) AS score_knowhow,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_honest = 1 THEN 1 END) AS score_honest,
+		    COUNT(CASE WHEN c.status = 0 THEN 1 END) count_wait,
+		    COUNT(CASE WHEN c.status = 1 THEN 1 END) count_progress,
+		    COUNT(CASE WHEN c.status = 4 THEN 1 END) count_denied,
+		    COUNT(CASE WHEN c.status = 5 THEN 1 END) count_stop,
+		    COUNT(CASE WHEN c.status = 9 THEN 1 END) count_done
 		    FROM 
 		    services s, contracts c
 		    WHERE s.no = c.SERVICE_NO
-		    AND s.no = 1)
+		    AND s.no = #{s.no})
 	</select>
  
 </mapper>

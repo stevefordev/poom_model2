@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import com.coddington.poom.dao.ContractsDAO;
+import com.coddington.poom.dao.QuestionsDAO;
 import com.coddington.poom.dao.ReviewsDAO;
+import com.coddington.poom.dao.SchedulesDAO;
 import com.coddington.poom.dao.ServicesDAO;
 import com.coddington.poom.dao.TagsDAO;
 import com.coddington.poom.vo.Card;
@@ -12,56 +14,71 @@ import com.coddington.poom.vo.Service;
 
 public class ServicesServiceImpl implements ServicesService {
 
-  private ServicesDAO servicesDAO;
-  private ContractsDAO contractsDAO;
-  private TagsDAO tagsDAO;
-  private ReviewsDAO reviewsDAO;
+	private ServicesDAO servicesDAO;
+	private ContractsDAO contractsDAO;
+	private TagsDAO tagsDAO;
+	private ReviewsDAO reviewsDAO;
+	private QuestionsDAO questionsDAO;
+	private SchedulesDAO schedulesDAO;
+	
+	public void setServicesDAO(ServicesDAO servicesDAO) {
+		this.servicesDAO = servicesDAO;
+	}
 
-  public void setServicesDAO(ServicesDAO servicesDAO) {
-    this.servicesDAO = servicesDAO;
-  }
+	public void setContractsDAO(ContractsDAO contractsDAO) {
+		this.contractsDAO = contractsDAO;
+	}
 
-  public void setContractsDAO(ContractsDAO contractsDAO) {
-    this.contractsDAO = contractsDAO;
-  }
+	public void setTagsDAO(TagsDAO tagsDAO) {
+		this.tagsDAO = tagsDAO;
+	}
 
-  public void setTagsDAO(TagsDAO tagsDAO) {
-    this.tagsDAO = tagsDAO;
-  }
-  
-  public void setReviewsDAO(ReviewsDAO reviewsDAO) {
-    this.reviewsDAO = reviewsDAO;
-  }
+	public void setReviewsDAO(ReviewsDAO reviewsDAO) {
+		this.reviewsDAO = reviewsDAO;
+	}
 
-  @Override
-  public Map<String, Object> getDetails(int no) {
-    // TODO Auto-generated method stub
+	public void setQuestionsDAO(QuestionsDAO questionsDAO) {
+		this.questionsDAO = questionsDAO;
+	}
+	
+	public void setSchedulesDAO(SchedulesDAO schedulesDAO) {
+		this.schedulesDAO = schedulesDAO;
+	}
 
-    Map<String, Object> map = new HashMap();
+	@Override
+	public Map<String, Object> getDetails(int no) {
+		// TODO Auto-generated method stub
 
-    Service service = servicesDAO.selectByNo(no);
-    map.put("service", service);
-    map.put("tags", tagsDAO.selectListByServiceNo(no));
+		Map<String, Object> map = new HashMap();
 
-    Map<String, Object> scoreInfoMap = contractsDAO.selectScoreAndCountByServiceNo(no);
-    String icon = "sun";
-    if (service.getRole() == 1) {
-      icon = Card.getIcon(Integer.parseInt(scoreInfoMap.get("SCOREGIVER").toString()));
-    } else {
-      icon = Card.getIcon(Integer.parseInt(scoreInfoMap.get("SCORETAKER").toString()));
-    }
-    
-    scoreInfoMap.put("ICON", icon);
-    /*
-     * for (Map.Entry<String, Object> entry : scoreInfoMap.entrySet()) {
-     * System.out.print(entry.getKey()+":"); System.out.println(entry.getValue()); } ;
-     */
+		Service service = servicesDAO.selectByNo(no);
+		map.put("service", service);
+		map.put("tags", tagsDAO.selectListByServiceNo(no));
 
-    map.put("scoreAndCountContract", scoreInfoMap);    
-    map.put("reviews", reviewsDAO.selectList(no));
+		Map<String, Object> scoreInfoMap = contractsDAO.selectScoreAndCountByServiceNo(no);
+		String icon = "sun";
+		if (service.getRole() == 1) {
 
-    // map.put("photos", servicesDAO.selectByNo(no));
+			icon = Card.getIcon(Integer.parseInt(scoreInfoMap.get("scoreGiver").toString()));
+		} else {
+			icon = Card.getIcon(Integer.parseInt(scoreInfoMap.get("scoreTaker").toString()));
+		}
 
-    return map;
-  }
+		scoreInfoMap.put("ICON", icon);
+		/*
+		 * for (Map.Entry<String, Object> entry : scoreInfoMap.entrySet()) {
+		 * System.out.print(entry.getKey()+":"); System.out.println(entry.getValue()); }
+		 * ;
+		 */
+
+		map.put("scoreAndCountContract", scoreInfoMap);
+		map.put("schedules", schedulesDAO.selectList(no));
+		
+		map.put("reviews", reviewsDAO.selectList(no));
+		map.put("questions", questionsDAO.selectList(no));
+
+		// map.put("photos", servicesDAO.selectByNo(no));
+
+		return map;
+	}
 }

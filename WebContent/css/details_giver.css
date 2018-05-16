@@ -351,7 +351,7 @@
 	text-decoration: none;
 	text-align: center;
 	display: inline-block;
-	width:100%;	
+	width: 100%;
 	height: 50px;
 	line-height: 50px;
 	font-size: 24px;
@@ -487,7 +487,7 @@
 }
 
 #detailsBoardWrap .box_board {
-	background-color: #fff;	
+	background-color: #fff;
 	min-height: 400px;
 	margin: 10px;
 	padding: 20px;
@@ -582,13 +582,11 @@
 
 #detailsBoardWrap .contents_board ul {
 	/*background-color: #80D8FF;*/
-	width: 1020px;
 	min-height: 400px;
 }
 
 #detailsBoardWrap .contents_board ul li {
 	/*background-color: #76FF03;*/
-	width: 1020px;
 	min-height: 100px;
 	margin: 30px 0;
 	overflow: hidden;
@@ -636,25 +634,26 @@
 .tui-chart-default-tooltip {
 	display: none;
 }
-
-.question_box .btn_reply {
-	border: none;
-	outline: none;
-	cursor: pointer;
-	background-color: #2e7965;
-	color: #fff;
-	height: 27px;
-	font-size: 12px;
-	position: absolute;
-	bottom: 0px;
-	right: 0px;
-	border-radius: 5px;
-}
-
+ 
 #detailsBoardBox .contents_board_question .box_btn_question_popup {
 	/*background-color: #311B92;*/
 	height: 80px;
 	position: relative;
+}
+
+#detailsBoardBox .contents_board_question .box_btn_question_popup textarea
+	{
+	width: 916px;
+	height: 80px;
+	padding: 10px 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 24px;
+	background: #ccc;
+	outline: none;
+	resize: none;
+	font-family: "Noto Sans KR", serif;
 }
 
 #detailsBoardBox .btn_question_popup {
@@ -986,7 +985,6 @@
 
 .question_box {
 	background: #f2c641;
-	width: 1000px;
 	min-height: 80px;
 	margin: auto;
 	position: relative;
@@ -994,56 +992,64 @@
 
 .question_box2 {
 	background: #f2c641;
-	width: 1000px;
-	margin: auto;
+	margin-left: 50px;
 	min-height: 80px;
 }
 
 .question_mark {
-	width: 100px;
-	height: 100px;
-	margin-left: 63px;
+	width: 50px;
+	height: 50px;
 	float: left;
+	font-size: 20px;
+	text-align: center;	
+	margin-left: 50px;
+	line-height: 50px;
 	color: #fff;
-	font-size: 75px;
-	text-align: center;
+}
+
+.question_box .question_mark {
 	background: #1f2b43;
 }
 
 .question_box2 .question_mark {
-	width: 100px;
-	height: 100px;
-	margin-left: 63px;
-	float: left;
-	color: #fff;
-	font-size: 75px;
-	text-align: center;
-	background: #3f475a;
+	background: #3f475a;	
 }
 
 .question_1 {
-	padding: 20px;
+	padding: 10px 30px 40px	30px;
 	border-radius: 5px;
-	min-height: 70px;
-	width: 800px;
+	min-height: 40px;
 	background: #1f2b43;
 	color: #fff;
 	font-size: 18px;
-	margin-left: auto;
-	margin-bottom: 20px;
-	line-height: 40px;
+	margin-left: 96px;
+	margin-bottom:10px;
+	line-height: 30px;
 	position: relative;
 }
 
 .question_2 {
-	padding: 20px;
+	padding: 10px 30px;
 	border-radius: 5px;
-	min-height: 70px;
-	width: 800px;
+	min-height: 30px;
 	background: #3f475a;
 	color: #fff;
 	font-size: 18px;
-	margin-left: auto;
-	margin-bottom: 20px;
-	line-height: 40px;
+	margin-left: 96px;
+	line-height: 30px;
 }
+
+.question_box button {
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: #2e7965;
+	color: #fff;
+	height: 30px;	
+	font-size: 12px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	border-radius: 5px;
+}
+

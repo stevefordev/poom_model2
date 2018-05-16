@@ -574,7 +574,7 @@ body {
       "level": 1,
       "count": 5
     };
-    cardUtil.getCardList("ajax/heroCardList.json", $("#cardBox"), ".img_box");
+    cardUtil.getCardList("/ajax/service.poom", $("#cardBox"), ".img_box");
   </script>
 </body>
 </html>

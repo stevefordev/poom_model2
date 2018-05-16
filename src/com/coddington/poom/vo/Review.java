@@ -1,11 +1,13 @@
 package com.coddington.poom.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Review {
 	private int no, serviceNo, userNo, type;
 	private String content, reply, userNickName, userPhotoUrl;
-	private Date regdate;
+	private Timestamp regdate;
+	
 	public int getNo() {
 		return no;
 	}
@@ -42,10 +44,10 @@ public class Review {
 	public void setReply(String reply) {
 		this.reply = reply;
 	}
-	public Date getRegdate() {
+	public Timestamp getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(Timestamp regdate) {
 		this.regdate = regdate;
 	}
   public String getUserNickName() {

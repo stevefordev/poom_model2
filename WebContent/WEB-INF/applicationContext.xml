@@ -57,6 +57,8 @@
 		p:contractsDAO-ref="contractsDAO"
 		p:tagsDAO-ref="tagsDAO" 
 		p:reviewsDAO-ref="reviewsDAO"
+		p:questionsDAO-ref="questionsDAO"
+		p:schedulesDAO-ref="schedulesDAO"
 		class="com.coddington.poom.service.ServicesServiceImpl" />
 
 	<bean id="usersService" p:usersDAO-ref="usersDAO"

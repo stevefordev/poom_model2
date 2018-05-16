@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 >
 
 <mapper namespace="schedules">
-
-
+	<select id="selectList" parameterType="int" resultType="Schedule">
+		SELECT no, service_no serviceNo, service_startdate serviceStartdate, service_day serviceDay, service_date serviceDate, regdate
+		FROM schedules
+		WHERE service_no = #{no}
+		ORDER BY service_day, service_date ASC
+	</select>
 </mapper>

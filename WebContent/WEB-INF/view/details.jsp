@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1"%>
-<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
 <link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=201805154" />
+<link rel="stylesheet" href="css/details_giver.css?date=2018051638" />
 <link rel="stylesheet" href="css/popup_details_question.css" />
 <link rel="stylesheet" href="css/popup_details_reply.css" />
 <link rel="stylesheet" href="css/slick/slick.css" />
@@ -66,24 +66,26 @@ body {
 		<h3 class="screen_out">상세정보</h3>
 		<div id="userProfile">
 			<h4 class="screen_out">프로필</h4>
-			<a href="#">
-				<img id="giverProfileImg" src="/img/profile/person28.jpg"/>
+			<a href="#"> <img id="giverProfileImg"
+				src="/img/profile/person28.jpg" />
 				<div id="userNickname">${service.userNickName }</div>
 			</a>
 		</div>
 		<div id="detailsInfo">
 			<h4 class="screen_out">상세정보내용</h4>
 			<ul>
-				<li>총 평점 : <span class="icon_big ${scoreAndCountContract.ICON }"></span><c:choose><c:when test="${service.role == 1 }"> ${scoreAndCountContract.SCOREGIVER }%(${scoreAndCountContract.COUNTDONE })</c:when></c:choose>
+				<li>총 평점 : <span
+					class="icon_big ${scoreAndCountContract.icon }"></span> <c:choose>
+						<c:when test="${service.role == 1 }"> ${scoreAndCountContract.scoreGiver }%(${scoreAndCountContract.countDone })</c:when>
+					</c:choose>
 				</li>
 				<li>지역 : ${service.area1 } ${service.area2 }</li>
-				<li>진행 중인 계약 ${scoreAndCountContract.COUNTPROGRESS }건</li>
-				<li>완료된 계약 ${scoreAndCountContract.COUNTDONE }건</li>
+				<li>진행 중인 계약 ${scoreAndCountContract.countProgress }건</li>
+				<li>완료된 계약 ${scoreAndCountContract.countDone }건</li>
 				<li><c:forEach items="${tags }" var="tag">
 					#${tag.name } 
-				</c:forEach>
-				</li>
-				<li>${service.poom } 품</li>
+				</c:forEach></li>
+				<li>${service.poom }품</li>
 			</ul>
 		</div>
 		<div id="scheduleBox">
@@ -91,7 +93,7 @@ body {
 			<div id="calendarWrap">
 				<h5>
 					<i class="far fa-calendar-alt"></i> 일정 선택
-				</h5>				
+				</h5>
 			</div>
 			<!--#calendarWrap-->
 			<div id="selectedScheduleBox">
@@ -168,7 +170,7 @@ body {
 		<div id="detailsBoardGnb">
 			<ul>
 				<li><a class="board_gnb on gnb_reference" href="#">참고사항</a></li>
-				<li><a class="board_gnb gnb_review" href="#">리뷰(21)</a></li>
+				<li><a class="board_gnb gnb_review" href="#">리뷰(${fn:length(reviews)})</a></li>
 				<li><a class="board_gnb gnb_question" href="#">문의(25)</a></li>
 			</ul>
 		</div>
@@ -182,8 +184,11 @@ body {
 					<div class="box_review_dashboard">
 						<div class="box_review_dashboard_area" id="gradeSymbol">
 							<div id="box">
-								<div id="gradeSymbolImg" class="icon_big ${scoreAndCountContract.ICON }"></div>
-								<span><c:choose><c:when test="${service.role == 1 }"> ${scoreAndCountContract.SCOREGIVER }%(${scoreAndCountContract.COUNTDONE })</c:when></c:choose></span>
+								<div id="gradeSymbolImg"
+									class="icon_big ${scoreAndCountContract.icon }"></div>
+								<span><c:choose>
+										<c:when test="${service.role == 1 }"> ${scoreAndCountContract.scoreGiver }%(${scoreAndCountContract.countDone })</c:when>
+									</c:choose></span>
 							</div>
 						</div>
 						<div class="box_review_dashboard_area" id="reviewNum">
@@ -196,209 +201,74 @@ body {
 					</div>
 
 					<ul>
-					<c:forEach items="${reviews }" var="review">
-						<li>
-							<div class="box_contents box_contents_review">
-								<dl>
-									<dt class="profile_img_name">
-										<a href="">
-											<div class="profile_img"></div>
-										</a><a id="profileName2" href="">${review.userNickName }</a>
-									</dt>
-									<dd class="review_1">
-										<span>${review.content }</span>
-									</dd>
-								</dl>
-							</div>
-							<div class="box_reply box_reply_review">
-								<dl>
-									<dt id="profileImgName2">
-										<a href="">
-											<div class="profile_img"></div>
-										</a><a id="profileName3" href="">${service.userNickName }</a>
-									</dt>
-									<dd class="review_2">
-										<span>${review.reply }</span>
-									</dd>
-								</dl>
-							</div>
-						</li>
-					</c:forEach>
-						<li>
-							<div class="box_contents box_contents_review">
-								<dl>
-									<dt class=profile_img_name>
-										<a href="">
-											<div class="profile_img"></div>
-										</a><a id="profileName2" href="">김 범</a>
-									</dt>
-									<dd class="review_1">
-										<span>겁나 도움이 되었습니다. 다음에 또 듣고 싶네요.</span>
-									</dd>
-									<button class="btn_reply btn_review_reply">답변하기</button>
-								</dl>
+						<c:forEach items="${reviews }" var="review">
+							<li>
+								<div class="box_contents box_contents_review">
+									<dl>
+										<dt class="profile_img_name">
+											<a href=""> <img class="profile_img" src=""></img>
+											</a><a id="profileName2" href="">${review.userNickName }</a>
+										</dt>
+										<dd class="review_1">
+											<span>${review.content }</span>
+										</dd>
+										<c:if test="${review.reply == null }">
 
-								<div class="wrap_popup_reply">
-									<div class="popup_reply">
-										<h5 class="screen_out">답변하기</h5>
-										<div class="box_reply_info">
+										</c:if>
+									</dl>
+								</div> <c:choose>
+									<c:when test="${review.reply == null }">
+										<button class="btn_reply btn_review_reply">답변하기</button>
+									</c:when>
+									<c:otherwise>
+										<div class="box_reply box_reply_review">
 											<dl>
-												<dt>등록자</dt>
-												<dd>
-													<i class="fas fa-user-circle"></i> 최선이냐?
-												</dd>
-												<dt class="reply_contents">내용</dt>
-												<dd class="reply_contents">
-													<textarea placeholder="내용을 입력하시오"></textarea>
+												<dt id="profileImgName2">
+													<a href=""> <img class="profile_img" src=""></img>
+													</a><a id="profileName3" href="">${service.userNickName }</a>
+												</dt>
+												<dd class="review_2">
+													<span>${review.reply }</span>
 												</dd>
 											</dl>
-											<button class="btn_reply_register">답변</button>
 										</div>
-										<!--//#replyInfoBox-->
-									</div>
-									<!--//#replyPopup-->
-								</div>
-								<!--//.wrap_popup_reply-->
-							</div>
-						</li>
-						<li>
-							<div class="box_contents box_contents_review">
-								<dl>
-									<dt class=profile_img_name>
-										<a href="">
-											<div class="profile_img"></div>
-										</a><a id="profileName2" href="">김 범</a>
-									</dt>
-									<dd class="review_1">
-										<span>겁나 도움이 되었습니다. 다음에 또 듣고 싶네요.겁나 도움이 되었습니다. 다음에 또 듣고
-											싶네요.겁나 도움이 되었습니다. 다음에 또 듣고 싶네요.겁나 도움이 되었습니다. 다음에 또 듣고 싶네요.</span>
-									</dd>
-								</dl>
-							</div>
-							<div class="box_reply box_reply_review">
-								<dl>
-									<dt id=profileImgName2>
-										<a href="">
-											<div class="profile_img"></div>
-										</a><a id="profileName3" href="">노승현</a>
-									</dt>
-									<dd class="review_2">
-										<span>감사합니다 다음에 또 같이 해요 하하하하.</span>
-									</dd>
-								</dl>
-							</div>
-						</li>
-						<!--     <li>
-                            <div class="box_contents box_contents_review">
-                                리뷰
-                            </div>
-                            <div class="box_reply box_reply_review">
-                                답변
-                            </div>
-                        </li><li>
-                            <div class="box_contents box_contents_review">
-                                리뷰
-                            </div>
-                            <div class="box_reply box_reply_review">
-                                답변
-                            </div>
-                        </li>
-                        <li>
-                            <div class="box_contents box_contents_review">
-                                리뷰
-                            </div>
-                            <div class="box_reply box_reply_review">
-                                답변
-                            </div>
-                        </li> -->
+									</c:otherwise>
+								</c:choose>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
 			<div class="box_board box_board_question">
 				<div class="contents_board contents_board_question">
 					<div class="box_btn_question_popup">
+						<textarea id="inputQuestion" placeholder="내용을 입력하시오"></textarea>
 						<button class="btn_question_popup">문의하기</button>
-						<div id="detailsQuestionPopupWrap">
-							<div id="questionPopup">
-								<h5 class="screen_out">문의하기</h5>
-								<div id="questionInfoBox">
-									<dl>
-										<dt>제목</dt>
-										<dd>맡긴 짐 가져와주세요...</dd>
-										<dt>등록자</dt>
-										<dd>
-											<i class="fas fa-user-circle"></i> 최선이냐?
-										</dd>
-										<dt class="question_contents">내용</dt>
-										<dd class="question_contents">
-											<label> <input type="checkbox" />비밀글
-											</label>
-											<textarea placeholder="내용을 입력하시오"></textarea>
-										</dd>
-									</dl>
-									<button class="btn_question_register">등록</button>
-								</div>
-								<!--//#questionInfo-->
-							</div>
-							<!--//#detailsQuestionPopup-->
-						</div>
 						<!--//#detailsQuestionPopupWrap-->
 					</div>
 					<ul>
-						<li>
-
-							<div class="question_box">
-								<div class="question_mark">Q.</div>
-								<div class="question_1">
-									<span>청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요?
-										청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ
-										ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ</span>
-								</div>
-								<button class="btn_reply btn_question_reply">답변하기</button>
-							</div>
-
-
-
-							<div class="wrap_popup_reply">
-								<div class="popup_reply">
-									<h5 class="screen_out">답변하기</h5>
-									<div class="box_reply_info">
-										<dl>
-											<dt>등록자</dt>
-											<dd>
-												<i class="fas fa-user-circle"></i> 최선이냐?
-											</dd>
-											<dt class="reply_contents">내용</dt>
-											<dd class="reply_contents">
-												<textarea placeholder="내용을 입력하시오"></textarea>
-											</dd>
-										</dl>
-										<button class="btn_reply_register">답변</button>
+						<c:forEach items="${questions }" var="question">
+							<li>
+								<div class="question_box">
+									<div class="question_mark">Q.</div>
+									<div class="question_1">
+										<span>${question.content }</span>
 									</div>
-									<!--//#replyInfoBox-->
+									<c:if test="${question.reply == null }">
+										<button class="btn_reply btn_question_reply">답변하기</button>
+									</c:if>
 								</div>
-								<!--//#replyPopup-->
-							</div> <!--//.wrap_popup_reply-->
+									<c:if test="${question.reply != null }">
+										<div class="question_box2">
+											<div class="question_mark">A.</div>
+											<div class="question_2">
+												<span>${question.reply }</span>
+											</div>
+										</div>
+									</c:if>							
+							</li>
+						</c:forEach>
 
-						</li>
-						<li>
-							<div class="question_box">
-								<div class="question_mark">Q.</div>
-								<div class="question_1">
-									<span>청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요?
-										청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ
-										ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ</span>
-								</div>
-							</div>
-							<div class="question_box2">
-								<div class="question_mark">A.</div>
-								<div class="question_2">
-									<span>청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요?
-										청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ
-										ㅎㅎ청소완전필요합니다...얼마나 잘하시나요? ㅎㅎ</span>
-								</div>
-							</div>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -463,22 +333,22 @@ body {
                             <ul>
                                 <!--날짜 구하기-->
                                 <li class="schedule_date"><@=dateObject.date() @></li>
-                                <@_.each(scheduleListFromDB , function(scheduleFromDB) { @>
-                                       <@ if(dateObject.format("YYYY-MM-DD") == scheduleFromDB.schedule.date) {@>
+                                <@_.each(scheduleListForCalendar , function(scheduleForCalendar) { @>
+                                       <@ if(dateObject.format("YYYY-MM-DD") == scheduleForCalendar.schedule.date) {@>
                                 <li>
                                     <!--selectedScheduleArr에 있는 모멘트들과 비교해서 같은 일정 있으면
                                         selected 클래스를 줌-->
                                     <a href="#" class="schedule_hour
                                     <@ for(var i = 0; i < selectedScheduleObjectArr.length; i++) {@>
 
-                                        <@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleFromDB.schedule.date+' '+scheduleFromDB.schedule.hour) {@>
+                                        <@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
                                         selected
                                     <@}} @>"
 
-                                       data-schedule="<@=scheduleFromDB.schedule.date+' '+scheduleFromDB.schedule.hour @>">
+                                       data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
                                         <!--화살표 버튼 클릭해서 .box_calendar가 다시 markup되더라도 selected되었던
                                         .schedule_hour에는 selected클래스를 주어 css효과가 유지되게 함-->
-                                        <@=scheduleFromDB.schedule.expression @>
+                                        <@=scheduleForCalendar.schedule.expression @>
                                     </a>
                                 </li>
                                 <@}}); @>
@@ -493,16 +363,16 @@ body {
                         <div class="box_date">
                             <ul>
                                 <li class="schedule_date"><@=dateObject.date() @></li>
-                                <@_.each(scheduleListFromDB , function(scheduleFromDB) { @>
-								<@if(dateObject.format("YYYY-MM-DD") == scheduleFromDB.schedule.date) {@>
+                                <@_.each(scheduleListForCalendar , function(scheduleForCalendar) { @>
+								<@if(dateObject.format("YYYY-MM-DD") == scheduleForCalendar.schedule.date) {@>
                                 <li>
                                     <a href="#" class="schedule_hour
                                     <@for(var i = 0; i < selectedScheduleObjectArr.length; i++) {@>
-									<@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleFromDB.schedule.date+' '+scheduleFromDB.schedule.hour) {@>
+									<@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
 									selected
                                     <@}} @>"
-                                       data-schedule="<@=scheduleFromDB.schedule.date+' '+scheduleFromDB.schedule.hour @>">
-                                        <@=scheduleFromDB.schedule.expression @>
+                                       data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
+                                        <@=scheduleForCalendar.schedule.expression @>
                                     </a>
                                 </li>
                                 <@}}); @>
@@ -560,13 +430,16 @@ body {
 	<script src="/js/card_util.js?date=201804283"></script>
 	<script src="/js/slick/slick.min.js"></script>
 	<script src="/js/slick/slick_helper.js?date=201804283"></script>
-	<script src="/js/details_giver.js?date=201805148"></script>
+	<script src="/js/details_giver.js?date=2018051610"></script>
 	<script>
 		var data = {
 			categories : [ "친절성", "성실성", "가격", "숙련도" ],
 			series : [ {
-				name : '넬준',
-				data : [ ${scoreAndCountContract.SCOREKIND}, ${scoreAndCountContract.SCOREHONEST}, ${scoreAndCountContract.SCOREPRICE}, ${scoreAndCountContract.SCOREKNOWHOW} ]
+				name : '평점',
+				data : [ '${scoreAndCountContract.scoreKind}',
+						'${scoreAndCountContract.scoreHonest}',
+						'${scoreAndCountContract.scorePrice}',
+						'${scoreAndCountContract.scoreKnowhow}' ]
 			} ]
 		};
 
@@ -579,7 +452,46 @@ body {
 		};
 		cardUtil.getCardList("ajax/recommendCardList.json", $("#cardBox"),
 				".img_box");
-		*/
+		 */
+		 //SELECT no, service_no serviceNo, service_startdate serviceStartdate, service_day serviceDay, service_date serviceDate, regdate
+		 var schedules = new Array();
+		 var scheduleListForCalendar = new Array();
+		 
+		 <c:forEach items="${schedules}" var="schedule">
+		 	var json = new Object();
+		 		json.no = "${schedule.no}";
+		 		json.serviceNo = "${schedule.serviceNo}";
+		 		json.serviceStartdate = "${schedule.serviceStartdate}";
+		 		json.serviceDay = "${schedule.serviceDay}";
+		 		json.serviceDayOfWeek = "${schedule.serviceDayOfWeek}";	
+		 		json.serviceDayHour = "${schedule.serviceDayHour}";
+		 		json.serviceDayHourExpression = "${schedule.serviceDayHourExpression}";
+		 		json.serviceDate = "${schedule.serviceDate}";
+		 		json.regdate = "${schedule.regdate}";		 		
+		 	schedules.push(json);
+		 </c:forEach>
+		 console.log(schedules);
+		 
+		 var currDate = moment();
+		 var lastDate = currDate.clone().add(70, 'days');
+		 while(currDate.add(1, 'days').diff(lastDate) < 0) {
+			 console.log(currDate.format("YYYY-MM-DD"));
+			 
+			 var dayOfWeek = currDate.format('dddd').toLowerCase();
+			 console.log(dayOfWeek);
+			 _.each(schedules, function (each) {
+				console.log(each.serviceDayOfWeek);
+				if (dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
+					//{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
+					var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceDayHour, expression: each.serviceDayHourExpression };
+					scheduleListForCalendar.push({ "schedule" : schedule });	
+				}
+				
+			});			 
+		 }
+		 
+		 getScheduleCalendar(scheduleListForCalendar);
+		 
 	</script>
 </body>
 </html>

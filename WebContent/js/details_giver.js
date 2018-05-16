@@ -2,37 +2,7 @@ var dateObjectArr1 = new Array(),
     dateObjectArr2 = new Array();
 
 //DB에서 받아 올 스케줄 리스트 (json형태)
-var scheduleListFromDB = [
-    {schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
-    {schedule : {date : "2018-04-23", hour: "09", expression: "09-10시"}},
-    {schedule : {date : "2018-04-23", hour: "10", expression: "10-11시"}},
-    {schedule : {date : "2018-04-23", hour: "11", expression: "11-12시"}},
-    {schedule : {date : "2018-04-23", hour: "12", expression: "12-13시"}},
-    {schedule : {date : "2018-04-26", hour: "06", expression: "06-07시"}},
-    {schedule : {date : "2018-04-26", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-04-26", hour: "20", expression: "20-21시"}},
-    {schedule : {date : "2018-04-26", hour: "22", expression: "22-23시"}},
-    {schedule : {date : "2018-04-29", hour: "14", expression: "14-15시"}},
-    {schedule : {date : "2018-04-29", hour: "08", expression: "08-09시"}},
-    {schedule : {date : "2018-04-29", hour: "11", expression: "11-12시"}},
-    {schedule : {date : "2018-04-29", hour: "16", expression: "16-17시"}},
-    {schedule : {date : "2018-04-29", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-05-02", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-05-02", hour: "18", expression: "18-19시"}},
-    {schedule : {date : "2018-05-07", hour: "07", expression: "07-08시"}},
-    {schedule : {date : "2018-05-07", hour: "09", expression: "09-10시"}},
-    {schedule : {date : "2018-05-07", hour: "11", expression: "11-12시"}},
-    {schedule : {date : "2018-05-07", hour: "12", expression: "12-13시"}},
-    {schedule : {date : "2018-05-08", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-05-11", hour: "11", expression: "11-12시"}},
-    {schedule : {date : "2018-05-11", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-05-16", hour: "17", expression: "17-18시"}},
-    {schedule : {date : "2018-05-16", hour: "18", expression: "18-19시"}},
-    {schedule : {date : "2018-05-16", hour: "20", expression: "20-21시"}},
-    {schedule : {date : "2018-05-16", hour: "21", expression: "17-18시"}},
-    {schedule : {date : "2018-05-16", hour: "23", expression: "23-00시"}},
-    {schedule : {date : "2018-05-21", hour: "17", expression: "17-18시"}}
-]
+var scheduleListForCalendar = []
 
 //calendarBoxTmp 띄우기
 var $calendarWrap = $("#calendarWrap"),
@@ -45,7 +15,7 @@ var changeDate = 0;
 
 var selectedScheduleObjectArr = new Array();
 
-function getScheduleCalendar() {
+function getScheduleCalendar(scheduleListForCalendar) {
 	console.log('changeDate',changeDate);
     for(var i = 0; i <= 6; i++) {
         dateObjectArr1[i] = moment().add(i+changeDate, "days");
@@ -56,14 +26,14 @@ function getScheduleCalendar() {
 
     console.log(dateObjectArr1);
     console.log(dateObjectArr2);
-    console.log(scheduleListFromDB);
+    console.log(scheduleListForCalendar);
     console.log(selectedScheduleObjectArr);
     console.log(tmp);
     
     markup = tmp({
         dateObjectArr1 : dateObjectArr1,
         dateObjectArr2 : dateObjectArr2,
-        scheduleListFromDB : scheduleListFromDB,
+        scheduleListForCalendar : scheduleListForCalendar,
         selectedScheduleObjectArr : selectedScheduleObjectArr
     });
 
@@ -72,7 +42,7 @@ function getScheduleCalendar() {
 
 }//getScheduleCalendar() end
 
-getScheduleCalendar();
+//getScheduleCalendar();
 
 
 //화살표 클릭 시 14, 28일 간격으로 이동
@@ -96,7 +66,7 @@ $("#calendarWrap").on("click", '#calendarSettingBox li', function (evt) {
         // '+= 0'는 없으니 '= 0'으로 따로 빼줌
         changeDate = 0;
     }
-    getScheduleCalendar();
+    getScheduleCalendar(scheduleListForCalendar);
 
     console.log("changeDate:", changeDate);
     //오늘 날짜로부터 56일 뒤까지만 일정 볼 수 있게 버튼 설정
@@ -144,7 +114,6 @@ $("#calendarWrap").on("click", '#calendarSettingBox li', function (evt) {
 
 });//$(this).on("click") end;
  
-
 
 //캘린더 시간 클릭 시
 var $calendarWrap = $("#calendarWrap");
@@ -295,7 +264,6 @@ $boardGnb.click(function (evt) {
         chartExportMenu: {
             visible: false
         }
-
 
     };
 
