@@ -323,7 +323,8 @@ function removeAllTags() {
 // 디비에서 태그를 검색하고 없으면 삽입하고 tagid 를 리턴 받는다
 function getTagIdOrInsert(name) {
   $.ajax({
-    url: "ajax/getTagList.jsp",
+	type:"POST",
+    url: "/ajax/service/getTagList.poom",
     dataType: "json",
     data: {
       'isEqual': 1,
@@ -852,8 +853,8 @@ $registerService.submit(function() {
   console.log('tag:', $tag.val());
   console.log('poom:', $poom.val());
   console.log('photo:', $photo.val());
-  $contents.val(CKEDITOR.instances['contents'].getData())
-  console.log('contents:', $contents.val());
+  $contents.val(CKEDITOR.instances['content'].getData())
+  console.log('content:', $contents.val());
   console.log('scheduleList:', $scheduleList.val());
 
   if (checkPhoto() == false) { return false; }

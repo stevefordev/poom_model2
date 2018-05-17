@@ -17,4 +17,10 @@ public class ServicesDAOImpl implements ServicesDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("services.selectByNo", no);
 	}
+	
+	@Override
+	public Service selectByServiceNoAndUserNo(Service service) {
+		// TODO Auto-generated method stub
+		return session.selectOne("services.selectByServiceNoAndUserNo", service);
+	}
 }

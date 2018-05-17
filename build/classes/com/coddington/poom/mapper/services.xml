@@ -7,12 +7,26 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<select id="selectByNo" parameterType="int" resultType="Service">
 		SELECT s.no, s.user_no userNo, s.title, s.area1, s.area2, s.detail_address1	detailAddress1, s.detail_address2 detailAddress2,
-		s.latitude, s.longitude, s.poom, s.content, s.category, s.photo_url	photoUrl, s.role, s.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+			s.latitude, s.longitude, s.poom, s.content, s.category, s.photo_url	photoUrl, s.role, s.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
 		FROM services s, users u
 		WHERE s.user_no = u.no 
 		AND s.no = #{no} 
 	</select>
 	 
+	 <select id="selectByServiceNoAndUserNo" parameterType="Service"
+		resultType="Service">
+		SELECT no, user_no userNo,
+			title, area1, area2,
+			detail_address1
+			detailAddress1, detail_address2
+			detailAddress2,
+			latitude, longitude,
+			poom, content, category, photo_url
+			photoUrl, role,
+			regdate
+		FROM services
+		WHERE no = #{no} AND user_no = #{userNo}
+	</select>
 </mapper>
 
 

@@ -36,7 +36,7 @@ public class Service {
 
 	private int no, userNo, poom, category, role;
 	private String title, area1, area2, detailAddress1, detailAddress2, latitude, longitude, content, photoUrl,
-			userNickName, userPhotoUrl;
+			userNickName, userPhotoUrl, categoryEng;
 	private Date regdate;
 
 	public int getNo() {
@@ -68,6 +68,9 @@ public class Service {
 		return category;
 	}
 
+	public String getCategoryEng() {
+		return Category.find(this.category).name().toLowerCase();
+	}
 	public void setCategory(int category) {
 		this.category = category;
 	}
@@ -81,8 +84,8 @@ public class Service {
 		return role;
 	}
 
-	public char getRoleChar() {
-		return role == 1 ? 'g' : 't';
+	public String getRoleChar() {
+		return role == 1 ? "g" : "t";
 	}
 
 	public void setRole(int role) {
@@ -91,7 +94,6 @@ public class Service {
 
 	// g(giver) = 1, t(taker) = 2
 	public void setRole(String r) {
-		// @steve 차라리 디비 컬럼 자료형을 char 하는것이 더 나을듯
 		this.role = r.equals("g") ? 1 : 2;
 	}
 

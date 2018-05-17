@@ -8,12 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
-<link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=2018051636" />
-<link rel="stylesheet" href="css/popup_details_question.css" />
-<link rel="stylesheet" href="css/popup_details_reply.css" />
-<link rel="stylesheet" href="css/slick/slick.css" />
-<link rel="stylesheet" href="css/slick/slick-theme.css" />
+<link rel="stylesheet" href="/css/card_giver_level_first.css" />
+<link rel="stylesheet" href="/css/details_giver.css?date=2018051636" />
+<link rel="stylesheet" href="/css/popup_details_question.css" />
+<link rel="stylesheet" href="/css/popup_details_reply.css" />
+<link rel="stylesheet" href="/css/slick/slick.css" />
+<link rel="stylesheet" href="/css/slick/slick-theme.css" />
 
 <style>
 body {
