@@ -35,13 +35,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		    AND s.no = #{s.no})
 	</select>
 	
-	<insert id="insert" parameterType="Contract">
+	<insert id="insert" parameterType="Contract">	
 		INSERT INTO contracts (no, giver_no, taker_no, service_no, poom, status, content, 
 			score_user, score_price, score_kind, score_knowhow, score_honest,
 			area1, area2, detail_address1, detail_address2, latitude, longitude, regdate)
 		VALUES (contracts_seq.nextval, #{giverNo}, #{takerNo}, #{serviceNo}, #{poom}, 0, #{content},
 		0, 0, 0, 0, 0,
 		'', '', '', '', '', '', systimestamp)
+		<selectKey keyProperty="no" resultType="Integer" order="AFTER">
+			SELECT contracts_seq.currval FROM dual
+		</selectKey>
 	</insert>
  
 </mapper>

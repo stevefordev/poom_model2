@@ -1,6 +1,7 @@
 package com.coddington.poom.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.coddington.poom.util.FieldUtil;
 
@@ -8,8 +9,10 @@ public class Contract {
 	
 	private int no, giverNo, takerNo, serviceNo, poom, status,
 				scoreUser, scorePrice, scoreKind, scoreKnowhow, scoreHonest;
-	private String content;
+	private String content;	
 	private Date regdate;
+	private List<ContractSchedule> contractSchedules;
+	
 	public int getNo() {
 		return no;
 	}
@@ -89,6 +92,12 @@ public class Contract {
 		this.regdate = regdate;
 	}
 	
+	public List<ContractSchedule> getContractSchedules() {
+		return contractSchedules;
+	}
+	public void setContractSchedules(List<ContractSchedule> contractSchedules) {
+		this.contractSchedules = contractSchedules;
+	}
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

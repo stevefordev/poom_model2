@@ -9,7 +9,7 @@
 <title>상세페이지_giver</title>
 <%@ include file="/WEB-INF/view/templates/link.jsp"%>
 <link rel="stylesheet" href="css/card_giver_level_first.css" />
-<link rel="stylesheet" href="css/details_giver.css?date=2018051635" />
+<link rel="stylesheet" href="css/details_giver.css?date=2018051636" />
 <link rel="stylesheet" href="css/popup_details_question.css" />
 <link rel="stylesheet" href="css/popup_details_reply.css" />
 <link rel="stylesheet" href="css/slick/slick.css" />
@@ -271,7 +271,6 @@ body {
 									</c:if>							
 							</li>
 						</c:forEach>
-
 					</ul>
 				</div>
 			</div>
@@ -347,7 +346,7 @@ body {
                                         <@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
                                         selected
                                     <@}} @>"
-									   data-schedule_no="<@=scheduleForCalendar.schedule.no @>"
+									   data-schedule_no="<@=scheduleForCalendar.schedule.scheduleNo @>"
                                        data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
                                         <!--화살표 버튼 클릭해서 .box_calendar가 다시 markup되더라도 selected되었던
                                         .schedule_hour에는 selected클래스를 주어 css효과가 유지되게 함-->
@@ -374,7 +373,7 @@ body {
 									<@ if(selectedScheduleObjectArr[i].selectedMoment.format('YYYY-MM-DD HH')== scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour) {@>
 									selected
                                     <@}} @>"
-										data-schedule_no="<@=scheduleForCalendar.schedule.no @>"
+										data-schedule_no="<@=scheduleForCalendar.schedule.scheduleNo @>"
                                        data-schedule="<@=scheduleForCalendar.schedule.date+' '+scheduleForCalendar.schedule.hour @>">
                                         <@=scheduleForCalendar.schedule.expression @>
                                     </a>
@@ -428,7 +427,7 @@ body {
 	<script src="/js/chart/tui-chart.js"></script>
 	<script src="/js/card_util.js?date=201804283"></script>
 	<script src="/js/slick/slick.min.js"></script>
-	<script src="/js/slick/slick_helper.js?date=201804288"></script>
+	<script src="/js/slick/slick_helper.js?date=2018042819"></script>
 	<script>
 		var loginUserNo = '${loginUser.no}';
 		var serviceNo = '${service.no}';
@@ -465,10 +464,10 @@ body {
 		 var schedules = new Array();
 		 var scheduleListForCalendar = new Array();
 		 
-		 // java list to javascript array
+		 // java list data to javascript array
 		 <c:forEach items="${schedules}" var="schedule">
 		 	var json = new Object();
-		 		json.no = "${schedule.no}";
+		 		json.scheduleNo = "${schedule.no}";
 		 		json.serviceNo = "${schedule.serviceNo}";
 		 		json.serviceStartdate = "${schedule.serviceStartdate}";
 		 		json.serviceDay = "${schedule.serviceDay}";
@@ -496,7 +495,7 @@ body {
 				  if(dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
 				
 					//{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
-					var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , no:each.no};
+					var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , scheduleNo:each.scheduleNo};
 					scheduleListForCalendar.push({ "schedule" : schedule });	
 					}
 				} else {
@@ -505,12 +504,11 @@ body {
 					 //console.log(currDate.format("YYYY-MM-DD"));
 
 					 if (each.serviceDate.substring(0,10) == currDate.format("YYYY-MM-DD")) {
-					   var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , no:each.no};
+					   var schedule = {date : currDate.format("YYYY-MM-DD"), hour: each.serviceHour, expression: each.serviceHourExpression , scheduleNo:each.scheduleNo};
 					   scheduleListForCalendar.push({ "schedule" : schedule });	
 					 }
 				}				
-			});
-			 
+			});			 
 		 }
 		 
 		 getScheduleCalendar(scheduleListForCalendar);
