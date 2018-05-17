@@ -12,7 +12,7 @@ var $detailAddress1 = $("#detailAddress1");
 var $detailAddress2 = $("#detailAddress2");
 var $latitude = $("input[name=latitude]");
 var $longitude = $("input[name=longitude]");
-var $category = $("input[name=category]");
+var $category = $("input[name=categoryEng]");
 var $tag = $("input[name=tag]"); // 콤마 형태로 스트링
 var $poom = $("input[name=poom]");
 var $photo = $("input[name=photo]");
@@ -262,10 +262,11 @@ $tag.tagEditor({
       collision: 'down'
     }, // automatic menu position up/down / flip
     source: function(request, response) {
+      console.log("request",request);
       $.ajax({
-        url: "/ajax/getTagList.jsp",
+        url: "/ajax/service/getTagList.poom",
         dataType: "json",
-        data: request,
+        data: {"name" : request.term},
         success: function(data) {
           console.log(data);
           // 입력한 태그가 포함된 단어를 검색하여 리턴 받고
@@ -743,7 +744,7 @@ function setScheduleListForServer() {
       _.each(schedule.times, function(time) {
         schedules.push({
           "type": "repeat",
-          "serviceStartdate": $('input[name=startDate]').val() + ' 00:00:00',
+          "serviceStartdate": new Date($('input[name=startDate]').val() + ' 00:00:00').getTime(),
           "serviceDay": key + ('0' + time).slice(-2)
         })
       })
@@ -855,7 +856,7 @@ $registerService.submit(function() {
   console.log('photo:', $photo.val());
   $contents.val(CKEDITOR.instances['content'].getData())
   console.log('content:', $contents.val());
-  console.log('scheduleList:', $scheduleList.val());
+  console.log('scheduleList:', JSON.stringify($scheduleList.val()));
 
   if (checkPhoto() == false) { return false; }
   if (checkSchedule() == false) { return false; }

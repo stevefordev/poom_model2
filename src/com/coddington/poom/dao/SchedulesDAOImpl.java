@@ -19,4 +19,22 @@ public class SchedulesDAOImpl implements SchedulesDAO{
 		// TODO Auto-generated method stub
 		return session.selectList("schedules.selectList", serviceNo);
 	}
+	
+	@Override
+	public int insert(Schedule schedule) {
+	// TODO Auto-generated method stub
+	return session.insert("schedules.insert", schedule);
+	}
+	
+	@Override
+	public int insertIfNotExists(Schedule schedule) {
+	// TODO Auto-generated method stub
+	return session.insert("schedules.insertIfNotExists", schedule);
+	}
+	
+	@Override
+	public int delete(int no) {
+	// TODO Auto-generated method stub
+	return session.delete("schedules.delete", no);
+	}
 }

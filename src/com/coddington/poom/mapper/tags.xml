@@ -12,5 +12,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		AND st.service_no = #{serviceNo}
 	</select>
 
+	<select id="selectListLikeName" resultType="Tag" parameterType="String">
+		SELECT no, name, regdate
+		FROM tags
+		WHERE name LIKE '%'||#{name}||'%'
+	</select>
+	<select id="selectByName" resultType="Tag" parameterType="String">
+		SELECT no, name, regdate
+		FROM tags
+		WHERE name = #{name}
+	</select>
+	 
+	<insert id="insert" parameterType="String">
+		INSERT INTO tags(no, name, regdate)
+		VALUES (tags_seq.nextval, #{name}, systimestamp)
+		<selectKey keyProperty="no" resultType="Integer" order="AFTER">
+			SELECT tags_seq.currval FROM dual
+		</selectKey>
+	</insert>
 </mapper>
  

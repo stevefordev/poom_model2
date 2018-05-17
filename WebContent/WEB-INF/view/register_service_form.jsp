@@ -694,15 +694,14 @@ dl.schedule dd .schedule_view>table td:hover button {
 		<input type="hidden" name='area1' id='area1' /> <input type="hidden"
 			name='area2' id='area2' /> <input type="hidden" name='latitude'
 			id='latitude' /> <input type="hidden" name='longitude'
-			id='longitude' /> <input type="hidden" name='scheduleList' /> <input
-			type="hidden" name='photo' /> <input type="hidden" name='category' />
-
+			id='longitude' /> <input type="hidden" name='photo' /> <input type="hidden" name='categoryEng' />
+<input type="hidden" name='scheduleList' /> 
 		<dl class="section role">
 			<dt class="section_title">역할</dt>
 			<dd class="section_detail">
-				<input type="radio" id="roleGiver" name="role" value="g" checked>
+				<input type="radio" id="roleGiver" name="role" value="1" checked>
 				<label for="roleGiver">품을 주고 싶어요</label> <input type="radio"
-					id="roleTaker" name="role" value="t"> <label
+					id="roleTaker" name="role" value="2"> <label
 					for="roleTaker">품을 받고 싶어요</label>
 			</dd>
 		</dl>
@@ -947,7 +946,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 	<script src="/js/calendar/tui-date-picker.min.js"></script>
 	<script src="/js/ckeditor/ckeditor.js?a=3"></script>
 	<script src="/js/ckeditor/config.js?a=4"></script>
-	<script src="/js/register_service_form.js?date=180517"></script>
+	<script src="/js/register_service_form.js?date=1805175"></script>
 	<script>
     $(function() {
 

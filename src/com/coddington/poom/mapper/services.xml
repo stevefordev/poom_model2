@@ -26,7 +26,32 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			regdate
 		FROM services
 		WHERE no = #{no} AND user_no = #{userNo}
-	</select>
+	</select> 
+	
+	<insert id="insert" parameterType="Service">
+		INSERT INTO services (no, user_no, title, area1, area2,
+		detail_address1, detail_address2, latitude, longitude, poom, content,
+		category, photo_url, role, regdate)
+		VALUES (services_seq.nextval,
+		#{userNo}, #{title}, #{area1}, #{area2}, #{detailAddress1},
+		#{detailAddress2}, #{latitude}, #{longitude}, #{poom}, #{content},
+		#{category}, #{photoUrl}, #{role}, systimestamp)
+		<selectKey keyProperty="no" resultType="Integer" order="AFTER">
+			SELECT services_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<update id="update" parameterType="Service">
+		UPDATE services
+		SET title = #{title}, area1 = #{area1}, area2 =#{area2}, detail_address1 =
+		#{detailAddress1},
+		detail_address2 = #{detailAddress2}, latitude=
+		#{latitude},longitude = #{longitude}, poom = #{poom}, content =
+		#{content},
+		category = #{category}, photo_url = #{photoUrl}, role =
+		#{role}
+		WHERE no = #{no} AND user_no = #{userNo}
+	</update>
+	
 </mapper>
 
 

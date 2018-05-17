@@ -3,199 +3,217 @@ package com.coddington.poom.vo;
 import java.sql.Date;
 import com.coddington.poom.util.FieldUtil;
 import java.util.Arrays;
+import java.util.List;
 
 public class Service {
-	public enum Category {
+  public enum Category {
 
-		EDU(1, "교육"), HOUSE(2, "가사"), DELIVERY(3, "심부름");
+    EDU(1, "교육"), HOUSE(2, "가사"), DELIVERY(3, "심부름");
 
-		private int code;
-		private String title;
+    private int code;
+    private String title;
 
-		Category(int code, String title) {
-			this.code = code;
-			this.title = title;
-		}
+    Category(int code, String title) {
+      this.code = code;
+      this.title = title;
+    }
 
-		public int getCode() {
-			return code;
-		}
+    public int getCode() {
+      return code;
+    }
 
-		public String getTitle() {
-			return title;
-		}
+    public String getTitle() {
+      return title;
+    }
 
-		public static Category find(int code) {
-			return Arrays.stream(Category.values()).filter(type -> type.getCode() == code).findFirst().get();
-		}
-		
-		public static Category find(String title) {
-			return Arrays.stream(Category.values()).filter(type -> type.getTitle().equals(title)).findFirst().get();
-		}
-	}
+    public static Category find(int code) {
+      return Arrays.stream(Category.values()).filter(type -> type.getCode() == code).findFirst()
+          .get();
+    }
 
-	private int no, userNo, poom, category, role;
-	private String title, area1, area2, detailAddress1, detailAddress2, latitude, longitude, content, photoUrl,
-			userNickName, userPhotoUrl, categoryEng;
-	private Date regdate;
+    public static Category find(String name) {
+      return Arrays.stream(Category.values()).filter(type -> type.name().toLowerCase().equals(name)).findFirst()
+          .get();
+    }
+  }
 
-	public int getNo() {
-		
-		return no;
-	}
+  private int no, userNo, poom, category, role;
+  private String title, area1, area2, detailAddress1, detailAddress2, latitude, longitude, content,
+      photoUrl, userNickName, userPhotoUrl, categoryEng;
+  private Date regdate;
+  private List<Tag> tags;
 
-	public void setNo(int no) {
-		this.no = no;
-	}
+  public int getNo() {
 
-	public int getUserNo() {
-		return userNo;
-	}
+    return no;
+  }
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
-	}
+  public void setNo(int no) {
+    this.no = no;
+  }
 
-	public int getPoom() {
-		return poom;
-	}
+  public int getUserNo() {
+    return userNo;
+  }
 
-	public void setPoom(int poom) {
-		this.poom = poom;
-	}
+  public void setUserNo(int userNo) {
+    this.userNo = userNo;
+  }
 
-	public int getCategory() {
-		return category;
-	}
+  public int getPoom() {
+    return poom;
+  }
 
-	public String getCategoryEng() {
-		return Category.find(this.category).name().toLowerCase();
-	}
-	public void setCategory(int category) {
-		this.category = category;
-	}
+  public void setPoom(int poom) {
+    this.poom = poom;
+  }
 
-	public void setCategory(String category) {
+  public int getCategory() {
+    return category;
+  }
 
-		this.category = Category.find(category).getCode();		
-	}
+  public void setCategoryEng(String categoryEng) {
+    this.categoryEng = categoryEng;
+  }
 
-	public int getRole() {
-		return role;
-	}
+  public String getCategoryEng() {
+    return (this.categoryEng.isEmpty()) ? Category.find(this.category).name().toLowerCase()
+        : this.categoryEng;
+  }
 
-	public String getRoleChar() {
-		return role == 1 ? "g" : "t";
-	}
+  public void setCategory(int category) {
+    this.category = category;
+  }
 
-	public void setRole(int role) {
-		this.role = role;
-	}
+  public void setCategory(String category) {
 
-	// g(giver) = 1, t(taker) = 2
-	public void setRole(String r) {
-		this.role = r.equals("g") ? 1 : 2;
-	}
+    this.category = Category.find(category).getCode();
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  public int getRole() {
+    return role;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+  public String getRoleChar() {
+    return role == 1 ? "g" : "t";
+  }
 
-	public String getArea1() {
-		return area1;
-	}
+  public void setRole(int role) {
+    this.role = role;
+  }
 
-	public void setArea1(String area1) {
-		this.area1 = area1;
-	}
+  // g(giver) = 1, t(taker) = 2
+  public void setRole(String r) {
+    this.role = r.equals("g") ? 1 : 2;
+  }
 
-	public String getArea2() {
-		return area2;
-	}
+  public String getTitle() {
+    return title;
+  }
 
-	public void setArea2(String area2) {
-		this.area2 = area2;
-	}
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	public String getDetailAddress1() {
-		return detailAddress1;
-	}
+  public String getArea1() {
+    return area1;
+  }
 
-	public void setDetailAddress1(String detailAddress1) {
-		this.detailAddress1 = detailAddress1;
-	}
+  public void setArea1(String area1) {
+    this.area1 = area1;
+  }
 
-	public String getDetailAddress2() {
-		return detailAddress2;
-	}
+  public String getArea2() {
+    return area2;
+  }
 
-	public void setDetailAddress2(String detailAddress2) {
-		this.detailAddress2 = detailAddress2;
-	}
+  public void setArea2(String area2) {
+    this.area2 = area2;
+  }
 
-	public String getLatitude() {
-		return latitude;
-	}
+  public String getDetailAddress1() {
+    return detailAddress1;
+  }
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
+  public void setDetailAddress1(String detailAddress1) {
+    this.detailAddress1 = detailAddress1;
+  }
 
-	public String getLongitude() {
-		return longitude;
-	}
+  public String getDetailAddress2() {
+    return detailAddress2;
+  }
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
+  public void setDetailAddress2(String detailAddress2) {
+    this.detailAddress2 = detailAddress2;
+  }
 
-	public String getContent() {
-		return content;
-	}
+  public String getLatitude() {
+    return latitude;
+  }
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+  public void setLatitude(String latitude) {
+    this.latitude = latitude;
+  }
 
-	public String getPhotoUrl() {
-		return photoUrl;
-	}
+  public String getLongitude() {
+    return longitude;
+  }
 
-	public void setPhotoUrl(String photoUrl) {
-		this.photoUrl = photoUrl;
-	}
+  public void setLongitude(String longitude) {
+    this.longitude = longitude;
+  }
 
-	public Date getRegdate() {
-		return regdate;
-	}
+  public String getContent() {
+    return content;
+  }
 
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
+  public void setContent(String content) {
+    this.content = content;
+  }
 
-	public String getUserNickName() {
-		return userNickName;
-	}
+  public String getPhotoUrl() {
+    return photoUrl;
+  }
 
-	public void setUserNickName(String userNickName) {
-		this.userNickName = userNickName;
-	}
+  public void setPhotoUrl(String photoUrl) {
+    this.photoUrl = photoUrl;
+  }
 
-	public String getUserPhotoUrl() {
-		return userPhotoUrl;
-	}
+  public Date getRegdate() {
+    return regdate;
+  }
 
-	public void setUserPhotoUrl(String userPhotoUrl) {
-		this.userPhotoUrl = userPhotoUrl;
-	}
+  public void setRegdate(Date regdate) {
+    this.regdate = regdate;
+  }
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return FieldUtil.getAllFields(this).toString();
-	}
+  public String getUserNickName() {
+    return userNickName;
+  }
+
+  public void setUserNickName(String userNickName) {
+    this.userNickName = userNickName;
+  }
+
+  public String getUserPhotoUrl() {
+    return userPhotoUrl;
+  }
+
+  public void setUserPhotoUrl(String userPhotoUrl) {
+    this.userPhotoUrl = userPhotoUrl;
+  }
+
+  public List<Tag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<Tag> tags) {
+    this.tags = tags;
+  }
+
+  @Override
+  public String toString() {
+    // TODO Auto-generated method stub
+    return FieldUtil.getAllFields(this).toString();
+  }
 }

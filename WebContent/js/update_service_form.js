@@ -798,7 +798,7 @@ function setScheduleListForServer() {
       _.each(schedule.times, function(time) {
         schedules.push({
           "type": "repeat",
-          "serviceStartdate": $('input[name=startDate]').val() + ' 00:00:00',
+          "serviceStartdate": new Date($('input[name=startDate]').val() + ' 00:00:00').getTime(),
           "serviceDay": key + ('0' + time).slice(-2)
         })
       })
