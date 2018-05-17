@@ -252,7 +252,7 @@ $tag.tagEditor({
     }, // automatic menu position up/down / flip
     source: function(request, response) {
       $.ajax({
-        url: "ajax/getTagList.jsp",
+        url: "/ajax/service/getTagList.poom",
         dataType: "json",
         data: request,
         success: function(data) {
@@ -311,7 +311,7 @@ function removeAllTags() {
 // 디비에서 태그를 검색하고 없으면 삽입하고 tagid 를 리턴 받는다
 function getTagIdOrInsert(name) {
   $.ajax({
-    url: "ajax/getTagList.jsp",
+    url: "/ajax/service/getTagList.poom",
     dataType: "json",
     data: {
       'isEqual': 1,
@@ -839,7 +839,7 @@ $('dl.schedule dd .schedule_view> table').on('click', 'button', function() {
  * @returns
  */
 function deleteSchedule(type, date, week, time, $td) {
-  var serviceDate = "";
+  var serviceDate = 0;
   var serviceDay = "";
 
   if (date == null || typeof date == 'undefined') {
@@ -855,7 +855,7 @@ function deleteSchedule(type, date, week, time, $td) {
   console.log(serviceDay);
   console.log(serviceDate);
   $.ajax({
-    url: "/ajax/deleteSchedule.jsp",
+    url: "/ajax/service/deleteSchedule.poom",
     dataType: "json",
     data: {
       serviceNo: $serviceNo.val(),
@@ -864,7 +864,7 @@ function deleteSchedule(type, date, week, time, $td) {
     },
     success: function(data) {
       console.log(data);
-      if (data.isHaveContract == true) { return true; }
+      if (data.isSuccRemove == true) { return true; }
 
       if (type == 'singleDates') {
         $.each(scheduleList.singleDates, function(index, each) {

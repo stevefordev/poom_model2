@@ -33,5 +33,6 @@ public class ServicesDAOImpl implements ServicesDAO {
   public int update(Service service) {
     // TODO Auto-generated method stub
     return session.update("services.update", service);
-  }
+  } 
+
 }

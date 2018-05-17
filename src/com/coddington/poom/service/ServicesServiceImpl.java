@@ -2,11 +2,13 @@ package com.coddington.poom.service;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.coddington.poom.dao.ContractSchedulesDAO;
 import com.coddington.poom.dao.ContractsDAO;
 import com.coddington.poom.dao.QuestionsDAO;
 import com.coddington.poom.dao.ReviewsDAO;
@@ -34,6 +36,7 @@ public class ServicesServiceImpl implements ServicesService {
   private QuestionsDAO questionsDAO;
   private SchedulesDAO schedulesDAO;
   private ServiceTagsDAO serviceTagsDAO;
+  private ContractSchedulesDAO contractSchedulesDAO;
 
   public void setServicesDAO(ServicesDAO servicesDAO) {
     this.servicesDAO = servicesDAO;
@@ -61,6 +64,10 @@ public class ServicesServiceImpl implements ServicesService {
 
   public void setServiceTagsDAO(ServiceTagsDAO serviceTagsDAO) {
     this.serviceTagsDAO = serviceTagsDAO;
+  }
+
+  public void setContractSchedulesDAO(ContractSchedulesDAO contractSchedulesDAO) {
+    this.contractSchedulesDAO = contractSchedulesDAO;
   }
 
   @Override
@@ -182,7 +189,13 @@ public class ServicesServiceImpl implements ServicesService {
     try {
       System.out.println(scheduleListJson);
       schedules = mapper.readValue(scheduleListJson, new TypeReference<List<Schedule>>() {});
-      
+
+      for (Schedule eachSchedule : schedules) {
+
+        eachSchedule.setServiceNo(service.getNo());
+        schedulesDAO.insert(eachSchedule);
+      }
+
     } catch (JsonParseException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -194,13 +207,76 @@ public class ServicesServiceImpl implements ServicesService {
       e.printStackTrace();
     }
 
-    for (Schedule eachSchedule : schedules) {
-
-      eachSchedule.setServiceNo(service.getNo());
-      schedulesDAO.insert(eachSchedule);
-    }
-
     return service.getNo();
   }
 
+  @Override
+  public boolean update(Service service, int[] tagNos, String scheduleListJson) {
+    // TODO Auto-generated method stub
+    servicesDAO.update(service);
+
+    serviceTagsDAO.deleteByServiceNo(service.getNo());
+
+    ServiceTag serviceTag = new ServiceTag();
+    for (int tagNo : tagNos) {
+
+      serviceTag.setServiceNo(service.getNo());
+      serviceTag.setTagNo(tagNo);
+      serviceTagsDAO.insert(serviceTag);
+    }
+
+    // 서비스 일정의 삭제는 수정 페이지에서 실시간 수행
+    // 삽입은 ifnotexist 사용
+    ObjectMapper mapper = new ObjectMapper();
+    List<Schedule> schedules = new ArrayList();
+    try {
+      System.out.println(scheduleListJson);
+      schedules = mapper.readValue(scheduleListJson, new TypeReference<List<Schedule>>() {});
+      for (Schedule eachSchedule : schedules) {
+
+        eachSchedule.setServiceNo(service.getNo());
+        schedulesDAO.insertIfNotExists(eachSchedule);
+      }
+
+      return true;
+
+    } catch (JsonParseException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (JsonMappingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
+    return false;
+  }
+
+  @Override
+  public boolean removeSchedule(int serviceNo, String serviceDay, Timestamp serviceDate) {
+    // TODO Auto-generated method stub
+    List<Schedule> schedules = schedulesDAO.selectList(serviceNo);
+
+    for (Schedule schedule : schedules) {
+      System.out.println(schedule.toString());
+      System.out.println(schedule.getServiceDate());
+      System.out.println(serviceDate);
+
+      // 반복일정이든 단일일정이든 해당되는 날짜가 있으면 해당 날짜에 계약서가 존재하는지 확인한다
+      if ((!serviceDay.isEmpty() && schedule.getServiceDay().equals(serviceDay))
+          || schedule.getServiceDate().compareTo(serviceDate) == 0) {
+        System.out.println(serviceNo);
+
+        // 받은 계약서가 하나도 없으면 스케줄 삭제
+        if (contractSchedulesDAO.selectCountByServiceNo(serviceNo) > 0) {
+          return false;
+        } else {
+          return 1 == schedulesDAO.delete(schedule.getNo());
+        }
+      }
+    }
+    return false;
+  }
 }

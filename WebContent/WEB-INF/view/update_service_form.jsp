@@ -700,8 +700,9 @@ dl.schedule dd .schedule_view>table td:hover button {
 		<input type="hidden" name='latitude' id='latitude' value='${service.latitude }'/> 
 		<input type="hidden" name='longitude' id='longitude' value='${service.longitude }'/> 
 		<input type="hidden" name='scheduleList' value='${schedulesJson }'/> 
-		<input type="hidden" name='photo' value='${service.photoUrl }'/> 
-		<input type="hidden" name='category' value='${service.categoryEng }'/>
+		<input type="hidden" name='photo' value='${service.photoUrl }'/>
+		<input type="hidden" name='category' value='${service.category }'/> 
+		<%-- <input type="hidden" name='category' value='${service.categoryEng }'/> --%>
 		
 		<c:forEach items="${tags }" var="tag">
 			<input type="hidden" name='tags' data-tag='${tag.name }' value='${tag.no }'/>
@@ -961,7 +962,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 	<script src="/js/calendar/tui-date-picker.min.js"></script>
 	<script src="/js/ckeditor/ckeditor.js?date=180517"></script>
 	<script src="/js/ckeditor/config.js?date=180517"></script>
-	<script src="/js/update_service_form.js?date=180517"></script>
+	<script src="/js/update_service_form.js?date=180518"></script>
 	<script>
     $(function() {
 

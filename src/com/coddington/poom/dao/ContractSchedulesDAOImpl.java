@@ -5,15 +5,21 @@ import com.coddington.poom.vo.ContractSchedule;
 
 public class ContractSchedulesDAOImpl implements ContractSchedulesDAO {
 
-	private SqlSession session;
-	
-	public void setSession(SqlSession session) {
-		this.session = session;
-	}//setSession() end
-	
-	@Override
-	public int insert(ContractSchedule contractSchedule) {
-	// TODO Auto-generated method stub
-	return session.insert("contractSchedules.insert", contractSchedule);
-	}
+  private SqlSession session;
+
+  public void setSession(SqlSession session) {
+    this.session = session;
+  }// setSession() end
+
+  @Override
+  public int insert(ContractSchedule contractSchedule) {
+    // TODO Auto-generated method stub
+    return session.insert("contractSchedules.insert", contractSchedule);
+  }
+
+  @Override
+  public int selectCountByServiceNo(int serviceNo) {
+    // TODO Auto-generated method stub
+    return session.selectOne("contractSchedules.selectCountByServiceNo", serviceNo);
+  }
 }

@@ -4,4 +4,6 @@ import com.coddington.poom.vo.ContractSchedule;
 
 public interface ContractSchedulesDAO {
   public int insert(ContractSchedule contractSchedule);
+
+  public int selectCountByServiceNo(int serviceNo);
 }

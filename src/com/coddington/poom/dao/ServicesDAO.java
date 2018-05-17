@@ -10,5 +10,5 @@ public interface ServicesDAO {
 	
 	public int insert(Service service);
 	
-	public int update(Service service);
+	public int update(Service service); 
 }

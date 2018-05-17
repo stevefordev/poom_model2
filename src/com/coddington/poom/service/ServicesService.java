@@ -1,5 +1,6 @@
 package com.coddington.poom.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 import com.coddington.poom.vo.Question;
@@ -17,4 +18,8 @@ public interface ServicesService {
   public Tag getTagByName(String name);
 
   public int register(Service service, int[] tagNos, String scheduleListJson);
+  
+  public boolean update(Service service, int[] tagNos, String scheduleListJson);
+
+  public boolean removeSchedule(int serviceNo, String serviceDay, Timestamp serviceDate);
 }

@@ -72,10 +72,6 @@ public class Service {
     return category;
   }
 
-  public void setCategoryEng(String categoryEng) {
-    this.categoryEng = categoryEng;
-  }
-
   public String getCategoryEng() {
     return (this.categoryEng.isEmpty()) ? Category.find(this.category).name().toLowerCase()
         : this.categoryEng;

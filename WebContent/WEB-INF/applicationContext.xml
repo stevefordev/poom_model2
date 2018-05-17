@@ -60,6 +60,7 @@
 		p:questionsDAO-ref="questionsDAO"
 		p:schedulesDAO-ref="schedulesDAO"
 		p:serviceTagsDAO-ref="serviceTagsDAO"
+		p:contractSchedulesDAO-ref="contractSchedulesDAO"
 		class="com.coddington.poom.service.ServicesServiceImpl" />
 
 	<bean id="usersService" p:usersDAO-ref="usersDAO"
