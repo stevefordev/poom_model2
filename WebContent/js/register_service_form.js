@@ -343,6 +343,13 @@ function getTagIdOrInsert(name) {
 
 function createInputTags(tagId, name) {
   console.log('createInputTags');
+  //해당 인풋이 있으면 삭제하고 재 생성
+  _.each($("input[name='tags']"), function(inputTag){
+	  
+	  if($(inputTag).val() == tagId) {
+		  $(inputTag).remove();
+	  }
+  });
   $("<input></input>").attr({
     type: "hidden",
     name: "tags",
@@ -854,7 +861,7 @@ $registerService.submit(function() {
   console.log('tag:', $tag.val());
   console.log('poom:', $poom.val());
   console.log('photo:', $photo.val());
-  $contents.val(CKEDITOR.instances['content'].getData())
+  $contents.val(CKEDITOR.instances['contents'].getData())
   console.log('content:', $contents.val());
   console.log('scheduleList:', JSON.stringify($scheduleList.val()));
 

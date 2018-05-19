@@ -19,7 +19,7 @@ public interface ServicesService {
 
   public int register(Service service, int[] tagNos, String scheduleListJson);
   
-  public boolean update(Service service, int[] tagNos, String scheduleListJson);
+  public boolean modify(Service service, int[] tagNos, String scheduleListJson);
 
-  public boolean removeSchedule(int serviceNo, String serviceDay, Timestamp serviceDate);
+  public boolean removeSchedule(int scheduleNo);
 }

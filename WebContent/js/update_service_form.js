@@ -13,7 +13,7 @@ var $detailAddress1 = $("#detailAddress1");
 var $detailAddress2 = $("#detailAddress2");
 var $latitude = $("input[name=latitude]");
 var $longitude = $("input[name=longitude]");
-var $category = $("input[name=category]");
+var $category = $("input[name=categoryEng]");
 var $tag = $("input[name=tag]"); // 콤마 형태로 스트링
 var $poom = $("input[name=poom]");
 var $photo = $("input[name=photo]");
@@ -682,8 +682,9 @@ $.each(tmpSchedules, function() {
 // 선택일 정 탬플릿 입력
 var selectedScheduleTemp = _.template($("#selectedScheduleTemp").html());
 var markup = selectedScheduleTemp({
-  "scheduleList": scheduleList
-});
+	"scheduleList": scheduleList,
+	"scheduleListFromDB" : JSON.parse($scheduleList.val())
+	});
 $(".schedule_view tbody").html(markup);
 
 // 일정 추가 버튼을 눌렀을때
@@ -782,7 +783,8 @@ $('.schedule_add').click(
           var selectedScheduleTemp = _.template($("#selectedScheduleTemp")
                   .html());
           var markup = selectedScheduleTemp({
-            "scheduleList": scheduleList
+            "scheduleList": scheduleList,
+            "scheduleListFromDB" : JSON.parse($scheduleList.val())
           });
           $(".schedule_view tbody").html(markup);
         })// end schedule_add btn
@@ -797,6 +799,7 @@ function setScheduleListForServer() {
     if (schedule.times.length > 0) {
       _.each(schedule.times, function(time) {
         schedules.push({
+           
           "type": "repeat",
           "serviceStartdate": new Date($('input[name=startDate]').val() + ' 00:00:00').getTime(),
           "serviceDay": key + ('0' + time).slice(-2)
@@ -831,14 +834,16 @@ $('dl.schedule dd .schedule_view> table').on('click', 'button', function() {
   var week = $td.data('week');
   var type = $td.data('type');
 
-  deleteSchedule(type, date, week, time, $td);
+  var scheduleNo = $td.data('schedule_no');
+  
+  deleteSchedule(scheduleNo, type, date, week, time, $td);
 }); // end delete btn
 
 /**
  * @param type
  * @returns
  */
-function deleteSchedule(type, date, week, time, $td) {
+function deleteSchedule(scheduleNo, type, date, week, time, $td) {
   var serviceDate = 0;
   var serviceDay = "";
 
@@ -858,13 +863,11 @@ function deleteSchedule(type, date, week, time, $td) {
     url: "/ajax/service/deleteSchedule.poom",
     dataType: "json",
     data: {
-      serviceNo: $serviceNo.val(),
-      serviceDay: serviceDay,
-      serviceDate: serviceDate
+      "scheduleNo":scheduleNo
     },
     success: function(data) {
       console.log(data);
-      if (data.isSuccRemove == true) { return true; }
+      if (data.isSuccRemove == false) { return true; }
 
       if (type == 'singleDates') {
         $.each(scheduleList.singleDates, function(index, each) {
@@ -875,8 +878,7 @@ function deleteSchedule(type, date, week, time, $td) {
               return v != time;
             });
             console.log(each.times);
-          }
-          ;
+          };
         });
       } else {
         // 반복 일정 관련
@@ -887,8 +889,7 @@ function deleteSchedule(type, date, week, time, $td) {
               return v != time;
             });
             console.log(each.times);
-          }
-          ;
+          };
         });
       }
       $td.remove();
@@ -948,8 +949,10 @@ $registerService.submit(function() {
   console.log('photo:', $photo.val());
   $contents.val(CKEDITOR.instances['contents'].getData())
   console.log('contents:', $contents.val());
+  setScheduleListForServer();
   console.log('scheduleList:', $scheduleList.val());
 
+  
   if (checkPhoto() == false) { return false; }
   if (checkSchedule() == false) { return false; }
   if (checkContent() == false) { return false; }

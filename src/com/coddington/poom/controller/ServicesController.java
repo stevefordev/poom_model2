@@ -66,7 +66,7 @@ public class ServicesController {
   public String registerForm(@RequestParam(value = "no") int serviceNo, Model model,
       HttpSession session) {
 
-    User loginUser = (User) session.getAttribute("loginUser");
+    User loginUser = (User) session.getAttribute(UsersController.LOGIN);
     System.out.println(loginUser.getNo());
     System.out.println(serviceNo);
     model.addAllAttributes(servicesService.getService(loginUser.getNo(), serviceNo));
@@ -79,7 +79,7 @@ public class ServicesController {
       @ModelAttribute Service service, BindingResult bindingResult,
       @RequestParam(value = "tags") int[] tagNos, String photo, HttpSession session) {
 
-    User loginUser = (User) session.getAttribute("loginUser");
+    User loginUser = (User) session.getAttribute(UsersController.LOGIN);
 
     System.out.println(service.toString());
 
@@ -117,9 +117,9 @@ public class ServicesController {
 
     // service 모델로 바로 받을 수 있도록 추후 수정 필요
     service.setPhotoUrl(photo);
-    int serviceNo = servicesService.register(service, tagNos, scheduleListJson);
+    boolean isSucc = servicesService.modify(service, tagNos, scheduleListJson);
 
-    return "redirect:/service/details.poom?no=" + serviceNo;
+    return "redirect:/service/details.poom?no=" + service.getNo();
   }
 
   @RequestMapping(value = "/ajax/service/getTagList.poom")
@@ -139,13 +139,12 @@ public class ServicesController {
 
   @RequestMapping(value = "/ajax/service/deleteSchedule.poom")
   @ResponseBody
-  public String removeSchedule(int serviceNo, String serviceDay, String serviceDate) {
+  public String removeSchedule(int scheduleNo) {
     boolean isSuccRemove = false;
 
-    isSuccRemove = servicesService.removeSchedule(serviceNo, serviceDay,
-        new Timestamp(Long.parseLong(serviceDate)));
-
-    ObjectMapper om = new ObjectMapper();
+    isSuccRemove = servicesService.removeSchedule(scheduleNo);
+    
+    ObjectMapper om = new ObjectMapper();    
     ObjectNode o = om.createObjectNode();
 
     o.put("isSuccRemove", isSuccRemove);

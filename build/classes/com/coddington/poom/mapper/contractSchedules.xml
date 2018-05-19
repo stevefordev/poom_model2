@@ -28,4 +28,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		AND c.SERVICE_NO = #{serviceNo}
 	</select>
 
+	<select id="selectCountByScheduleNo" parameterType="int"
+		resultType="int">
+		SELECT count(no)
+		FROM contract_schedules
+		WHERE schedule_no = #{scheduleNo}
+	</select>
+
+	
 </mapper>

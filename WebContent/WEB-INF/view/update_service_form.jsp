@@ -692,20 +692,20 @@ dl.schedule dd .schedule_view>table td:hover button {
 </head>
 <body>
 	<%@ include file="/WEB-INF/view/templates/header.jsp"%>	
-	<form id="registerService" method="post" action="updateService.jsp">
+	<form id="registerService" method="post" action="/serviceUpdate.poom">
 		
-		<input type="hidden" name='serviceNo' id='serviceNo' value='${service.no }'/>
+		<input type="hidden" name='no' id='serviceNo' value='${service.no }'/>
 		<input type="hidden" name='area1' id='area1' value='${service.area1 }'/> 
 		<input type="hidden" name='area2' id='area2' value='${service.area2 }'/> 
 		<input type="hidden" name='latitude' id='latitude' value='${service.latitude }'/> 
 		<input type="hidden" name='longitude' id='longitude' value='${service.longitude }'/> 
 		<input type="hidden" name='scheduleList' value='${schedulesJson }'/> 
 		<input type="hidden" name='photo' value='${service.photoUrl }'/>
-		<input type="hidden" name='category' value='${service.category }'/> 
-		<%-- <input type="hidden" name='category' value='${service.categoryEng }'/> --%>
+		<%-- <input type="hidden" name='category' value='${service.category }'/> --%> 
+		 <input type="hidden" name='categoryEng' value='${service.categoryEng }'/> 
 		
 		<c:forEach items="${tags }" var="tag">
-			<input type="hidden" name='tags' data-tag='${tag.name }' value='${tag.no }'/>
+			<input type="hidden" name='tags' data-tag='#${tag.name }' value='${tag.no }'/>
 		</c:forEach>
 		
 		<dl class="section role">
@@ -749,13 +749,9 @@ dl.schedule dd .schedule_view>table td:hover button {
 		<dl class="section service">
 			<dt class="section_title">분야</dt>
 			<dd class="section_detail">
-				<button type="button" data-category='edu' data-tagId=62 class="">교육</button>
-				<!--
-            -->
-				<button type="button" data-category='house' data-tagId=60>가사</button>
-				<!--
-            -->
-				<button type="button" data-category='delivery' data-tagId=61>심부름</button>
+				<button type="button" data-category='edu' data-tagId=62 class="">교육</button><!--         
+				--><button type="button" data-category='house' data-tagId=60>가사</button><!--
+				--><button type="button" data-category='delivery' data-tagId=61>심부름</button>	
 			</dd>
 		</dl>
 		<dl class="section tag">
@@ -885,7 +881,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 		<dl class="section contents">
 			<dt class="section_title">내용</dt>
 			<dd class="section_detail">
-				<textarea id='contents' name="contents" placeholder="내용을 입력하세요~"
+				<textarea id='contents' name="content" placeholder="내용을 입력하세요~"
 					required="required">${service.content }</textarea>
 			</dd>
 		</dl>
@@ -930,21 +926,36 @@ dl.schedule dd .schedule_view>table td:hover button {
     </li>
     <@})@>
 </script>
-	<script type="text/template" id="selectedScheduleTemp">
+<script type="text/template" id="selectedScheduleTemp">
     <@ _.each(scheduleList.repeatDates,function(schedule, key){@> 
-    <@ if(schedule.times.length>0) { console.log(schedule.times)@>
-    <@ _.each(schedule.times,function(time){ @>
-    <tr>
-        <td data-type='repeatDates' data-week=<@=key@> data-time=<@=time@>> [반복] 매주 <@=schedule.kor@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
-    </tr>
-    <@})@>
-    <@} }) @>
+    <@ if(schedule.times.length>0) { @>
+    	<@ _.each(schedule.times,function(time){ @>
+			/* 스케줄 번호를 data-schedule_no 에 set 해주기 위해서 */
+			<@ var filtered = _.select(scheduleListFromDB,function(scheduleFromDB, pk){ @>
+			<@ console.log('repeat',scheduleFromDB.type); console.log(key,scheduleFromDB.serviceDayOfWeek); console.log(time,scheduleFromDB.serviceHour);@>
+			<@ return (scheduleFromDB.type == 'repeat' && scheduleFromDB.serviceDayOfWeek == key && time == scheduleFromDB.serviceHour); @>
+			<@ }); @>
+			<@  console.log('repeatFiltered', filtered); @>
+			<@  var scheduleNo = filtered.length == 0 ? 0 : filtered[0].no; @>			
+   	 		<tr>
+        		<td data-schedule_no=<@=scheduleNo @> data-type='repeatDates' data-week=<@=key@> data-time=<@=time@>> [반복] 매주 <@=schedule.kor@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
+    		</tr>
+    	<@ }); @>
+    <@} }); @>
 
     <@ _.each(scheduleList.singleDates, function(singleDate){ @>
-    <@ _.each(singleDate.times,function(time){ @>
-    <tr>
-        <td data-type='singleDates' data-date=<@=singleDate.date@> data-time=<@=time@>>[단일] <@=singleDate.date@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
-    </tr>
+    	<@ _.each(singleDate.times,function(time){ @>
+			<@ var filtered = _.select(scheduleListFromDB, function(scheduleFromDB, pk){ @>
+			<@ console.log('single',scheduleFromDB.type); console.log(singleDate.date, scheduleFromDB.serviceDate); console.log(time,scheduleFromDB.serviceHour);@>
+				<@ try { @>
+				<@ return (scheduleFromDB.type == 'single' && scheduleFromDB.serviceDate.indexOf(singleDate.date) >= 0 && time == scheduleFromDB.serviceHour); @>
+				<@ } catch (err) { return false}; @>			
+			<@ }); @>
+			<@  console.log('singleFiltered', filtered); @>
+			<@  var scheduleNo = filtered.length == 0 ? 0 : filtered[0].no; @>
+    		<tr>
+        		<td data-schedule_no=<@=scheduleNo @>  data-type='singleDates' data-date=<@=singleDate.date@> data-time=<@=time@>>[단일] <@=singleDate.date@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
+    		</tr>
     	<@})@>
     <@})@>
 </script>
@@ -962,7 +973,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 	<script src="/js/calendar/tui-date-picker.min.js"></script>
 	<script src="/js/ckeditor/ckeditor.js?date=180517"></script>
 	<script src="/js/ckeditor/config.js?date=180517"></script>
-	<script src="/js/update_service_form.js?date=180518"></script>
+	<script src="/js/update_service_form.js?date=1805196"></script>
 	<script>
     $(function() {
 

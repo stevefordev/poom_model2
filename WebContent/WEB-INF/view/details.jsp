@@ -49,13 +49,13 @@ body {
 		</div>
 		<div class="profileserviceimg_wrap">
 			<div class="profileservice_img">
-				<img src="img/edu/lesson1.png">
+				<img src="/img/edu/lesson1.png">
 			</div>
 			<div class="profileservice_img">
-				<img src="img/edu/lesson2.png">
+				<img src="/img/edu/lesson2.png">
 			</div>
 			<div class="profileservice_img">
-				<img src="img/edu/lesson3.jpg">
+				<img src="/img/edu/lesson3.jpg">
 			</div>
 		</div>
 		<h3 class="screen_out">사진정보</h3>
