@@ -5,7 +5,7 @@ import com.coddington.poom.vo.Question;
 
 public interface QuestionsService {
 
-  public List<Question> getQuestions(int serviceNo);
+  public List<Question> getQuestions(int serviceNo, int page);
   
   public Question getQuestion(int no);
   

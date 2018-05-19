@@ -595,19 +595,14 @@
 
 #detailsBoardBox .box_contents {
 	/*background-color: #9E9E9E;*/
-	width: 980px;
-	min-height: 70px;
-	padding: 20px;
-	font-size: 40px;
-	position: relative;
+    margin-bottom: 20px;
 }
 
 #detailsBoardBox dl .profile_img_name {
 	width: 85px;
 	min-height: 95px;
 	float: left;
-	position: relative;
-	left: -5px;
+	position: relative;	
 }
 
 #detailsBoardBox dl #profileImgName2 {
@@ -618,30 +613,18 @@
 	left: 175px;
 }
 
-#detailsBoardBox .box_contents .btn_reply {
-	border: none;
-	outline: none;
-	cursor: pointer;
-	background-color: #2e7965;
-	color: #fff;
-	height: 27px;
-	font-size: 12px;
-	position: absolute;
-	bottom: -5px;
-	right: 210px;
-	border-radius: 5px;
-}
-
 .tui-chart-default-tooltip {
 	display: none;
 }
  
+.wrap_reply,
 #detailsBoardBox .contents_board_question .box_btn_question_popup {
 	/*background-color: #311B92;*/
 	height: 80px;
 	position: relative;
 }
 
+.wrap_reply textarea,
 #detailsBoardBox .contents_board_question .box_btn_question_popup textarea {
 	width: 920px;
 	height: 80px;
@@ -656,6 +639,7 @@
 	font-family: "Noto Sans KR", serif;
 }
 
+#detailsBoardBox .btn_reply_confirm,
 #detailsBoardBox .btn_question_popup {
 	background-color: #1f2b43;
 	border: none;
@@ -672,13 +656,7 @@
 
 .box_reply {
 	/*background-color: #ee9200;*/
-	width: 980px;
-	min-height: 60px;
-	padding: 20px;
-	font-size: 40px;
-	line-height: 50px;
-	margin: 10px 0px 0px 30px;
-	position: relative;
+ 
 }
 
 #recommendationsBox {
@@ -903,7 +881,6 @@
 	width: 70px;
 	height: 70px;
 	border-radius: 50%;
-	background-image: url("../img/profile/kimbum.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -930,18 +907,18 @@
 	left: 6px;
 	bottom: 0px;
 }
-
+ 
 .review_1 {
-	padding: 5px;
+	padding: 20px 40px 40px	40px;
 	border-radius: 5px;
-	min-height: 95px;
-	width: 700px;
+	min-height: 40px;	
 	background: #1f2b43;
-	color: #fff;
-	position: absolute;
-	left: 100px;
-	top: auto;
+	color: #fff;	
 	font-size: 18px;
+	line-height: 40px;
+	margin-left: 90px;	
+    margin-bottom: 10px;
+	position: relative;
 }
 
 .review_1:before {
@@ -954,20 +931,20 @@
 	border-left: 10px solid transparent;
 	position: absolute;
 	top: 20px;
-	left: -18px;
+	left: -18px;	   
 }
 
 .review_2 {
-	padding: 5px;
+	padding: 20px 40px;
 	border-radius: 5px;
-	min-height: 95px;
-	width: 700px;
+	min-height: 30px;	
 	background: #3f475a;
-	color: #fff;
-	position: absolute;
-	left: 280px;
-	top: auto;
+	color: #fff;	
 	font-size: 18px;
+	line-height: 40px;
+	margin-left: 270px;
+	margin-bottom: 10px;
+	position: relative;
 }
 
 .review_2:before {
@@ -1036,7 +1013,11 @@
 	margin-left: 50px;
 	line-height: 40px;
 }
+.box_contents_review {
+	position: relative;
+}
 
+.box_contents_review button,
 .question_box button {
 	border: none;
 	outline: none;

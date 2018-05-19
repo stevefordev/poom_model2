@@ -13,7 +13,7 @@ public class QuestionsServiceImpl implements QuestionsService {
   }
 
   @Override
-  public List<Question> getQuestions(int serviceNo) {
+  public List<Question> getQuestions(int serviceNo, int page) {
     // TODO Auto-generated method stub
     return questionsDAO.selectList(serviceNo);
   }

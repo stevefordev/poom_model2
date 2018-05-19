@@ -79,6 +79,8 @@ public class ServicesServiceImpl implements ServicesService {
 		Service service = servicesDAO.selectByNo(no);
 		map.put("service", service);
 		map.put("tags", tagsDAO.selectListByServiceNo(no));
+		map.put("countTotalReviews", reviewsDAO.selectCountTotal(no));
+		map.put("countTotalQuestions", questionsDAO.selectCountTotal(no));
 
 		Map<String, Object> scoreInfoMap = contractsDAO.selectScoreAndCountByServiceNo(no);
 		String icon = "sun";

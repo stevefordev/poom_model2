@@ -13,8 +13,27 @@ public class ReviewsDAOImpl implements ReviewsDAO {
   }// setSession() end
 
   @Override
-  public List<Review> selectList(int no) {
+  public Review selectOne(int no) {
     // TODO Auto-generated method stub
-    return session.selectList("reviews.selectList", no);
+    return session.selectOne("reviews.selectOne", no);
   }
+  
+  @Override
+  public List<Review> selectList(int serviceNo) {
+    // TODO Auto-generated method stub
+    return session.selectList("reviews.selectList", serviceNo);
+  }
+
+  @Override
+  public int selectCountTotal(int serviceNo) {
+    // TODO Auto-generated method stub
+    return session.selectOne("reviews.selectCountTotal", serviceNo);
+  }
+  
+  @Override
+  public int update(Review review) {
+    // TODO Auto-generated method stub
+    return session.update("reviews.update", review);
+  }
+
 }

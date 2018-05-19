@@ -35,4 +35,10 @@ public class QuestionsDAOImpl implements QuestionsDAO {
     // TODO Auto-generated method stub
     return session.selectOne("questions.selectOne", no);
   }
+  
+  @Override
+  public int selectCountTotal(int serviceNo) {
+    // TODO Auto-generated method stub
+    return session.selectOne("questions.selectCountTotal", serviceNo);
+  }
 }

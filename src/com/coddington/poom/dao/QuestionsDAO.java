@@ -12,4 +12,6 @@ public interface QuestionsDAO {
   public int update(Question question);
   
   public Question selectOne(int no);
+  
+  public int selectCountTotal(int serviceNo);
 }
