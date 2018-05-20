@@ -52,6 +52,22 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE no = #{no} AND user_no = #{userNo}
 	</update>
 	
+	<select id="selectRecommendationList" parameterType="int"
+		resultType="Card">
+		SELECT no, title, area1, area2, poom, role,
+			nickname, profilePic, regdate, r
+			FROM(SELECT no, title, area1, area2, poom, role,
+				nickname, profilePic, regdate, rownum r
+			FROM(SELECT s.no no, s.title title, area1, area2, poom, s.role role,
+				u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
+			FROM services s,
+				users u
+				WHERE u.no = s.user_no
+				AND s.role = #{role}
+				ORDER BY s.regdate DESC))
+		WHERE r BETWEEN 1 AND 3
+	</select>
+	
 </mapper>
 
 

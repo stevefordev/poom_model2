@@ -5,7 +5,7 @@ import com.coddington.poom.vo.Schedule;
 
 public interface SchedulesDAO {
 
-  public List<Schedule> selectList(int serviceNo);
+  public List<Schedule> selectListByServiceNo(int serviceNo);
 
   public int insert(Schedule schedule);
   // insertIfNotExists

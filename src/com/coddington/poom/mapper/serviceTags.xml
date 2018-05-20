@@ -5,6 +5,17 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 >
 
 <mapper namespace="serviceTags">
+	<select id="selectTagNameByServiceNo" parameterType="int"
+		resultType="Tag">
+		SELECT name
+		FROM(SELECT name,rownum r
+			FROM(SELECT t.name name
+			FROM service_tags st, tags t
+			WHERE st.tag_no = t.no
+			AND st.service_no = #{serviceNo}))
+		WHERE r BETWEEN 1 AND 3
+	</select>
+	
 	<insert id="insert" parameterType="ServiceTag">
 		INSERT INTO service_tags(no,
 		service_no, tag_no, regdate)

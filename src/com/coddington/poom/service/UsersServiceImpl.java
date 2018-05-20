@@ -16,4 +16,10 @@ public class UsersServiceImpl implements UsersService {
     // TODO Auto-generated method stub
     return usersDAO.selectLogin(user);
   }
+  
+  @Override
+  public boolean join(User user) {
+	return 1 == usersDAO.insert(user);
+	  
+  }
 }

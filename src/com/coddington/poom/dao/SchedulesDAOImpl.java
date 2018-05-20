@@ -15,9 +15,9 @@ public class SchedulesDAOImpl implements SchedulesDAO{
 	}//setSession() end
 	
 	@Override
-	public List<Schedule> selectList(int serviceNo) {
+	public List<Schedule> selectListByServiceNo(int serviceNo) {
 		// TODO Auto-generated method stub
-		return session.selectList("schedules.selectList", serviceNo);
+		return session.selectList("schedules.selectListByServiceNo", serviceNo);
 	}
 	
 	@Override

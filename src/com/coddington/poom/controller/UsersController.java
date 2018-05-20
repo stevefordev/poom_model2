@@ -34,5 +34,34 @@ public class UsersController {
 
     return "redirect:" + referer;
   }
+  
+  @RequestMapping(value ="/logout.poom")
+  public String logout(@RequestHeader String referer,HttpSession session) {
+	  
+	  session.invalidate();
+	  return "redirect:"+referer;
+  }
+  
+  
+  @RequestMapping(value = "/signup.poom")
+  public String join(User user, RedirectAttributes ra, @RequestHeader String referer) {
+	  
+//	  System.out.println(user.getName());
+//	  System.out.println(user.getEmail());
+//	  System.out.println(user.getNickName());
+//	  System.out.println(user.getPassword());
+//	  System.out.println(user.getPhone());
+//	  
+ 
+	  boolean result = usersService.join(user);
+	  
+	  if(result==true) {
+		  ra.addFlashAttribute("joinSucc",true);
+	  }else { 
+		  ra.addFlashAttribute("joinFail",false);
+	  }
+	  
+	  return "redirect:" + referer;
+  }
 
 }

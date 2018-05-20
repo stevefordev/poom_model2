@@ -48,15 +48,12 @@ body {
 			</button>
 		</div>
 		<div class="profileserviceimg_wrap">
+		<c:forEach items="1,2,1,2" var="img">
 			<div class="profileservice_img">
-				<img src="/img/edu/lesson1.png">
+				<img src="/img/edu/lesson${img }.png" />
 			</div>
-			<div class="profileservice_img">
-				<img src="/img/edu/lesson2.png">
-			</div>
-			<div class="profileservice_img">
-				<img src="/img/edu/lesson3.jpg">
-			</div>
+		 
+		 </c:forEach>
 		</div>
 		<h3 class="screen_out">사진정보</h3>
 		<div id="detailsImg"></div>
@@ -177,8 +174,7 @@ body {
 			<ul>
 				<li><a class="board_gnb on gnb_reference" href="#">참고사항</a></li>
 				<li><a class="board_gnb gnb_review" href="#">리뷰(${countTotalReviews})</a></li>
-				<li><a class="board_gnb gnb_question" href="#">문의(${countTotalQuestions }
-						)</a></li>
+				<li><a class="board_gnb gnb_question" href="#">문의(${countTotalQuestions })</a></li>
 			</ul>
 		</div>
 		<div id="detailsBoardBox">

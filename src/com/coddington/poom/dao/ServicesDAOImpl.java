@@ -1,6 +1,10 @@
 package com.coddington.poom.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
+
+import com.coddington.poom.vo.Card;
 import com.coddington.poom.vo.Service;
 
 public class ServicesDAOImpl implements ServicesDAO {
@@ -34,5 +38,11 @@ public class ServicesDAOImpl implements ServicesDAO {
     // TODO Auto-generated method stub
     return session.update("services.update", service);
   } 
+  
+  @Override
+	public List<Card> selectRecommendationList(int role) {
+		// TODO Auto-generated method stub
+	  return session.selectList("services.selectRecommendationList", role);
+	}
 
 }

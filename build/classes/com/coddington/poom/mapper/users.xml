@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 	<insert id="insert" parameterType="User">
 		INSERT INTO users (no, EMAIL, password, name, nick_name, phone, introduction, coin, photo_url, regdate)
-		VALUES (USERS_SEQ.nextval, #{email}, #{password}, #{name}, #{nickName}, #{phone}, #{introduction}, #{coin}, #{photoUrl}, #{regdate})
+		VALUES (USERS_SEQ.nextval, #{email}, #{password}, #{name}, #{nickName}, #{phone}, #{introduction}, #{coin}, 'profile_img.png', systimestamp)
 	</insert>
 	
 	<select id="selectLogin" resultType="User" parameterType="User">

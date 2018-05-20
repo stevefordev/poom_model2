@@ -23,6 +23,9 @@
 <link rel="stylesheet"
 	href="/css/card_taker_level_first.css?date=201804271" />
 <style>
+a {
+	text-decoration: none;
+}
 body {
 	font-family: "Noto Sans KR", sans-serif;
 	background-color: #eef0f3;
@@ -30,6 +33,7 @@ body {
 
 #heroImage {
 	width: 100%;
+	min-width : 1200px;
 	height: 600px;
 	background-image: url("/img/hero/heroImage.jpg");
 	background-position: center;
@@ -322,15 +326,29 @@ body {
 	font-size: 20px;
 }
 /*1단카드들이 들어가는 div*/
-#cardBox {
+#cardBoxGiver {
 	width: 1200px;
-	min-height: 800px;
+	min-height: 400px;
+	margin: auto;
+	/*background-color: #4b96e6;*/
+	padding: 20px;
+}
+
+#cardBoxTaker {
+	width: 1200px;
+	min-height: 400px;
 	margin: auto;
 	/*background-color: #4b96e6;*/
 	padding: 20px;
 }
 /*1단카드들이 수평정렬이 되도록 float:left*/
-#cardBox .card {
+#cardBoxGiver .card {
+	float: left;
+	margin-left: 35px;
+	margin-bottom: 35px;
+}
+
+#cardBoxTaker .taker_card {
 	float: left;
 	margin-left: 35px;
 	margin-bottom: 35px;
@@ -347,7 +365,7 @@ body {
 			<div id="heroImageBox">
 				<div id="header">
 					<div id="logoBox">
-						<a id="logo" href="search_page.jsp"><img
+						<a id="logo" href="/search.poom"><img
 							src="/img/poom_logo.png"></a> <a id="searchBtn" href="">서비스
 							검색</a>
 						<!--목록페이지로 넘어가는 링크-->
@@ -391,7 +409,7 @@ body {
 													회원으로 가입하시면</br> 품의 모든 서비스를 이용하실 수 있습니다
 												</h2>
 											</div>
-											<form id="joinContent" method="post" action="signup.jsp">
+											<form id="joinContent" method="post" action="/signup.poom">
 												<div class="input_box" id="nameBox">
 													<label for="name">이름</label>
 													<div class="icon_box">
@@ -411,7 +429,7 @@ body {
 													<div class="icon_box">
 														<i class="fas fa-phone"></i>
 													</div>
-													<input id="phoneNum" required type="text" name="phoneNum"
+													<input id="phoneNum" required type="text" name="phone"
 														placeholder="-을 제외한 전화번호를 입력하세요">
 													<button id="phoneBtn" type="button" class="formBtn">전송</button>
 													<div class="alert_box" id="phoneNumAlert">
@@ -433,7 +451,7 @@ body {
 													<div class="icon_box">
 														<i class="fas fa-user-circle"></i>
 													</div>
-													<input id="nickname" type="text" name="nickname" disabled
+													<input id="nickname" type="text" name="nickName" 
 														required placeholder="닉네임 입력" title="별명을 입력해주세요">
 													<div class="alert_box" id="nicknameAlert">
 														<span class="msg good">별명 입력완료</span> <span
@@ -445,7 +463,7 @@ body {
 													<div class="icon_box">
 														<i class="fas fa-envelope"></i>
 													</div>
-													<input id="mail" required disabled type="text" name="email"
+													<input id="mail" required  type="text" name="email"
 														placeholder="이메일">
 													<div class="alert_box" id="mailAlert">
 														<span class="msg good">이메일 입력완료</span> <span
@@ -457,7 +475,7 @@ body {
 													<div class="icon_box">
 														<i class="fas fa-key"></i>
 													</div>
-													<input id="password" required disabled type="password"
+													<input id="password" required  type="password"
 														name="password" placeholder="비밀번호">
 													<div class="alert_box" id="passwordAlert">
 														<span class="msg good">좋은 비밀번호입니다.</span> <span
@@ -524,20 +542,20 @@ body {
 									</div>
 									</article>
 								</div>
-								<a href="register_service_form.jsp">품 요청/등록</a> <a
-									href="profile.jsp">내프로필</a> <a href="" class="mypage"> <img
-									src="/img/profile${loginUser.photoUrl }" class="profile"
+								<a href="/service/registerForm.poom">품 요청/등록</a> <a
+									href="/profile.poom">내프로필</a> <a href="" class="mypage"> <img
+									src="/img/profile/${loginUser.photoUrl }" class="profile"
 									onerror="this.src='/img/profile/profile_img.png'" /> <span>${loginUser.nickName }
 										<i class="fas fa-angle-down"></i>
 								</span>
 								</a>
 
 								<ul class="mypage_drop">
-									<li><a href="dashboard_contract.jsp">계약</a></li>
-									<li><a href="dashboard_coin.jsp">코인</a></li>
-									<li><a href="dashboard_like_service.jsp">찜목록</a></li>
-									<li><a href="dashboard_block.jsp">차단 목록</a></li>
-									<li><a href="logout.jsp">로그아웃</a></li>
+									<li><a href="/dashboard_contract.poom">계약</a></li>
+									<li><a href="/dashboard_coin.poom">코인</a></li>
+									<li><a href="/dashboard_like_service.poom">찜목록</a></li>
+									<li><a href="/dashboard_block.poom">차단 목록</a></li>
+									<li><a href="/logout.poom">로그아웃</a></li>
 								</ul>
 							</div>
 						</c:otherwise>
@@ -556,25 +574,50 @@ body {
 			<div id="recomendText">
 				<span>추천</span>
 			</div>
-			<div id="cardBox"></div>
+			<div id="cardBoxGiver"></div>
+			<div id="cardBoxTaker"></div>
 		</div>
 		<!--//end recomendText  -->
+		<c:if test="${joinSucc==true }">
+			<script>
+				alert("회원 가입에 성공하였습니다.")
+			</script>
+		</c:if>
+		<c:if test="${joinfail==true }">
+			<script>
+				alert("회원 가입에 실패하였습니다.")
+			</script>
+		</c:if>
+		
 
 	</div>
 
 	<%@ include file="/WEB-INF/view/templates/footer.jsp"%>
 	<%@ include file="/WEB-INF/view/templates/card_level_first.jsp"%>
 	<%@ include file="/WEB-INF/view/templates/js.jsp"%>
+	<script>
+		var loginUser = '${loginUser}';
+	</script>
 	<script src="/js/popup_login_join.js?date=201804162"></script>
-	<script src="/js/card_util.js?date=201804283"></script>
+	<script src="/js/card_util.js?date=2018005112122"></script>
 	<script src="/js/slick/slick.min.js"></script>
 	<script src="/js/slick/slick_helper.js?date=201804283"></script>
 	<script>
-    cardUtil.dataset = {
-      "level": 1,
-      "count": 5
-    };
-    cardUtil.getCardList("/ajax/service.poom", $("#cardBox"), ".img_box");
-  </script>
+		cardUtil.dataset = {
+			"level" : 1,
+			"count" : 5,
+			"role" : 1
+		};
+		cardUtil.getCardList("/ajax/recommendationCardList.poom",
+				$("#cardBoxGiver"), ".img_box");
+
+		cardUtil.dataset = {
+			"level" : 1,
+			"count" : 5,
+			"role" : 2
+		};
+		cardUtil.getCardList("/ajax/recommendationCardList.poom",
+				$("#cardBoxTaker"), ".img_box");
+	</script>
 </body>
 </html>

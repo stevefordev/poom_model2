@@ -6,5 +6,29 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="likeServices">
 
+	<select id="selectTotalLikeNumByServiceNo" parameterType="int" resultType="int">
+		SELECT count(no)
+		FROM like_services
+		WHERE service_no = #{serviceNo}
+	</select>
+	
+	<select id="selectByUserNoServiceNo" parameterType="LikeService" resultType="LikeService">
+		SELECT no, user_no userNo, service_no serviceNo
+		FROM like_services
+		WHERE user_no = #{userNo}
+	  	AND service_no = #{serviceNo}
+	</select>
+	
+	<insert id="insertLikeService" parameterType="LikeService">
+		INSERT into LIKE_SERVICES(no,user_no,service_no,REGDATE)
+		VALUES (like_services_seq.nextval,#{userNo},#{serviceNo},SYSTIMESTAMP)
+	</insert>
+	
+	<delete id="deleteLikeService" parameterType="LikeService">
+		DELETE 
+		FROM like_services
+		WHERE user_no = #{userNo}
+		AND service_no = #{serviceNo} 
+	</delete>
 
 </mapper>

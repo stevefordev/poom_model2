@@ -6,14 +6,20 @@ import com.coddington.poom.vo.User;
 public class UsersDAOImpl implements UsersDAO {
 
 	private SqlSession session;
-	
+
 	public void setSession(SqlSession session) {
 		this.session = session;
-	}//setSession() end
-	
+	}// setSession() end
+
 	@Override
 	public User selectLogin(User user) {
-	// TODO Auto-generated method stub
-	return session.selectOne("users.selectLogin", user);
+		// TODO Auto-generated method stub
+		return session.selectOne("users.selectLogin", user);
+	}
+
+	@Override
+	public int insert(User user) {
+		// TODO Auto-generated method stub
+		return session.insert("users.insert", user);
 	}
 }

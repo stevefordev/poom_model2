@@ -6,6 +6,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="contracts">
 
+
+	<select id="selectListByServiceNo" parameterType="Contract" resultType="Contract">
+		  SELECT no, giver_no giverNo, taker_no takerNo, service_no serviceNo, poom, status, 
+		  content, score_user scoreUser, 
+		  score_price scorePrice, score_kind scoreKind, score_knowhow scoreKnowhow, score_honest scoreHonest, 
+		  regdate
+		  FROM contracts
+		  WHERE service_no=#{serviceNo} AND status=#{status}
+	</select>
+
 	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="com.coddington.poom.util.CamelHashMap">
 		SELECT (CASE WHEN count_done > 0 THEN (score_user / count_done * 100) ELSE 0 END) score_taker, 
 		       (CASE WHEN count_done > 0 THEN ((score_price + score_kind + score_knowhow + score_honest) / (4 * count_done) * 100) ELSE 0 END) score_giver,
