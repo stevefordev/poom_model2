@@ -64,10 +64,9 @@ body {
 			<div id="detailsProfileBox">
 				<h3 class="screen_out">프로필</h3>
 				<div id="takerUserProfile" class="taker">
-					<a href="#">
-						<img id="takerProfileImg"
-					src="/img/profile/${service.userPhotoUrl }" />
-					<div id="userNickname">${service.userNickName }</div>
+					<a href="#"> <img id="takerProfileImg"
+						src="/img/profile/${service.userPhotoUrl }" />
+						<div id="userNickname">${service.userNickName }</div>
 					</a>
 				</div>
 			</div>
@@ -123,37 +122,39 @@ body {
 		<div id="detailsFunction">
 			<h4 class="screen_out">상세 기능</h4>
 			<ul>
-				<li>
-					<button id="likeBtn">
-						<i class="far fa-heart"></i>
-					</button>
-				</li>
-				<li>
-					<button id="sendContractBtn">계약서 보내기</button>
-					<div id="detailsContractPopupWrap">
-						<div id="detailsContractPopup">
-							<dl>
-								<dt>품 주는사람</dt>
-								<dd>
-									<img id="detailContractProfileImg"
-										src="/img/profile/${service.userPhotoUrl }"></img> <a
-										id="giverName" href="">${service.userNickName}</a>
-								</dd>
-								<dt>품 받는사람</dt>
-								<dd>
-									<img id="detailContractProfileImg2"
-										src="/img/profile/${loginUser.photoUrl }"></img> <a
-										id="takerName" href="">${loginUser.nickName }</a>
-								</dd>
-								<dt>지 역</dt>
-								<dd>
-									<div id="area">
-										<span>${service.area1}</span><span> ${service.area2}</span>
-									</div>
-								</dd>
-								<dt>일 정</dt>
-								<dd class="schedule">
-									<!--
+				<c:choose>
+					<c:when test="${loginUser != null && servie.userNo == loginUser.no }">
+						<li>
+							<button id="likeBtn">
+								<i class="far fa-heart"></i>
+							</button>
+						</li>
+						<li>
+							<button id="sendContractBtn">계약서 보내기</button>
+							<div id="detailsContractPopupWrap">
+								<div id="detailsContractPopup">
+									<dl>
+										<dt>품 주는사람</dt>
+										<dd>
+											<img id="detailContractProfileImg"
+												src="/img/profile/${service.userPhotoUrl }"></img> <a
+												id="giverName" href="">${service.userNickName}</a>
+										</dd>
+										<dt>품 받는사람</dt>
+										<dd>
+											<img id="detailContractProfileImg2"
+												src="/img/profile/${loginUser.photoUrl }"></img> <a
+												id="takerName" href="">${loginUser.nickName }</a>
+										</dd>
+										<dt>지 역</dt>
+										<dd>
+											<div id="area">
+												<span>${service.area1}</span><span> ${service.area2}</span>
+											</div>
+										</dd>
+										<dt>일 정</dt>
+										<dd class="schedule">
+											<!--
 									<span>2018-04-26 / 17-18시</span> 
 									<span>2018-04-26 / 20-21시</span> 
 									<span>2018-04-29 / 16-17시</span> 
@@ -161,26 +162,37 @@ body {
 									<span>2018-05-02 / 17-18시</span>
 									<span>2018-05-02 / 18-19시</span>
 									  -->
-								</dd>
-								<dt>가 격</dt>
-								<dd>
-									<div id="price">
-										<input id="poomvalue" type="number" placeholder="품을입력해주세요."
-											value="${service.poom }" /> &nbsp;품
-									</div>
-								</dd>
-								<dt>할 말</dt>
-								<dd>
-									<div id="comment">
-										<textarea placeholder="희망사항을 입력해주세요."></textarea>
-									</div>
-								</dd>
-							</dl>
-							<button id="detailsSendContractBtn">계약서 보내기</button>
-						</div>
-						<!--//#detailsContractPopup-->
-					</div> <!--//#detailsContractPopupWrap-->
-				</li>
+										</dd>
+										<dt>가 격</dt>
+										<dd>
+											<div id="price">
+												<input id="poomvalue" type="number" placeholder="품을입력해주세요."
+													value="${service.poom }" /> &nbsp;품
+											</div>
+										</dd>
+										<dt>할 말</dt>
+										<dd>
+											<div id="comment">
+												<textarea placeholder="희망사항을 입력해주세요."></textarea>
+											</div>
+										</dd>
+									</dl>
+									<button id="detailsSendContractBtn">계약서 보내기</button>
+								</div>
+								<!--//#detailsContractPopup-->
+							</div> <!--//#detailsContractPopupWrap-->
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li class="update_form">
+							<form id="updateForm" method="get" action="/servcie/updateForm.poom">
+							<input type="hidden"  name="no" value="${service.no }"/>
+								<button class="updateBtn">수정</button>
+							</form>
+						</li>
+					</c:otherwise>
+				</c:choose>
+
 			</ul>
 		</div>
 
