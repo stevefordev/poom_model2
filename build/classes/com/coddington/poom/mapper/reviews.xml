@@ -11,13 +11,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM reviews
 		WHERE no = #{no}
 	</select>
-	<select id="selectList" parameterType="int" resultType="Review">
+	<select id="selectList" parameterType="Map" resultType="Review">
 	
-		SELECT r.no,r.user_no userNo, r.service_no serviceNo, r.content, r.reply, r.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
-		FROM reviews r, users u
-		WHERE r.user_no = u.no 
-		AND r.service_no = #{serviceNo}
-		ORDER BY r.regdate DESC
+ 		SELECT no, userNo, serviceNo, content, reply, regdate, userNickName, userPhotoUrl
+        FROM(SELECT no, userNo, serviceNo, content, reply, regdate, userNickName, userPhotoUrl, rownum r
+            FROM(SELECT r.no,r.user_no userNo, r.service_no serviceNo, r.content, r.reply, r.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+                FROM reviews r, users u
+                WHERE r.user_no = u.no 
+                AND r.service_no = #{serviceNo}
+                ORDER BY r.regdate DESC))
+        WHERE r BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="selectCountTotal" parameterType="int" resultType="int">

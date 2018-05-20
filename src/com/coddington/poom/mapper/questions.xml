@@ -6,12 +6,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="questions">
 
-	<select id="selectList" parameterType="int" resultType="Question">
-		SELECT q.no, q.service_no serviceNo, q.user_no userNo, q.type, q.content, q.reply, q.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
-		FROM questions q, users u
-		WHERE q.user_no = u.no 
-		AND q.service_no = #{serviceNo}
-		ORDER BY q.regdate DESC
+	<select id="selectList" parameterType="Map" resultType="Question">
+        SELECT	no, serviceNo, userNo, type, content, reply, regdate, userNickName, userPhotoUrl
+        FROM(SELECT no, serviceNo, userNo, type, content, reply, regdate, userNickName, userPhotoUrl, rownum r
+        	FROM(SELECT q.no, q.service_no serviceNo, q.user_no userNo, q.type, q.content, q.reply, q.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+            	FROM questions q, users u
+            	WHERE q.user_no = u.no 
+            	AND q.service_no = #{serviceNo}
+            	ORDER BY q.regdate DESC))
+        WHERE r BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="Question">

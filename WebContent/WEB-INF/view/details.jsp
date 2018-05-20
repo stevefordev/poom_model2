@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="/css/popup_details_reply.css" />
 <link rel="stylesheet" href="/css/slick/slick.css" />
 <link rel="stylesheet" href="/css/slick/slick-theme.css" />
-
+<link rel="stylesheet" href="/css/common/paginate.css" />
 <style>
 body {
 	background: #e3e3e3;
@@ -123,7 +123,17 @@ body {
 			<h4 class="screen_out">상세 기능</h4>
 			<ul>
 				<c:choose>
-					<c:when test="${loginUser != null && servie.userNo == loginUser.no }">
+					<c:when
+						test="${loginUser != null && service.userNo == loginUser.no }">
+						<li class="update_form">
+							<form id="updateForm" method="get"
+								action="/service/updateForm.poom">
+								<input type="hidden" name="no" value="${service.no }" />
+								<button class="updateBtn">수정</button>
+							</form>
+						</li>
+					</c:when>
+					<c:otherwise>
 						<li>
 							<button id="likeBtn">
 								<i class="far fa-heart"></i>
@@ -182,14 +192,7 @@ body {
 								<!--//#detailsContractPopup-->
 							</div> <!--//#detailsContractPopupWrap-->
 						</li>
-					</c:when>
-					<c:otherwise>
-						<li class="update_form">
-							<form id="updateForm" method="get" action="/servcie/updateForm.poom">
-							<input type="hidden"  name="no" value="${service.no }"/>
-								<button class="updateBtn">수정</button>
-							</form>
-						</li>
+
 					</c:otherwise>
 				</c:choose>
 
@@ -233,7 +236,7 @@ body {
 						<div class="box_review_dashboard_area" id="chartArea"></div>
 					</div>
 
-					<ul id="reviewsWrap">
+					<ul id="reviewsWrap" data-type="review">
 
 					</ul>
 				</div>
@@ -244,7 +247,7 @@ body {
 						<textarea id="inputQuestion" placeholder="문의 내용을 입력하시오"></textarea>
 						<button class="btn_question_popup">문의하기</button>
 					</div>
-					<ul id="questionsWrap">
+					<ul id="questionsWrap" data-type="question">
 						<c:forEach items="${questions }" var="question">
 							<li>
 								<div class="question_box">
@@ -388,7 +391,7 @@ body {
 	<div class="box_contents box_contents_review">
 		<dl>
 			<dt class="profile_img_name">
-				<a href=""> <img class="profile_img" src=""></img>
+				<a href=""> <img class="profile_img" src="/img/profile/<@=review.userPhotoUrl @>"></img>
 					</a><a id="profileName2" href=""><@=review.userNickName @></a>
 			</dt>
 			<dd class="review_1">
@@ -405,7 +408,7 @@ body {
 		<div class="box_reply box_reply_review">
 	 		<dl>
 				<dt id="profileImgName2">
-					<a href=""> <img class="profile_img" src=""></img>
+					<a href=""> <img class="profile_img" src="/img/profile/${service.userPhotoUrl }"></img>
 					</a><a id="profileName3" href="">${service.userNickName }</a>
 				</dt>
 				<dd class="review_2">
@@ -416,6 +419,7 @@ body {
 	<@ } @>
 </li>
 <@ }) @>
+<@=paginate @>
 </script>
 	<script type="text/template" id="questionsTmp">
 <@_.each(list, function(question) {@>
@@ -438,7 +442,8 @@ body {
 				</div>
 			<@}@>							
 	</li>
-<@})@>
+<@})@> 
+<@=paginate @>
 </script>
 	<script type="text/template" id="replyTmp">
 		<div class="wrap_reply">
@@ -456,128 +461,142 @@ body {
 	<script src="/js/slick/slick.min.js"></script>
 	<script src="/js/slick/slick_helper.js?date=201804281910"></script>
 	<script>
-		var loginUserNo = '${loginUser.no}';
-		var serviceNo = '${service.no}';
-		var serviceUserNo = '${service.userNo}';
-		var serviceRole = '${service.role}';
-		var giverNo = serviceRole == 1 ? serviceUserNo : loginUserNo;
-		var takerNo = serviceRole == 2 ? serviceUserNo : loginUserNo;
-		var poom = '${service.poom}';
-	</script>
-	<script src="/js/details_giver.js?date=201805191451"></script>
+    var loginUserNo = '${loginUser.no}';
+    var serviceNo = '${service.no}';
+    var serviceUserNo = '${service.userNo}';
+    var serviceRole = '${service.role}';
+    var giverNo = serviceRole == 1 ? serviceUserNo : loginUserNo;
+    var takerNo = serviceRole == 2 ? serviceUserNo : loginUserNo;
+    var poom = '${service.poom}';
+
+    var chartData = {
+      categories: ["친절성", "성실성", "가격", "숙련도"],
+      series: [{
+        name: '평점',
+        data: ['${scoreAndCountContract.scoreKind}',
+            '${scoreAndCountContract.scoreHonest}',
+            '${scoreAndCountContract.scorePrice}',
+            '${scoreAndCountContract.scoreKnowhow}']
+      }]
+    };
+  </script>
+	<script src="/js/details_giver.js?date=201805191452"></script>
 	<script>
-		var data = {
-			categories : [ "친절성", "성실성", "가격", "숙련도" ],
-			series : [ {
-				name : '평점',
-				data : [ '${scoreAndCountContract.scoreKind}',
-						'${scoreAndCountContract.scoreHonest}',
-						'${scoreAndCountContract.scorePrice}',
-						'${scoreAndCountContract.scoreKnowhow}' ]
-			} ]
-		};
+    //이미지 슬라이드 자바스크립트
+    $('.profileserviceimg_wrap').imageSlide();
+    /*
+    cardUtil.dataset = {
+    	"level" : 1,
+    	"count" : 5
+    };
+    cardUtil.getCardList("ajax/recommendCardList.json", $("#cardBox"),
+    		".img_box");
+     */
+    //SELECT no, service_no serviceNo, service_startdate serviceStartdate, service_day serviceDay, service_date serviceDate, regdate
+    var schedules = new Array();
+    var scheduleListForCalendar = new Array();
 
-		//이미지 슬라이드 자바스크립트
-		$('.profileserviceimg_wrap').imageSlide();
-		/*
-		cardUtil.dataset = {
-			"level" : 1,
-			"count" : 5
-		};
-		cardUtil.getCardList("ajax/recommendCardList.json", $("#cardBox"),
-				".img_box");
-		 */
-		//SELECT no, service_no serviceNo, service_startdate serviceStartdate, service_day serviceDay, service_date serviceDate, regdate
-		var schedules = new Array();
-		var scheduleListForCalendar = new Array();
+    // java list data to javascript array
+    <c:forEach items="${schedules}" var="schedule">
+    var json = new Object();
+    json.scheduleNo = "${schedule.no}";
+    json.serviceNo = "${schedule.serviceNo}";
+    json.serviceStartdate = "${schedule.serviceStartdate}";
+    json.serviceDay = "${schedule.serviceDay}";
+    json.serviceDayOfWeek = "${schedule.serviceDayOfWeek}";
+    json.serviceHour = "${schedule.serviceHour}";
+    json.serviceHourExpression = "${schedule.serviceHourExpression}";
+    json.serviceDate = "${schedule.serviceDate}";
+    json.regdate = "${schedule.regdate}";
+    schedules.push(json);
+    </c:forEach>
+    //console.log(schedules);
 
-		// java list data to javascript array
-		<c:forEach items="${schedules}" var="schedule">
-		var json = new Object();
-		json.scheduleNo = "${schedule.no}";
-		json.serviceNo = "${schedule.serviceNo}";
-		json.serviceStartdate = "${schedule.serviceStartdate}";
-		json.serviceDay = "${schedule.serviceDay}";
-		json.serviceDayOfWeek = "${schedule.serviceDayOfWeek}";
-		json.serviceHour = "${schedule.serviceHour}";
-		json.serviceHourExpression = "${schedule.serviceHourExpression}";
-		json.serviceDate = "${schedule.serviceDate}";
-		json.regdate = "${schedule.regdate}";
-		schedules.push(json);
-		</c:forEach>
-		//console.log(schedules);
+    var currDate = moment();
+    var lastDate = currDate.clone().add(70, 'days');
 
-		var currDate = moment();
-		var lastDate = currDate.clone().add(70, 'days');
+    // 오늘 부터 두달 뒤까지 하루하루 비교하여 새로운 스케줄 배열을 만든다
+    while (currDate.add(1, 'days').diff(lastDate) < 0) {
 
-		// 오늘 부터 두달 뒤까지 하루하루 비교하여 새로운 스케줄 배열을 만든다
-		while (currDate.add(1, 'days').diff(lastDate) < 0) {
+      var dayOfWeek = currDate.format('dddd').toLowerCase();
+      //console.log(dayOfWeek);
 
-			var dayOfWeek = currDate.format('dddd').toLowerCase();
-			//console.log(dayOfWeek);
+      _.each(schedules, function(each) {
+        // 요일별 반복 날짜 검사
+        if (each.serviceDayOfWeek.length > 0) {
+          if (dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
 
-			_.each(schedules, function(each) {
-				// 요일별 반복 날짜 검사
-				if (each.serviceDayOfWeek.length > 0) {
-					if (dayOfWeek.indexOf(each.serviceDayOfWeek) == 0) {
+            //{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
+            var schedule = {
+              date: currDate.format("YYYY-MM-DD"),
+              hour: each.serviceHour,
+              expression: each.serviceHourExpression,
+              scheduleNo: each.scheduleNo
+            };
+            scheduleListForCalendar.push({
+              "schedule": schedule
+            });
+          }
+        } else {
+          // 단일 날짜 검사
+          //console.log(each.serviceDate);
+          //console.log(currDate.format("YYYY-MM-DD"));
 
-						//{schedule : {date : "2018-04-23", hour: "08", expression: "08-09시"}},
-						var schedule = {
-							date : currDate.format("YYYY-MM-DD"),
-							hour : each.serviceHour,
-							expression : each.serviceHourExpression,
-							scheduleNo : each.scheduleNo
-						};
-						scheduleListForCalendar.push({
-							"schedule" : schedule
-						});
-					}
-				} else {
-					// 단일 날짜 검사
-					//console.log(each.serviceDate);
-					//console.log(currDate.format("YYYY-MM-DD"));
+          if (each.serviceDate.substring(0, 10) == currDate
+                  .format("YYYY-MM-DD")) {
+            var schedule = {
+              date: currDate.format("YYYY-MM-DD"),
+              hour: each.serviceHour,
+              expression: each.serviceHourExpression,
+              scheduleNo: each.scheduleNo
+            };
+            scheduleListForCalendar.push({
+              "schedule": schedule
+            });
+          }
+        }
+      });
+    }
 
-					if (each.serviceDate.substring(0, 10) == currDate
-							.format("YYYY-MM-DD")) {
-						var schedule = {
-							date : currDate.format("YYYY-MM-DD"),
-							hour : each.serviceHour,
-							expression : each.serviceHourExpression,
-							scheduleNo : each.scheduleNo
-						};
-						scheduleListForCalendar.push({
-							"schedule" : schedule
-						});
-					}
-				}
-			});
-		}
+    getScheduleCalendar(scheduleListForCalendar);
 
-		getScheduleCalendar(scheduleListForCalendar);
+    //로그인 되어있으면 찜 확인
+    if (loginUserNo > 0) {
+      $.get("/ajax/likeService/check.poom", {
+        serviceNo: serviceNo
+      }).done(function(data) {
+        console.log(data);
+        if (data) {
+          $("#likeBtn>i").attr("class", "fas fa-heart");
+        }
+      }).fail(function(data) {
+        console.log('error',data);
+      });
+    }
 
-		//'문의하기'버튼 클릭 시 
-		$(".contents_board").on("click", ".btn_question_popup", function() {
-			var questionContent = $("#inputQuestion").val();
-			console.log(questionContent);
+    //'문의하기'버튼 클릭 시 
+    $(".contents_board").on("click", ".btn_question_popup", function() {
+      var questionContent = $("#inputQuestion").val();
+      console.log(questionContent);
 
-			if (questionContent.length > 0) {
-				registerQuestion('${service.no}', 1, questionContent);
-			} else {
-				alert("문의 내용을 입력 하세요");
-			}
-		});
+      if (questionContent.length > 0) {
+        registerQuestion(serviceNo, 1, questionContent);
+      } else {
+        alert("문의 내용을 입력 하세요");
+      }
+    });
 
-		// 답변하기 submit
-		$(".contents_board").on(
-				"click",
-				".btn_reply_confirm",
-				function() {
-					var reply = $("#inputReply").val();
-					$this = $(this);
-					console.log('reply:', reply);
-					updateReply('${service.no}', $this.data('no'), $this
-							.data('boardtype'), reply);
-				});
-	</script>
+    // 답변하기 submit
+    $(".contents_board").on(
+            "click",
+            ".btn_reply_confirm",
+            function() {
+              var reply = $("#inputReply").val();
+              $this = $(this);
+              console.log('reply:', reply);
+              updateReply(serviceNo, $this.data('no'), $this
+                      .data('boardtype'), reply);
+            });
+  </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.coddington.poom.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import com.coddington.poom.vo.Question;
 
@@ -13,9 +14,9 @@ public class QuestionsDAOImpl implements QuestionsDAO {
   }// setSession() end
 
   @Override
-  public List<Question> selectList(int serviceNo) {
+  public List<Question> selectList(Map<String, Object> map) {
     // TODO Auto-generated method stub
-    return session.selectList("questions.selectList", serviceNo);
+    return session.selectList("questions.selectList", map);
   }
 
   @Override

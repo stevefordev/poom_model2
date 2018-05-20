@@ -31,4 +31,6 @@ public interface ServicesService {
 	public Map<String, Object> registerLikeSevice(LikeService likeService);
 
 	public Map<String, Object> deleteLikeSevice(LikeService likeService);
+	
+	public boolean checkLikeSevice(LikeService likeService);
 }

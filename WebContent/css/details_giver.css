@@ -83,7 +83,7 @@
 	height: 400px;
 	margin: 20px 20px 0 0px;
 	float: left;
-	position : relative;
+	position: relative;
 }
 
 #userProfile i {
@@ -96,14 +96,13 @@
 	margin-top: 20px;
 }
 
-
 #takerUserProfile {
 	/*background-color: #80D8FF;*/
 	width: 300px;
 	height: 400px;
 	margin: auto;
 }
- 
+
 #takerUserProfile a {
 	display: inline-block;
 	/*background-color: #00C853;*/
@@ -112,7 +111,7 @@
 	text-decoration: none;
 	text-align: center;
 	color: #1f2b43;
-} 
+}
 
 #userProfile {
 	/*background-color: #80D8FF;*/
@@ -145,16 +144,18 @@
 #takerUserProfile #takerProfileImg {
 	width: 320px;
 	height: 320px;
-	border-radius: 50%; 
+	border-radius: 50%;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
+
 #userNickname {
 	/*background-color: #bfbfbf;*/
 	font-size: 35px;
 	margin-top: 5px;
 }
+
 #detailsInfoBox {
 	background-color: #fff;
 	width: 780px;
@@ -163,6 +164,7 @@
 	margin: 20px 0;
 	position: relative;
 }
+
 #detailsInfo {
 	/*background-color: lightpink;*/
 	width: 380px;
@@ -455,6 +457,26 @@
 	float: left;
 }
 
+#detailsFunction ul li.update_form {
+	width: 780px;
+	text-align: center;
+}
+
+#detailsFunction ul li.update_form button.updateBtn {
+	font-size: 35px;
+	width: 780px;
+	height: 80px;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #2e7965;
+}
+
+#detailsFunction ul li.update_form button.updateBtn:hover {
+	cursor: pointer;
+	background-color: #2e7965;
+	color: #fff;
+}
+
 #likeBtn, #sendContractBtn {
 	background-color: transparent;
 	border: none;
@@ -550,7 +572,7 @@
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard {
 	width: calc(100% - 20px);
 	min-height: 300px;
-	border: 10px solid #f2c641;	
+	border: 10px solid #f2c641;
 }
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard .box_review_dashboard_area
@@ -559,8 +581,11 @@
 	height: 300px;
 	text-align: center;
 	font-size: 30px;
-	float: left;
-	overflow: hidden;
+	float: left; 
+}
+
+#detailsBoardWrap #chartArea {
+ 
 }
 
 #detailsBoardWrap .box_board .contents_board .box_review_dashboard .box_review_dashboard_area path
@@ -638,14 +663,14 @@
 
 #detailsBoardBox .box_contents {
 	/*background-color: #9E9E9E;*/
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 #detailsBoardBox dl .profile_img_name {
 	width: 85px;
 	min-height: 95px;
 	float: left;
-	position: relative;	
+	position: relative;
 }
 
 #detailsBoardBox dl #profileImgName2 {
@@ -659,16 +684,16 @@
 .tui-chart-default-tooltip {
 	display: none;
 }
- 
-.wrap_reply,
-#detailsBoardBox .contents_board_question .box_btn_question_popup {
+
+.wrap_reply, #detailsBoardBox .contents_board_question .box_btn_question_popup
+	{
 	/*background-color: #311B92;*/
 	height: 80px;
 	position: relative;
 }
 
-.wrap_reply textarea,
-#detailsBoardBox .contents_board_question .box_btn_question_popup textarea {
+.wrap_reply textarea, #detailsBoardBox .contents_board_question .box_btn_question_popup textarea
+	{
 	width: 920px;
 	height: 80px;
 	padding: 10px 10px;
@@ -682,8 +707,8 @@
 	font-family: "Noto Sans KR", serif;
 }
 
-#detailsBoardBox .btn_reply_confirm,
-#detailsBoardBox .btn_question_popup {
+#detailsBoardBox .btn_reply_confirm, #detailsBoardBox .btn_question_popup
+	{
 	background-color: #1f2b43;
 	border: none;
 	outline: none;
@@ -699,7 +724,7 @@
 
 .box_reply {
 	/*background-color: #ee9200;*/
- 
+	
 }
 
 #recommendationsBox {
@@ -950,17 +975,17 @@
 	left: 6px;
 	bottom: 0px;
 }
- 
+
 .review_1 {
-	padding: 20px 40px 40px	40px;
+	padding: 20px 40px 40px 40px;
 	border-radius: 5px;
-	min-height: 40px;	
+	min-height: 40px;
 	background: #1f2b43;
-	color: #fff;	
+	color: #fff;
 	font-size: 18px;
 	line-height: 40px;
-	margin-left: 90px;	
-    margin-bottom: 10px;
+	margin-left: 90px;
+	margin-bottom: 10px;
 	position: relative;
 }
 
@@ -974,15 +999,15 @@
 	border-left: 10px solid transparent;
 	position: absolute;
 	top: 20px;
-	left: -18px;	   
+	left: -18px;
 }
 
 .review_2 {
 	padding: 20px 40px;
 	border-radius: 5px;
-	min-height: 30px;	
+	min-height: 30px;
 	background: #3f475a;
-	color: #fff;	
+	color: #fff;
 	font-size: 18px;
 	line-height: 40px;
 	margin-left: 270px;
@@ -1003,7 +1028,7 @@
 	left: -18px;
 }
 
-.question_box {	
+.question_box {
 	min-height: 80px;
 	margin: auto;
 	position: relative;
@@ -1030,18 +1055,18 @@
 }
 
 .question_box2 .question_mark {
-	background: #3f475a;	
+	background: #3f475a;
 }
 
 .question_1 {
-	padding: 20px 40px 40px	40px;
+	padding: 20px 40px 40px 40px;
 	border-radius: 0 5px 5px 5px;
 	min-height: 40px;
 	background: #1f2b43;
 	color: #fff;
 	font-size: 18px;
 	margin-left: 50px;
-	margin-bottom:10px;
+	margin-bottom: 10px;
 	line-height: 40px;
 	position: relative;
 }
@@ -1056,22 +1081,21 @@
 	margin-left: 50px;
 	line-height: 40px;
 }
+
 .box_contents_review {
 	position: relative;
 }
 
-.box_contents_review button,
-.question_box button {
+.box_contents_review button, .question_box button {
 	border: none;
 	outline: none;
 	cursor: pointer;
 	background-color: #2e7965;
 	color: #fff;
-	height: 30px;	
+	height: 30px;
 	font-size: 12px;
 	position: absolute;
 	bottom: 10px;
 	right: 10px;
 	border-radius: 5px;
 }
-

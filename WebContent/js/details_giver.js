@@ -199,12 +199,49 @@ $calendarWrap
 var $likeBtn = $("#likeBtn");
 
 $likeBtn.on("click", function() {
+  console.log('loginUserNo:', loginUserNo);
+  if (loginUserNo == 0) {
+    alert("로그인이 필요합니다.");
+    return false;
+  }
+
   var heart = $(this).children("i");
 
-  if (heart.hasClass("far")) {
-    heart.attr("class", "fas fa-heart");
+  //찜삭제
+  if (heart.hasClass("fas")) {
+    $.ajax({
+      url : "/ajax/likeService/delete.poom",
+      dataType: "json",
+      data: {
+        "serviceNo": serviceNo
+      },
+      error: function() {
+
+        console.log("error");
+      },
+      success: function(json) {
+        console.log(json);
+        heart.attr("class", "far fa-heart");
+      }
+    })
+
   } else {
-    heart.attr("class", "far fa-heart");
+    //찜등록
+    $.ajax({
+      url: "/ajax/likeService/register.poom",
+      dataType: "json",
+      data: {
+        "serviceNo": serviceNo
+      },
+      error: function() {
+
+        console.log("error");
+      },
+      success: function(json) {
+        console.log(json);
+        heart.attr("class", "fas fa-heart");
+      }
+    })
   }// if~else end
 });// $likeBtn.on("click") end
 
@@ -278,7 +315,7 @@ $detailsSendContractBtn.click(function() {
 })
 // 게시판 탭 클릭 시
 var $boardGnb = $("#detailsBoardGnb .board_gnb");
-
+var $chartArea = $("#chartArea");
 $boardGnb.click(function(evt) {
   evt.preventDefault();
 
@@ -291,36 +328,34 @@ $boardGnb.click(function(evt) {
   console.log('index:', index);
   if (index === 1) {
     getReviews(serviceNo, 1);
+    var container = document.getElementById('chartArea');
+    var options = {
+      chart: {
+        width: 320,
+        height: 296
+      },
+      series: {
+        showDot: false,
+        showArea: false
+      },
+      plot: {
+        type: 'circle'
+      },
+      legend: {
+        visible: false
+      },
+      chartExportMenu: {
+        visible: false
+      }
+    };
+    $chartArea.empty();
+    var chart = tui.chart.radialChart(container, chartData, options);
   } else if (index === 2) {
     getQuestions(serviceNo, 1);
   }
 
   // 클릭 li에 맞는 .box_board에 on클래스 추가
   $("#detailsBoardBox .box_board:eq(" + index + ")").addClass("on");
-
-  var container = document.getElementById('chartArea');
-
-  var options = {
-    chart: {
-      width: 333,
-      height: 300
-    },
-    series: {
-      showDot: false,
-      showArea: false
-    },
-    plot: {
-      type: 'circle'
-    },
-    legend: {
-      visible: false
-    },
-    chartExportMenu: {
-      visible: false
-    }
-  };
-
-  var chart = tui.chart.radialChart(container, data, options);
 
 });// $boardGnb.click() end
 
@@ -331,7 +366,7 @@ var $replyTmp = $("#replyTmp"), replyTmpHtml = $replyTmp.html(), replyTmp = _
 
 // 리뷰 '답변하기' 클릭 시
 $("#reviewsWrap").on("click", "button.btn_reply", function() {
-  
+
   console.log('reviews btn_reply');
   $wrap = $(this).closest("li");
   var markup = replyTmp({
@@ -371,13 +406,14 @@ $(".contents_board").on("click", ".wrap_popup_reply .btn_reply_register",
           // '답변하기' 버튼 사라짐
           $(this).parents(".box_contents").children(".btn_reply").remove();
         });
-  
+
 // 문의 등록 ajax
 function registerQuestion(serviceNo, userNo, content) {
   if (content.length) var dataset = {
     "serviceNo": serviceNo,
     "userNo": userNo,
     "content": content,
+    "page": 1
   };
 
   $.ajax({
@@ -392,10 +428,12 @@ function registerQuestion(serviceNo, userNo, content) {
 
       // 탬플릿 생성
       var markup = tmp({
-        "list": data
+        "list": data.list,
+        "paginate": data.paginate
       });
       $('#questionsWrap').html(markup);
 
+      $(".board_gnb.gnb_question").text("문의(" + data.countTotal + ")");
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);
@@ -403,18 +441,20 @@ function registerQuestion(serviceNo, userNo, content) {
   });// end .ajax
 }
 
-//
 function getQuestions(serviceNo, page) {
   var dataset = {
     "serviceNo": serviceNo,
     "page": page
   };
+  var url = "/ajax/question.poom?serviceNo=" + serviceNo + "&page=" + page;
+  getQuestionsByUrl(url);
+}
+function getQuestionsByUrl(url) {
 
   $.ajax({
-    url: "/ajax/question.poom",
+    url: url,
     type: 'GET',
     dataType: "json",
-    data: dataset,
     success: function(data) {
       console.log(data);
 
@@ -422,7 +462,8 @@ function getQuestions(serviceNo, page) {
 
       // 탬플릿 생성
       var markup = tmp({
-        "list": data
+        "list": data.list,
+        "paginate": data.paginate
       });
       $('#questionsWrap').html(markup);
 
@@ -433,25 +474,42 @@ function getQuestions(serviceNo, page) {
   });// end .ajax
 }
 
+$(".contents_board").on("click", ".paginate>a", function(e) {
+  var $this = $(this);
+  console.log($this.attr("href"));
+  var data = $this.closest("ul").data('type');
+  if (data == 'review') {
+    getReviewsByUrl($this.attr("href"));
+  } else {
+    getQuestionsByUrl($this.attr("href"));
+  }
+  e.preventDefault();
+})
+
 function getReviews(serviceNo, page) {
   var dataset = {
     "serviceNo": serviceNo,
     "page": page
   };
+  var url = "/ajax/review.poom?serviceNo=" + serviceNo + "&page=" + page;
+  getReviewsByUrl(url);
+}
+
+function getReviewsByUrl(url) {
 
   $.ajax({
-    url: "/ajax/review.poom",
+    url: url,
     type: 'GET',
     dataType: "json",
-    data: dataset,
     success: function(data) {
-      console.log(data);
+      console.log(data.list);
 
       var tmp = _.template($("#reviewsTmp").html());
 
       // 탬플릿 생성
       var markup = tmp({
-        "list": data
+        "list": data.list,
+        "paginate": data.paginate
       });
       $('#reviewsWrap').html(markup);
 
@@ -465,18 +523,21 @@ function getReviews(serviceNo, page) {
 function updateReply(serviceNo, no, boardType, reply) {
   var dataset = {
     "no": no,
-    "serviceNo" : serviceNo,
-    "boardType" : boardType,    
+    "serviceNo": serviceNo,
+    "boardType": boardType,
     "reply": reply
   };
-  var url = ""; 
-  
+  var url = "";
+
   if (boardType == 'reviews') {
-    url = "/ajax/reviewReplyUpdate.poom";    
+    url = "/ajax/reviewReplyUpdate.poom";
+    dataset.page = $("#reviewsWrap  div.paginate>strong").text();
   } else {
-    url = "/ajax/questionReplyUpdate.poom";    
+    url = "/ajax/questionReplyUpdate.poom";
+    dataset.page = $("#questionsWrap  div.paginate>strong").text();
   }
-  
+
+  console.log(dataset);
   $.ajax({
     url: url,
     type: 'POST',
@@ -488,7 +549,10 @@ function updateReply(serviceNo, no, boardType, reply) {
       var tmp = _.template($("#" + boardType + "Tmp").html());
 
       // 탬플릿 생성
-      var markup = tmp({list : data});
+      var markup = tmp({
+        list: data.list,
+        paginate: data.paginate
+      });
       $("#" + boardType + "Wrap").html(markup);
 
     },

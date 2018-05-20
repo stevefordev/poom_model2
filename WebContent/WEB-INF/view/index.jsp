@@ -597,6 +597,7 @@ body {
 	<%@ include file="/WEB-INF/view/templates/js.jsp"%>
 	<script>
 		var loginUser = '${loginUser}';
+		var loginUserNo = '${loginUser.no}';
 	</script>
 	<script src="/js/popup_login_join.js?date=201804162"></script>
 	<script src="/js/card_util.js?date=2018005112122"></script>

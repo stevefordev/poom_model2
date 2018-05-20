@@ -1,6 +1,7 @@
 package com.coddington.poom.dao;
 
 import java.util.List;
+import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import com.coddington.poom.vo.Review;
 
@@ -19,9 +20,9 @@ public class ReviewsDAOImpl implements ReviewsDAO {
   }
   
   @Override
-  public List<Review> selectList(int serviceNo) {
+  public List<Review> selectList(Map<String, Object> map) {
     // TODO Auto-generated method stub
-    return session.selectList("reviews.selectList", serviceNo);
+    return session.selectList("reviews.selectList", map);
   }
 
   @Override

@@ -48,8 +48,8 @@ var cardUtil = {
 $("#cardBox, #cardBoxGiver,#cardBoxTaker,.contract_service, .pay_contents").on(
 		'click', '.heart, .box_heart', function() {
 			
-			console.log('loginUser:', loginUser);
-			if(loginUser.length == 0 ) {
+			console.log('loginUserNo:', loginUserNo);
+			if(loginUserNo == 0 ) {
 				alert("로그인이 필요합니다.");
 				return false;
 			}
@@ -86,7 +86,7 @@ $("#cardBox, #cardBoxGiver,#cardBoxTaker,.contract_service, .pay_contents").on(
 						"serviceNo" : $this.data('service_no')
 					},
 					error : function() {
-						alert("로그인이 필요합니다.");
+						 
 						console.log("error");
 					},
 					success : function(json) {

@@ -107,6 +107,28 @@ public class ServicesController {
 
 		return servicesService.deleteLikeSevice(likeService);
 	}
+	
+	/**
+     * 찜 체크
+     * @param serviceNo
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/ajax/likeService/check.poom")
+    @ResponseBody
+    public boolean checkLikeService(int serviceNo, HttpSession session) {
+
+        User loginUser = (User) session.getAttribute(User.LOGIN_USER);
+
+        int userNo = loginUser.getNo();
+
+        LikeService likeService = new LikeService();
+
+        likeService.setServiceNo(serviceNo);
+        likeService.setUserNo(userNo);
+
+        return servicesService.checkLikeSevice(likeService);
+    }
 
 	/**
 	 * 서비스 상세
