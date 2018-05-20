@@ -77,14 +77,42 @@
 	
 }
 
-#detailsInfoBox {
-	background-color: #fff;
-	width: 780px;
-	min-height: 500px;
+#detailsProfileBox {
+	/*background-color: #f2c641;*/
+	width: 400px;
+	height: 400px;
+	margin: 20px 20px 0 0px;
 	float: left;
-	margin: 20px 0;
-	position: relative;
+	position : relative;
 }
+
+#userProfile i {
+	font-size: 300px;
+}
+
+#userNickname {
+	/*background-color: #bfbfbf;*/
+	font-size: 80px;
+	margin-top: 20px;
+}
+
+
+#takerUserProfile {
+	/*background-color: #80D8FF;*/
+	width: 300px;
+	height: 400px;
+	margin: auto;
+}
+ 
+#takerUserProfile a {
+	display: inline-block;
+	/*background-color: #00C853;*/
+	width: 320px;
+	height: 320px;
+	text-decoration: none;
+	text-align: center;
+	color: #1f2b43;
+} 
 
 #userProfile {
 	/*background-color: #80D8FF;*/
@@ -114,12 +142,27 @@
 	background-repeat: no-repeat;
 }
 
+#takerUserProfile #takerProfileImg {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%; 
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
 #userNickname {
 	/*background-color: #bfbfbf;*/
 	font-size: 35px;
 	margin-top: 5px;
 }
-
+#detailsInfoBox {
+	background-color: #fff;
+	width: 780px;
+	min-height: 500px;
+	float: left;
+	margin: 20px 0;
+	position: relative;
+}
 #detailsInfo {
 	/*background-color: lightpink;*/
 	width: 380px;

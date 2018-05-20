@@ -711,10 +711,10 @@ dl.schedule dd .schedule_view>table td:hover button {
 		<dl class="section role">
 			<dt class="section_title">역할</dt>
 			<dd class="section_detail">
-				<input type="radio" id="roleGiver" name="role" value="g"
+				<input type="radio" id="roleGiver" name="role" value="1"
 					${service.roleChar == "g" ? "checked" : "" }> 
 					<label for="roleGiver">품을 주고 싶어요</label> 
-				<input type="radio" id="roleTaker" name="role" value="t"
+				<input type="radio" id="roleTaker" name="role" value="2"
 					${service.roleChar == "t" ? "checked" : "" }> 
 					<label for="roleTaker">품을 받고 싶어요</label>
 			</dd>
