@@ -729,7 +729,7 @@
 
 #recommendationsBox {
 	/*background-color: #FFDE2F;*/
-	width: 1080px;
+	width: 1200px;
 	min-height: 300px;
 	margin: 20px auto 0 auto;
 	/*자식 높이 찾게 하기 위해*/
@@ -737,7 +737,7 @@
 }
 
 #recommendationsBox #cardBox {
-	width: 1080px;
+	width: 1200px;
 }
 
 #recommendationsBox h3 {

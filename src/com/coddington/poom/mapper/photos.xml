@@ -13,5 +13,9 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE service_no = #{serviceNo}
 	</select>
 
+	<insert id="insert" parameterType="Photo">
+		INSERT INTO photos (no, service_no, filename, regdate)
+		VALUES (photos_seq.nextval, #{serviceNo}, #{filename}, systimestamp)
+	</insert>
 
 </mapper>

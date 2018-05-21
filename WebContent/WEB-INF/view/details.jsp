@@ -22,7 +22,8 @@ body {
 
 #cardBox>.card {
 	float: left;
-	margin-right: 10px;
+	margin-right: 25px;
+	margin-left: 25px;
 }
 
 #likeBtn .fa-heart {
@@ -50,9 +51,14 @@ body {
 					</button>
 				</div>
 				<div class="profileserviceimg_wrap">
-					<c:forEach items="1,2,1,2" var="img">
+					<c:forEach items="${photos }" var="photo">
 						<div class="profileservice_img">
-							<img src="/img/edu/lesson${img }.png" />
+							<img src="/img/service/${photo.filename}" />
+						</div>
+					</c:forEach>
+					<c:forEach items="${service.photoUrl }" var="photo">
+						<div class="profileservice_img">
+							<img src="/img/${service.categoryEng}/${photo}" />
 						</div>
 					</c:forEach>
 				</div>
@@ -64,8 +70,8 @@ body {
 			<div id="detailsProfileBox">
 				<h3 class="screen_out">프로필</h3>
 				<div id="takerUserProfile" class="taker">
-					<a href="#"> <img id="takerProfileImg"
-						src="/img/profile/${service.userPhotoUrl }" />
+					<a href="/profile.poom?no=${service.userNo }"> <img
+						id="takerProfileImg" src="/img/profile/${service.userPhotoUrl }" />
 						<div id="userNickname">${service.userNickName }</div>
 					</a>
 				</div>
@@ -570,7 +576,7 @@ body {
           $("#likeBtn>i").attr("class", "fas fa-heart");
         }
       }).fail(function(data) {
-        console.log('error',data);
+        console.log('error', data);
       });
     }
 
@@ -587,16 +593,20 @@ body {
     });
 
     // 답변하기 submit
-    $(".contents_board").on(
-            "click",
-            ".btn_reply_confirm",
-            function() {
-              var reply = $("#inputReply").val();
-              $this = $(this);
-              console.log('reply:', reply);
-              updateReply(serviceNo, $this.data('no'), $this
-                      .data('boardtype'), reply);
-            });
+    $(".contents_board").on("click", ".btn_reply_confirm", function() {
+      var reply = $("#inputReply").val();
+      $this = $(this);
+      console.log('reply:', reply);
+      updateReply(serviceNo, $this.data('no'), $this.data('boardtype'), reply);
+    });
+
+    cardUtil.dataset = {
+      "level": 1,
+      "count": 5,
+      "role": 1
+    };
+    cardUtil.getCardList("/ajax/recommendationCardList.poom", $("#cardBox"),
+            ".img_box");
   </script>
 </body>
 </html>

@@ -218,7 +218,7 @@
 						해야 입금이 완료됩니다.</span>
 				</div>
 				<div class="photo">
-					<canvas id="canvas" width="360" height="360"></canvas>
+					<img src="/img/blank_image.jpg"></img>
 				</div>
 			</div>
 			<div class="btn_group">

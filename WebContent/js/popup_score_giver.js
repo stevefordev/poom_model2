@@ -17,60 +17,37 @@ $contractServiceBox.on('click', '#scoreByGiverRegisterForm .score_bad',function 
 //    ctx = canvas.getContext("2d"),//context 객체
 //    reader = new FileReader();//파일리더 객체
 //
-//$contractServiceBox.on("change", "#scoreByGiverRegisterForm #servicePhotoInput", function () {
-//    console.log('a');
-//    //input type=file요소는 files배열을 가지고 있음
-//    //각 번지에는 File객체가 들어가 있음
-//    var file = this.files[0];
-//    //File객체의 속성
-//    // - name : 파일의 이름
-//    // - size : 파일의 사이즈(바이트)
-//    // - lastModified : 최종수정일(UNIX타임)
-//    // - type : 파일타입(MIME타입)
-//    // console.log(file.name);
-//    // console.log(file.size);
-//    // console.log(file.lastModified);
-//    // console.log(file.type);
-//    //1) 제대로된 파일인지 확인
-//    if(file.size<=0) {
-//        alert("제대로 된 파일을 선택하세요!");
-//        return;
-//    }//if end
-//    //2) 이미지 파일만 가능하게 확인
-//    if(!reg.test(file.type)) {
-//        alert("이미지를 선택해주세요!!");
-//        return;
-//    }//if end
-//    //여기까지 왔다는 것은
-//    //파일사이즈가 0이 아니고(제대로 된 파일)
-//    //이미지파일만
-//    //3) FileReader객체를 통해서 읽어옵니다.
-//    reader.readAsDataURL(file);
-//    //4) 다 읽어와서 로딩되면
-//    reader.onload = function () {
-//        //alert("다 읽어왔습니다!");
-//        //5) 다 읽은 결과물(base64인코딩)을 얻음
-//        //var result =  reader.result;
-//        var result =  this.result;
-//        //console.log(result);
-//        //6) 이미지 객체 생성
-//        var img = new Image();
-//        //7) 이미지객체의 src속성에 대입
-//        img.src = result;
-//        //8) 이미지가 로딩되면
-//        img.onload = function () {
-//            if (this.width<canvas.width || this.height < canvas.height) {
-//                alert("이미지가 너무 작습니다. 가로 세로 400px 이상으로 선택 바랍니다.");
-//                return;
-//            }
-//            //$("body").append(img);
-//            //9) 캔버스에 그림을 그림
-//            ctx.clearRect(0, 0, canvas.width, canvas.height);
-//            ctx.drawImage(this,0,0,this.width,this.height,0,0,canvas.width ,canvas.height );
-//
-//        }//onload 이벤트핸들러
-//    }//onload 이벤트핸들러
-//});//change() end
+var servicePhoto = "blank_image.jpg";
+$contractServiceBox.on("change", "#scoreByGiverRegisterForm #servicePhotoInput", function () {
+    console.log('#servicePhotoInput');
+    var data = new FormData();
+
+    var file = $("#servicePhotoInput").get(0).files[0];
+
+    data.append('upload', file);
+    data.append('width', 400);
+    data.append('height', 400);
+
+    $.ajax({
+      url : '/ajax/registerServicePhoto.poom',
+      type : "post",
+      dataType : "json",
+      data : data,
+      processData : false,
+      contentType : false,
+      success : function(json) {
+        console.log(json);
+ 
+        $('.popup.scoreByGiver div.photo>img').attr('src', '/img/service/' + json.name);
+        servicePhoto = json.name;
+      },
+      error : function(jqXHR, textStatus, errorThrown) {
+
+        alert(textStatus);
+      }
+    });
+   
+});//change() end
 
 
 //giver가 평점 등록할 때
@@ -102,16 +79,15 @@ $contractServiceBox.on("submit", "#scoreByGiverRegisterForm", function (e) {
 	
 	var contractNo = $('input[name=no]').val();
 	//console.log(contractNo);
-	
-	
-	
+	  
 	$.ajax({
 		url: "/ajax/updateScoreFromGiver.poom",
 		data: {
 			scoreUser: scoreUser,
 			scorePrice: scorePrice,
 			no: contractNo,
-			serviceNo: detailList.contractList[0].serviceNo
+			serviceNo: detailList.contractList[0].serviceNo,
+			servicePhoto: servicePhoto
 		},
 		type: "post",
 		error: function (xhr, err, code) {
