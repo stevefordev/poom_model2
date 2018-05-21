@@ -15,6 +15,48 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		  FROM contracts
 		  WHERE service_no=#{serviceNo} AND status=#{status}
 	</select>
+	
+	<select id="selectContractList" parameterType="map" resultType="Contract" >
+		SELECT c.no no, u1.no giverNo, u1.nick_name giverNickname, u1.photo_url giverProfile, 
+			   u2.no takerNo, u2.nick_Name takerNickname, u2.photo_url takerProfile, c.service_no serviceNo, c.poom poom,
+			   c.status status, c.score_user scoreUser, c.score_price scorePrice, c.score_kind scoreKind,
+			   c.score_knowhow scoreKnowhow, c.score_honest scoreHonest, c.area1 area1, c.area2 area2,
+			   c.detail_address1 detailAddress1, c.detail_address2 detailAddress2, c.latitude latitude,
+			   c.longitude longitude, c.content content, c.regdate regdate
+		FROM contracts c, users u1, users u2
+		WHERE c.giver_no = u1.no 
+			  AND c.taker_no = u2.no
+			  AND (u1.no = #{userNo} or u2.no = #{userNo})
+			  AND c.service_no = #{cardNo}
+		      AND c.status = #{contractStatus}
+        ORDER BY c.regdate DESC
+	</select>
+	  
+	<update id="updateContractStatus" parameterType="map">
+		UPDATE contracts
+		SET status = #{status}
+		WHERE no = #{contractNo}
+	</update>
+	
+	<delete id="deleteContract" parameterType="int">
+		DELETE contracts
+		WHERE no = #{contractNo}
+	</delete>
+	
+	<insert id="updateScoreFromTaker" parameterType="Contract">
+		UPDATE contracts
+		SET score_price = #{scorePrice},
+			score_kind = #{scoreKind},
+			score_knowhow = #{scoreKnowhow},
+			score_honest = #{scoreHonest}
+		WHERE no = #{no}
+	</insert>
+	
+	<insert id="updateScoreFromGiver" parameterType="Contract">
+		UPDATE contracts
+		SET score_user = #{scoreUser}
+		WHERE no = #{no}
+	</insert>
 
 	<select id="selectScoreAndCountByServiceNo" parameterType="int" resultType="com.coddington.poom.util.CamelHashMap">
 		SELECT (CASE WHEN count_done > 0 THEN (score_user / count_done * 100) ELSE 0 END) score_taker, 

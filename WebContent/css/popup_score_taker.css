@@ -7,7 +7,7 @@
     top: 0px;
     bottom: 0px;
     right: 0px;
-    display: none;
+   
     z-index: 9999;
     overflow: auto;
 }
@@ -38,6 +38,10 @@
     font-weight: bold;
 }
 
+#scoreByTaker dl dt span {
+	position: static;	
+}
+
 #scoreByTaker dl dd{
     width: 320px;
     height: 200px;
@@ -65,12 +69,12 @@
 }
 dd.score>div>label.good {
     background-repeat:no-repeat;
-    background-image:url('../img/sun.svg');
+    background-image: url('/img/sun.svg');
     background-position: left center;
 }
 dd.score>div>label.bad {
     background-repeat:no-repeat;
-    background-image:url('../img/rain.svg');
+    background-image:url('/img/rain.svg');
     background-position: left center;
 }
 /* 구름 비 클릭시*/
@@ -126,8 +130,21 @@ dd.score>div>label.bad {
     border: none;
     border-radius: 10px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
+
 }
 #scoreByTaker input[type=button].cancel {
     background: #828282;
+}
+
+#scoreByTaker .btn_group button {
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    background: #1f2b43;
+    height: 60px;
+    width: 100px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

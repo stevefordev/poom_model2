@@ -18,8 +18,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE
 		contract_no=#{contactNo}
 	</select>
-
-
+ 
 	<select id="selectCountByServiceNo" parameterType="int"
 		resultType="int">
 		SELECT count(cs.no)
@@ -35,5 +34,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE schedule_no = #{scheduleNo}
 	</select>
 
+	<select id="selectScheduleListByContractNo" parameterType="int" resultType="ContractSchedule">
+		SELECT no, contract_no contractNo, service_date serviceDate, regdate
+		FROM contract_schedules
+		WHERE contract_no = #{contractNo}
+		ORDER BY service_date
+	</select>
+
+	<delete id="deleteByContractNo" parameterType="int">
+		DELETE contract_schedules
+		WHERE contract_no = #{contractNo}
+	</delete>
 	
 </mapper>

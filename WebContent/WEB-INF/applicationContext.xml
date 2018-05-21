@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
 	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Spring관련 설정하는 곳 -->
 
 	<!-- WAS(Tomcat)가 context.xml로 만든 DataSource를 JNDI기술로 얻어오는(불러오는) 설정 -->
-	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/oraclexe" />
+	<jee:jndi-lookup id="dataSource"
+		jndi-name="java:comp/env/oraclexe" />
+	<!-- transactionManager Bean 등록 -->
+	<bean id="transactionManager" p:dataSource-ref="dataSource"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager" />
 
 	<!-- SqlSessionFactory 설정 -->
 	<bean id="sqlSessionFactory" p:dataSource-ref="dataSource"
-		p:configLocation="WEB-INF/mybatis-config.xml" class="org.mybatis.spring.SqlSessionFactoryBean" />
+		p:configLocation="WEB-INF/mybatis-config.xml"
+		class="org.mybatis.spring.SqlSessionFactoryBean" />
 
 	<!-- SqlSession 설정 -->
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
@@ -49,32 +60,34 @@
 
 
 	<!-- Service 설정 -->
-	<bean id="coinTransactionsService" p:coinTransactionsDAO-ref="coinTransactionsDAO"
+	<bean id="coinTransactionsService"
+		p:coinTransactionsDAO-ref="coinTransactionsDAO"
 		class="com.coddington.poom.service.CoinTransactionsServiceImpl" />
 
-	<bean id="servicesService" 
-		p:servicesDAO-ref="servicesDAO"
-		p:contractsDAO-ref="contractsDAO"
-		p:tagsDAO-ref="tagsDAO" 
-		p:reviewsDAO-ref="reviewsDAO"
-		p:questionsDAO-ref="questionsDAO"
+	<bean id="servicesService" p:servicesDAO-ref="servicesDAO"
+		p:contractsDAO-ref="contractsDAO" p:tagsDAO-ref="tagsDAO"
+		p:reviewsDAO-ref="reviewsDAO" p:questionsDAO-ref="questionsDAO"
 		p:schedulesDAO-ref="schedulesDAO"
 		p:serviceTagsDAO-ref="serviceTagsDAO"
 		p:contractSchedulesDAO-ref="contractSchedulesDAO"
-		p:likeServicesDAO-ref="likeServicesDAO"
+		p:likeServicesDAO-ref="likeServicesDAO" p:photosDAO-ref="photosDAO"
 		class="com.coddington.poom.service.ServicesServiceImpl" />
 
 	<bean id="usersService" p:usersDAO-ref="usersDAO"
+		p:relationshipsDAO-ref="relationshipsDAO"
 		class="com.coddington.poom.service.UsersServiceImpl" />
 
-	<bean id="contractsService" 
-	p:contractsDAO-ref="contractsDAO"
-	p:contractSchedulesDAO-ref="contractSchedulesDAO" 
-	class="com.coddington.poom.service.ContractsServiceImpl"/>
-	
+	<bean id="contractsService" p:contractsDAO-ref="contractsDAO"
+		p:contractSchedulesDAO-ref="contractSchedulesDAO"
+		class="com.coddington.poom.service.ContractsServiceImpl" />
+
 	<bean id="questionsService" p:questionsDAO-ref="questionsDAO"
-	class="com.coddington.poom.service.QuestionsServiceImpl"/>
-	
+		class="com.coddington.poom.service.QuestionsServiceImpl" />
+
 	<bean id="reviewsService" p:reviewsDAO-ref="reviewsDAO"
-	class="com.coddington.poom.service.ReviewsServiceImpl"/>
+		class="com.coddington.poom.service.ReviewsServiceImpl" />
+
+	<bean id="relationshipsService"
+		p:relationshipsDAO-ref="relationshipsDAO"
+		class="com.coddington.poom.service.RelationshipsServiceImpl" />
 </beans>

@@ -7,157 +7,152 @@
     top: 0px;
     bottom: 0px;
     right: 0px;
-    display: none;
+    font: 600 20px 'Noto Sans KR', sans-serif;
     z-index: 9998;
     overflow: auto;
 }
 
 #detailContractPopup {
+	color: #1f2b43;
     width: 380px;
-    min-height: 500px;
-    background: #f2c641;
+    padding: 20px 10px 10px 10px;
+    min-height: 100px;
+    background-color: lightgrey;
     position: fixed;
-    top: 50%;
     left: 50%;
-    margin-top: -230px;
+    margin-top: 20px;
     margin-left: -190px;
     z-index: 9999;
+    oveflow: hidden;
 }
 
 #detailContractPopup dl {
-    width: 350px;
+    width: 320px;
     min-height: 100px;
-    position: absolute;
-    left: 30px;
-    top: 25px;
+    margin: auto;
+    /*background-color: blue;*/
+    overflow: hidden;
+   
+
 }
 
-#detailContractPopup dl > dd {
-    width: 232px;
-    min-height: 60px;
-    position: relative;
-    float: left;
+#detailContractPopup dl>dd {
+    width: 170px;
+    float: right;
+    /*background-color: pink;*/
+    /*outline: 1px #424242 solid;*/
+    text-align: left;
+    padding-left: 50px;
 }
 
-#detailContractPopup dl dt {
-
-    padding: 4px;
-    text-align: center;
+#detailContractPopup dl>dt {
+	float: left;
     height: 60px;
     width: 100px;
     color: #1f2b43;
-    font: 600 15px 'Noto Sans KR', sans-serif;
-    vertical-align: middle;
+  	text-align: center;
+    font-size: 18px;
     line-height: 60px;
-    float: left;
-    clear: left;
+    /*background-color: lightpink;*/
+   /*outline: 1px #424242 solid;*/
+}
+#detailContractPopup dl>dt.info_schedule {
+	height: 20px;
+	line-height: 20px;
 }
 
-#giverName {
-    text-decoration: none;
-    position: absolute;
-    top: 23px;
-    left: 70px;
-    color: #1f2b43;
-    font: 600 15px 'Noto Sans KR', sans-serif;
-}
-
-#takerName {
-    text-decoration: none;
-    position: absolute;
-    top: 23px;
-    left: 70px;
-    color: #1f2b43;
-    font: 600 15px 'Noto Sans KR', sans-serif;
-}
-
-#detailContractProfileImg {
+#detailContractPopup .person .img_profile {
     width: 50px;
     height: 50px;
-    background-image: url("../img/profile/kimbum.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    left: 10px;
-    top: 8px;
+    vertical-align: middle;
+    margin-top: 4px;
 }
 
-#detailContractProfileImg2 {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-image: url("../img/profile/oh.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-    position: absolute;
-    left: 10px;
-    top: 8px;
+#detailContractPopup .person .nickname {
+    vertical-align: -webkit-baseline-middle;
+    margin-left: 10px;
 }
 
-#detailContractPopup button {
-    padding: 6px 10px;
+#detailContractPopup .btn_handle_contract {
+	padding: 6px 10px;
     outline: none;
     border: none;
     border-radius: 3px;
     color: #fff;
-    font: 600 15px 'Noto Sans KR', sans-serif;
     transition: .2ms;
+	background-color:#1f2b43;
+	cursor: pointer;
+   	font: 600 15px 'Noto Sans KR', sans-serif;
+   	margin-top: 10px;
+   	float: right;
+   	margin-left: 5px;
 }
 
-#detailContractPopup button:hover {
-    cursor: pointer;
+#detailContractPopup .btn_handle_contract:active {
+	background-color:#3f475a;
 }
 
-#detailokBtn {
-    background:#1f2b43;
-    position: absolute;
+#detailContractPopup #acceptBtn {
     left: 260px;
-    top: 450px;
 }
-#detailContractPopup #detailokBtn:active {
-    background:#3f475a;
 
-}
-#detailnoBtn {
-    background:#1f2b43;
-    position: absolute;
+#detailContractPopup #rejectBtn {
     left: 320px;
-    top: 450px;
 }
 
-#calendar {
-    color: #1f2b43;
-    position: absolute;
-    left: 10px;
-    top: 12px;
-    font: 600 15px 'Noto Sans KR', sans-serif;
+#detailContractPopup #area {
+	line-height: 60px;
 }
 
-#price {
-    color: #1f2b43;
-    position: absolute;
-    left: 10px;
-    top: 23px;
-    font: 600 15px 'Noto Sans KR', sans-serif;
+#detailContractPopup dt.info.price {
+		height: 80px;
+		line-height: 80px;
 }
 
-#area {
-    color: #1f2b43;
-    position: absolute;
-    left: 10px;
-    top: 23px;
-    font: 600 15px 'Noto Sans KR', sans-serif;
+#detailContractPopup #price div:nth-child(1) {
+	font-size: 20px;
+	height: 40px;
+	line-height: 55px;
 }
 
-#comment {
-    color: #1f2b43;
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    font: 600 15px 'Noto Sans KR', sans-serif;
+#detailContractPopup #price div:nth-child(2) {
+	font-size: 15px;
+	height: 40px;
+}
+
+#detailContractPopup .person, 
+#detailContractPopup #area {
+	height: 60px;
+}
+
+#detailContractPopup dl dd.person span,
+#detailContractPopup dl dd#area span {
+	position: static;
+}
+
+#detailContractPopup #schedule {
+	font-size: 14px;
+    min-height: 20px;
+}
+#detailContractPopup #content {
+	font-size: 15px;
+	min-height: 60px;
+	padding: 0 0 0 50px;
+	
+	display: table;
+}
+#detailContractPopup #content div {
+	display: table-cell;
+	vertical-align: middle;
+	
+	/*
+		div안에 여러 줄을 세로로 가운데 정렬하기
+		1. text자체를 감싸는 div로 만들고
+		2. 부모div에 display: table;
+		3. 아까 감싼 div에 display: table-cell, vertical-align: middle;
+	*/
 }

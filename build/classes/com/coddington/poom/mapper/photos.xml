@@ -6,5 +6,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="photos">
 
+	<select id="selectByServiceNo" parameterType="int"
+		resultType="Photo">
+		SELECT no, service_no serviceNo, filename, regdate
+		FROM photos
+		WHERE service_no = #{serviceNo}
+	</select>
+
 
 </mapper>

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
  /* 팝업 바탕 반투명 */
-        .popup.containerContractProgressive {
+        .popup.container_contract_progressive {
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
@@ -10,10 +10,15 @@
             left: 0px;
             top: 0px;
             /*처음에는 보이지 않게*/
-            display: none;
+           
             z-index: 9990;
             
         }
+        
+        .popup.container_contract_progressive.on {
+        	display: block;
+        }
+        
         /*실제 계약서 진행 내용 틀*/
         #containerContractProgressive {
             width: 500px;
@@ -37,23 +42,38 @@
             width: 33.33%;
             position: relative;
             text-align: center;
+            color: #000;
         }
+        
+		#containerContractProgressive .progressbar li span{
+			position: static;
+			color: #000;		
+		}
         /* 진행 번호(원형)*/
         .progressbar li:before{
-            content: counter(step);
-            counter-increment: step;
-            width: 30px;
+           
+            width: 60px;
             height: 30px;
             line-height: 30px;
             border: 1px solid #828282;
             display: block;
             text-align: center;
             margin: 0 auto 10px auto;
-            border-radius: 50%;
+            
             background: white;
             z-index: 10;
             position: relative;
         }
+        .progressbar li:first-child:before {
+        	content: '대기';
+        }
+        .progressbar li:nth-child(2):before {
+        	content: '진행';
+        }
+        .progressbar li:last-child:before {
+        	content: '완료';
+        }
+        
         /* 진행 선 */
         .progressbar li:after{
             content: '';
@@ -83,6 +103,7 @@
         #containerContractProgressive dl {
             position: relative;
             margin-top: 10px;
+            line-height: 25px;
         }
         #containerContractProgressive dt,
         #containerContractProgressive dd.user{
@@ -92,8 +113,12 @@
         #containerContractProgressive dd {
             font-size: 20px;
         }
+        #containerContractProgressive dd span {
+        	position: static;
+        }
+        
         #containerContractProgressive dt.user {
-
+			font-size: 20px;
             line-height: 50px;
         }
         #containerContractProgressive dd.user {
@@ -169,18 +194,38 @@
         #containerContractProgressive dd.info {
             width: 310px;
             min-height: 50px;
-            line-height: 44px;
             margin-left: 140px;
         }
 
         #containerContractProgressive dd.info.price {
-
+			line-height: 50px;
             font-weight: bold;
             font-size: 26px;
         }
 
-        #containerContractProgressive dd.info.msg {
-            line-height: 28px;
+        #containerContractProgressive dd.info.msg,
+        #containerContractProgressive dd.info.region {
+            display: table;
+        }
+        
+        #containerContractProgressive dd.info.msg p,
+        #containerContractProgressive dd.info.region div {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        #containerContractProgressive dd.info.schedule {
+        	
+        } 
+        
+        #containerContractProgressive dd.info.schedule div {
+        	/*display: inline-block;
+        	vertical-align: middle;*/
+        }
+        
+        /*진행된 스케쥴 일정 색깔 다르게*/
+        #containerContractProgressive dd.info.schedule div.checked {
+        	color: #2e7965;
         }
 
         #containerContractProgressive .btn_group {
@@ -223,6 +268,15 @@
             top: 10px;
             right: 20px;
         }
+        
+        /*평점 버튼 비활성화*/
+        #containerContractProgressive button:nth-child(3).off {
+        	cursor: default;
+        	background-color: #C0C0C0;
+        	color: #424242;
+        	box-shadow: none;
+        }
+        
         #containerContractProgressive button:nth-child(4) {
 
         }

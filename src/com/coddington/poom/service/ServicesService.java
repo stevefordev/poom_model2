@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.coddington.poom.vo.Card;
+import com.coddington.poom.vo.Contract;
 import com.coddington.poom.vo.LikeService;
 import com.coddington.poom.vo.Question;
 import com.coddington.poom.vo.Service;
@@ -31,6 +32,20 @@ public interface ServicesService {
 	public Map<String, Object> registerLikeSevice(LikeService likeService);
 
 	public Map<String, Object> deleteLikeSevice(LikeService likeService);
-	
+
 	public boolean checkLikeSevice(LikeService likeService);
+
+	public List<Card> getLikeServiceCard(int likeServiceUserNo);
+
+	public boolean deleteLikeService(LikeService likeService);
+
+	public List<Card> getContractServiceCardList(int contractStatus, String contractType, int userNo);
+
+	public Map<String, Object> getContractList(int contractStatus, int cardNo, int userNo);
+
+	public boolean updateContractStatus(int contractNo, int btnType);
+
+	public boolean updateScoreFromTaker(Contract contract, String reviewContent, int userNo);
+
+	public boolean updateScoreFromGiver(Contract contract, int userNo);
 }

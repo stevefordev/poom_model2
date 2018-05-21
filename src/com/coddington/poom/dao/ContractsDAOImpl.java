@@ -31,4 +31,34 @@ public class ContractsDAOImpl implements ContractsDAO {
 		// TODO Auto-generated method stub
 		return session.selectList("contracts.selectListByServiceNo", contract);
 	}// selectListByServiceNo() end
+
+	@Override
+	public List<Contract> selectContractList(Map<String, Object> contractMap) {
+		// TODO Auto-generated method stub
+		return session.selectList("contracts.selectContractList", contractMap);
+	}
+
+	@Override
+	public int updateContractStatus(Map<String, Object> contractMap) {
+		// TODO Auto-generated method stub
+		return session.update("contracts.updateContractStatus", contractMap);
+	}
+
+	@Override
+	public int deleteContract(int contractNo) {
+		// TODO Auto-generated method stub
+		return session.delete("contracts.deleteContract", contractNo);
+	}
+
+	@Override
+	public int updateScoreFromTaker(Contract contract) {
+		// TODO Auto-generated method stub
+		return session.update("contracts.updateScoreFromTaker", contract);
+	}
+
+	@Override
+	public int updateScoreFromGiver(Contract contract) {
+		// TODO Auto-generated method stub
+		return session.update("contracts.updateScoreFromGiver", contract);
+	}
 }

@@ -13,4 +13,14 @@ public interface ContractsDAO {
 
 	public List<Contract> selectListByServiceNo(Contract contract);
 
+	public List<Contract> selectContractList(Map<String, Object> contractMap);
+
+	public int updateContractStatus(Map<String, Object> contractMap);
+
+	public int deleteContract(int contractNo);
+
+	public int updateScoreFromTaker(Contract contract);
+
+	public int updateScoreFromGiver(Contract contract);
+
 }

@@ -6,4 +6,50 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="relationships">
 
+	<select id="selectTotal" resultType="int" parameterType="int">
+		SELECT
+		COUNT(*)
+		FROM relationships
+		WHERE from_user_no = #{fromUserNo}
+		AND type=1
+	</select>
+
+	<delete id="deleteFollowing" parameterType="Relationship">
+		DELETE relationships
+		WHERE to_user_no = #{toUserNo} AND from_user_no = #{fromUserNo} AND type = 1
+	</delete>
+
+	<insert id="insertFollowing" parameterType="Relationship"> 
+	INSERT INTO
+		relationships(no,from_user_no,to_user_no
+		,type,regdate)
+		VALUES(relationships_seq.nextval, #{fromUserNo}, #{toUserNo}, 1, systimestamp)
+	</insert>
+ 
+	<delete id="deleteBlock" parameterType="Relationship">
+		DELETE relationships
+		WHERE to_user_no = #{toUserNo} AND from_user_no = #{fromUserNo} AND type = 4
+	</delete>
+
+	<insert id="insertBlock" parameterType="Relationship">
+		INSERT INTO
+		relationships(no,from_user_no,to_user_no ,type,regdate)
+		VALUES(relationships_seq.nextval,#{fromUserNo},#{toUserNo},4,systimestamp)
+	</insert>
+	
+	<select id="selectBlockList" parameterType="int" resultType="Relationship">
+		SELECT r.no, from_user_no fromUserNo, to_user_no toUserNo, 
+			   u.nick_name nickName, u.photo_url photoUrl,r.type, r.regdate
+		FROM relationships r, users u
+		WHERE from_user_no = #{fromUserNo}
+			  AND type = 4
+			  AND r.to_user_no = u.no
+		ORDER BY 4 desc
+	</select>
+	
+	<delete id="deleteByNo" parameterType="int">
+		DELETE relationships
+		WHERE no = #{no}
+	</delete>
+	
 </mapper>

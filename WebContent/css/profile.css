@@ -35,8 +35,8 @@
 }
 
 #profilePicBox #pic  {
-    background-image: url("../img/profile/profile_img.png");
-    background-size: contain;
+  
+    background-size: cover;
    	margin:auto;  
     border-radius: 100px;
     width: 200px;
@@ -189,6 +189,8 @@
 #followBox.on{
     display: block;
 }
+
+
 /*자신의 프로필이 아닐때 팔로우,차단버튼이 보일수있도록하기위해 on클래스*/
 
 #followBox button{
@@ -205,19 +207,27 @@
 #followBox button:hover{
     background-color: #2b597d;
 }
-#followBox #follow{
+#follow{
     outline: none;
     font-size: 15px;
     border-radius: 3px;
     color: #fff;
     margin-right:15px;
 }
+#follow.on {
+	background:#2b597d;
+}
+
 #followBox #block{
     outline: none;
     font-size: 15px;
     border-radius: 5px;
     color: #fff;
 }
+#followBox #block.on{
+   background:#2b597d;
+}
+
 #profileStatus{
     width: 800px;
     height: 170px;
@@ -249,4 +259,9 @@
 }
 #profileStatus .emphasisContent{
     font-size: 37px;
+}
+.box_page {
+	width: 750px;
+	min-height: 500px;
+	background-color: white;
 }

@@ -34,4 +34,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		UPDATE reviews SET content = #{content}, reply = #{reply}
 		WHERE no=#{no}		
 	</update>
+	
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO reviews(no, user_no, service_no, content, regdate)
+		VALUES(reviews_seq.nextval, #{userNo}, #{serviceNo}, #{content}, SYSTIMESTAMP)
+	</insert>
+	
 </mapper>

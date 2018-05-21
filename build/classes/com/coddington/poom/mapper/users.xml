@@ -24,4 +24,68 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM users
 	</select>
 
+<!-- select 프로필 이름이랑 내용 출력부분  -->
+	<select id="selectProfile" resultType="User" parameterType="int">
+		SELECT no, email, password, name, nick_name nickName, phone,
+		introduction, coin, photo_url photoUrl, regdate
+		FROM users
+		WHERE no
+		=#{no}
+	</select>
+	
+	<!-- update 프로필 이름 변경 부분-->
+	<update id="updateNickName" parameterType="User">
+		UPDATE users
+		SET
+		nick_name = #{nickName}
+		WHERE no = #{no}
+	</update>
+	<!-- update 프로필 내용 변경 부분-->
+	<update id="updateIntroduction" parameterType="User">
+		UPDATE users
+		SET introduction = #{introduction}
+		WHERE no = #{no}
+	</update>
+	
+	<update id="update" parameterType="User">
+		UPDATE users SET name = #{name}, nick_name = #{nickName}, phone = #{phone}, 
+		introduction = #{introduction}, coin = #{coin}, photo_url = #{photoUrl}
+		WHERE email = #{email} AND password = #{password}
+	</update>
+
+	<!-- select 팔로잉 리스트 출력, 페이징 추가 입니다 -->
+	<select id="selectFollowingList" resultType="User"
+		parameterType="Map">
+		SELECT relationshipNo,no,email,
+		password,name,nickName,phone,introduction,coin,photoUrl,regdate
+		FROM(SELECT relationshipNo,no,email,
+			password,name,nickName,phone,rownum r,introduction,
+			coin,photoUrl,regdate
+			FROM (SELECT r.no relationshipNo, u.no, u.email,
+				u.password,
+				u.name,u. nick_name nickName, u.phone,
+				u.introduction,
+				u.coin, u.photo_url photoUrl, u.regdate
+				FROM relationships r , users u
+				where r.to_user_no = u.no AND r.from_user_no = #{fromUserNo} AND type = 1))
+		WHERE r BETWEEN #{start} AND #{end}
+	</select>
+	<!-- to_user_no (팔로잉 당하는 유저) from_user_no(팔로우 하는 유저) -->
+	<!-- select 팔로잉 to_user_no(팔로잉 당하는 유저)의 카운트 해서 from_user_no인 유저가 
+	팔로잉 한 유저를 버튼색깔 변화로 알 수 있게 하는 구문  -->
+	<select id="selectConfirmFollowing" resultType="int" parameterType="Relationship">
+	SELECT COUNT(*)
+		FROM relationships r , users u
+		where r.to_user_no = u.no AND r.from_user_no =#{fromUserNo} AND  type
+		= 1 AND r.to_user_no = #{toUserNo}
+	</select>
+	
+	<!-- select 차단 리스트 카운트 부분입니다 -->
+	<select id="selectConfirmBlock" resultType="int" parameterType="Relationship">
+	SELECT COUNT(*)
+		FROM relationships r , users u
+		where r.to_user_no = u.no AND r.from_user_no =#{fromUserNo} AND  type
+		= 4 AND r.to_user_no = #{toUserNo}
+	</select>
+	 
 </mapper>

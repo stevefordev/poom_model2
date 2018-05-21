@@ -1,6 +1,7 @@
 package com.coddington.poom.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -45,4 +46,23 @@ public class ServicesDAOImpl implements ServicesDAO {
 	  return session.selectList("services.selectRecommendationList", role);
 	}
 
+//찜 목록 불러오기
+	@Override
+	public List<Card> selectLikeServicesByLikeServiceUserNo(int likeServiceUserNo) {
+		// TODO Auto-generated method stub
+		return session.selectList("services.selectLikeServicesByLikeServiceUserNo", likeServiceUserNo);
+	}//selectLikeServicesByUserNo() end
+	
+	//원하는 계약이 있는 서비스카드 불러오기
+	@Override
+	public List<Card> selectContractServiceCardList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("services.selectContractServiceCardList", map);
+	}
+	
+	@Override
+	public Service selectFullAddress(int serviceNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("services.selectFullAddress", serviceNo);
+	}
 }

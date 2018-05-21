@@ -543,7 +543,7 @@ body {
 									</article>
 								</div>
 								<a href="/service/registerForm.poom">품 요청/등록</a> <a
-									href="/profile.poom">내프로필</a> <a href="" class="mypage"> <img
+									href="/profile.poom?no=${loginUser.no }">내프로필</a> <a href="" class="mypage"> <img
 									src="/img/profile/${loginUser.photoUrl }" class="profile"
 									onerror="this.src='/img/profile/profile_img.png'" /> <span>${loginUser.nickName }
 										<i class="fas fa-angle-down"></i>

@@ -251,6 +251,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 	padding: 4px 8px;
+	outline: none;
 	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.7);
 }
 

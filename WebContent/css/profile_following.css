@@ -5,7 +5,7 @@
 }
 
 a:link {
-   
+   	color: black;
     text-decoration: none;
 }
 a:visited {
@@ -136,6 +136,7 @@ h4 {
     position: absolute;
     right: 50px;
     top: 25px;
+    
 }
 
 .item_user i:hover {
@@ -157,6 +158,12 @@ h4 {
     float: left;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.item_user .follower_delete{
+	
+	width: 0px;
+	height: 0px;
+	
 }
 .item_user img , a>span {
     position: relative;

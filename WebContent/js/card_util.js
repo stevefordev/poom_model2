@@ -10,7 +10,7 @@ var cardUtil = {
 	 */
 	dataset : {},
 	getCardList : function(url, $cardBox, imgBox) {
-
+		console.log("url" , url);
 		/* 카드 호출 */
 		$
 				.ajax({
@@ -29,12 +29,11 @@ var cardUtil = {
 							"list" : data
 						});
 						$cardBox.html(markup);
-
-						if (cardUtil.dataset.role == 1) {
+						 
+						if (data.length > 0 && data[0].role == 1) {
 							// slick 이미지 슬라이드 적용
 							$(imgBox).imageSlide();
-						}
-
+						} 
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
 						console.log(textStatus);
@@ -96,8 +95,7 @@ $("#cardBox, #cardBoxGiver,#cardBoxTaker,.contract_service, .pay_contents").on(
 						console.log(json.totalLikeNum);
 						$this.children("span").text(json.totalLikeNum);
 					}
-				})
-
+				}) 
 			}
 			/*
 			 * if ($(this).children("i").hasClass("far")) {

@@ -15,7 +15,7 @@
 					</div>
 					<div class="img_box">
 						<@ _.each(card.photos,function(photo) { @>
-						<img src="<@=photo@>">
+						<img src="/img/service/<@=photo@>">
 						<@ })@>
 					</div>
 				</div>

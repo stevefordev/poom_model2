@@ -30,7 +30,8 @@ $(".bell").click(function () {
 var $mypage_drop = $(".mypage_drop");
 var $mypage = $(".mypage");
 $mypage.click(function (e) {
-    $mypage_drop.toggleClass("show");
+	console.log('show');
+	$mypage_drop.toggleClass("show");
     e.preventDefault();
     
 })

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.coddington.poom.service.ServicesService;
 import com.coddington.poom.vo.Card;
+import com.coddington.poom.vo.Contract;
 import com.coddington.poom.vo.LikeService;
 import com.coddington.poom.vo.Question;
 import com.coddington.poom.vo.Schedule;
@@ -44,6 +45,7 @@ public class ServicesController {
 
 	/**
 	 * 추천 목록 호출
+	 * 
 	 * @param role
 	 * @param session
 	 * @return
@@ -66,6 +68,7 @@ public class ServicesController {
 
 	/**
 	 * 찜등록
+	 * 
 	 * @param serviceNo
 	 * @param session
 	 * @return
@@ -88,6 +91,7 @@ public class ServicesController {
 
 	/**
 	 * 찜삭제
+	 * 
 	 * @param serviceNo
 	 * @param session
 	 * @return
@@ -107,31 +111,33 @@ public class ServicesController {
 
 		return servicesService.deleteLikeSevice(likeService);
 	}
-	
+
 	/**
-     * 찜 체크
-     * @param serviceNo
-     * @param session
-     * @return
-     */
-    @RequestMapping(value = "/ajax/likeService/check.poom")
-    @ResponseBody
-    public boolean checkLikeService(int serviceNo, HttpSession session) {
+	 * 찜 체크
+	 * 
+	 * @param serviceNo
+	 * @param session
+	 * @return
+	 */
+	@RequestMapping(value = "/ajax/likeService/check.poom")
+	@ResponseBody
+	public boolean checkLikeService(int serviceNo, HttpSession session) {
 
-        User loginUser = (User) session.getAttribute(User.LOGIN_USER);
+		User loginUser = (User) session.getAttribute(User.LOGIN_USER);
 
-        int userNo = loginUser.getNo();
+		int userNo = loginUser.getNo();
 
-        LikeService likeService = new LikeService();
+		LikeService likeService = new LikeService();
 
-        likeService.setServiceNo(serviceNo);
-        likeService.setUserNo(userNo);
+		likeService.setServiceNo(serviceNo);
+		likeService.setUserNo(userNo);
 
-        return servicesService.checkLikeSevice(likeService);
-    }
+		return servicesService.checkLikeSevice(likeService);
+	}
 
 	/**
 	 * 서비스 상세
+	 * 
 	 * @param no
 	 * @param model
 	 * @param session
@@ -156,6 +162,7 @@ public class ServicesController {
 
 	/**
 	 * 서비스 등록 폼
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/service/registerForm.poom")
@@ -166,6 +173,7 @@ public class ServicesController {
 
 	/**
 	 * 서비스 수정 폼
+	 * 
 	 * @param serviceNo
 	 * @param model
 	 * @param session
@@ -184,6 +192,7 @@ public class ServicesController {
 
 	/**
 	 * 서비스 등록
+	 * 
 	 * @param scheduleListJson
 	 * @param service
 	 * @param bindingResult
@@ -218,6 +227,7 @@ public class ServicesController {
 
 	/**
 	 * 서비스 수정
+	 * 
 	 * @param scheduleListJson
 	 * @param service
 	 * @param bindingResult
@@ -252,6 +262,7 @@ public class ServicesController {
 
 	/**
 	 * 태그 리스트 호출
+	 * 
 	 * @param isEqual
 	 * @param name
 	 * @return
@@ -273,6 +284,7 @@ public class ServicesController {
 
 	/**
 	 * 스케줄 삭제
+	 * 
 	 * @param scheduleNo
 	 * @return
 	 */
@@ -297,4 +309,134 @@ public class ServicesController {
 		return json;
 	}
 
+	// 찜 목록 대시보드 이동
+	@RequestMapping(value = "/dashboard_like_service.poom", method = RequestMethod.GET)
+	public void dashboardLikeService() {
+
+		System.out.println("GET /dashboard_like_service.poom");
+
+	}// dashboardLikeService() end
+
+	// 찜 목록 불러오기(ajax)
+	@RequestMapping(value = "/ajax/getLikeService.json", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Card> getLikeService(HttpSession session) {
+
+		User loginUser = (User) session.getAttribute(UsersController.LOGIN);
+
+		int likeServiceUserNo = loginUser.getNo();
+
+		// System.out.println("loginUser no :"+likeServiceUserNo);
+
+		return servicesService.getLikeServiceCard(likeServiceUserNo);
+
+	}// getLikeService() end
+
+	// 찜 목록에서 삭제(ajax)
+	@RequestMapping(value = "/ajax/deleteLikeService.json")
+	@ResponseBody
+	public boolean deleteLikeService(@ModelAttribute LikeService likeService, HttpSession session) {
+
+		System.out.println("POST /ajax/deleteLikeService.json");
+
+		return servicesService.deleteLikeService(likeService);
+
+	}// deleteLikeService() end
+
+	// 계약 목록 대시보드 이동
+	@RequestMapping(value = "/dashboard_contract.poom", method = RequestMethod.GET)
+	public void dashboardContract() {
+
+		System.out.println("GET /dashboard_contract.poom");
+
+	}// dashboardContract() end
+
+	// 계약에 해당하는 서비스카드 불러오기(ajax)
+	@RequestMapping(value = "ajax/contractServiceCardList.json", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Card> getContractServiceCardList(@RequestParam int contractStatus, @RequestParam String contractType,
+			HttpSession session) {
+
+		System.out.println("GET /ajax/contractServiceCardList.json");
+
+		User user = (User) session.getAttribute("loginUser");
+
+		int userNo = user.getNo();
+		// System.out.println("userNo : "+userNo);
+
+		List<Card> contractServiceCardList = servicesService.getContractServiceCardList(contractStatus, contractType,
+				userNo);
+
+		return contractServiceCardList;
+
+	}// getContractServiceCardList() end
+
+	// 각 서비스카드의 계약목록 불러오기
+	@RequestMapping(value = "/ajax/contractList.json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getContractList(HttpSession session, @RequestParam int contractStatus,
+			@RequestParam int cardNo) {
+
+		System.out.println("POST /ajax/contractList.json");
+
+		User user = (User) session.getAttribute("loginUser");
+
+		int userNo = user.getNo();
+
+		Map<String, Object> resultMap = servicesService.getContractList(contractStatus, cardNo, userNo);
+
+		Service test = (Service) resultMap.get("serviceWithFullAddress");
+		System.out.println(test.getCategory());
+		
+		return resultMap;
+	};
+
+	// 계약 수락/거절
+	@RequestMapping(value = "/ajax/updateContractStatus.json", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updateContractStatus(@RequestParam int contractNo, @RequestParam int btnType) {
+
+		return servicesService.updateContractStatus(contractNo, btnType);
+	}// updateContractStatus() end
+
+	// taker가 평점 남기기
+	@RequestMapping(value = "/ajax/updateScoreFromTaker.poom", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updateScoreFromTaker(@ModelAttribute Contract contract, String reviewContent, HttpSession session) {
+		System.out.println("POST /ajax/updateScoreFromTaker.poom");
+
+		// System.out.println(contract.getScorePrice()+
+		// "/"+contract.getScoreKind()+
+		// "/"+contract.getScoreKnowhow()+
+		// "/"+contract.getScoreHonest()+
+		// "/"+contract.getNo()+
+		// "/"+contract.getServiceNo()+
+		// "/"+reviewContent);
+
+		User loginUser = (User) session.getAttribute("loginUser");
+
+		int userNo = loginUser.getNo();
+
+		boolean result = servicesService.updateScoreFromTaker(contract, reviewContent, userNo);
+
+		return result;
+	}// updateScoreFromTaker() end
+
+	// giver가 평점 남기기
+	@RequestMapping(value = "/ajax/updateScoreFromGiver.poom", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean updateScoreFromGiver(@ModelAttribute Contract contract, HttpSession session) {
+
+		// System.out.println(contract.getScoreUser()+
+		// "/"+contract.getNo()+
+		// "/"+contract.getServiceNo());
+
+		User loginUser = (User) session.getAttribute("loginUser");
+
+		int userNo = loginUser.getNo();
+
+		boolean result = servicesService.updateScoreFromGiver(contract, userNo);
+
+		return result;
+	}
 }

@@ -41,6 +41,7 @@
 		class="com.coddington.poom.controller.ServicesController" />
 
 	<bean p:usersService-ref="usersService"
+	p:relationshipsService-ref="relationshipsService"
 		class="com.coddington.poom.controller.UsersController" />
 
 	<bean p:contractsService-ref="contractsService" 
@@ -49,4 +50,5 @@
 	class="com.coddington.poom.controller.QuestionsController"/>
 	<bean p:reviewsService-ref="reviewsService" 
 	class="com.coddington.poom.controller.ReviewsController"/>
+	 
 </beans>

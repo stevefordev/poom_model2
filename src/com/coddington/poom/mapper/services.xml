@@ -6,28 +6,31 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 <mapper namespace="services">
 
 	<select id="selectByNo" parameterType="int" resultType="Service">
-		SELECT s.no, s.user_no userNo, s.title, s.area1, s.area2, s.detail_address1	detailAddress1, s.detail_address2 detailAddress2,
-			s.latitude, s.longitude, s.poom, s.content, s.category, s.photo_url	photoUrl, s.role, s.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
+		SELECT
+		s.no, s.user_no userNo, s.title, s.area1, s.area2, s.detail_address1
+		detailAddress1, s.detail_address2 detailAddress2,
+		s.latitude, s.longitude, s.poom, s.content, s.category, s.photo_url photoUrl,
+		s.role, s.regdate, u.nick_name userNickName, u.photo_url userPhotoUrl
 		FROM services s, users u
-		WHERE s.user_no = u.no 
-		AND s.no = #{no} 
+		WHERE s.user_no = u.no
+		AND s.no = #{no}
 	</select>
-	 
-	 <select id="selectByServiceNoAndUserNo" parameterType="Service"
+
+	<select id="selectByServiceNoAndUserNo" parameterType="Service"
 		resultType="Service">
 		SELECT no, user_no userNo,
-			title, area1, area2,
-			detail_address1
-			detailAddress1, detail_address2
-			detailAddress2,
-			latitude, longitude,
-			poom, content, category, photo_url
-			photoUrl, role,
-			regdate
+		title, area1, area2,
+		detail_address1
+		detailAddress1, detail_address2
+		detailAddress2,
+		latitude, longitude,
+		poom, content, category, photo_url
+		photoUrl, role,
+		regdate
 		FROM services
 		WHERE no = #{no} AND user_no = #{userNo}
-	</select> 
-	
+	</select>
+
 	<insert id="insert" parameterType="Service">
 		INSERT INTO services (no, user_no, title, area1, area2,
 		detail_address1, detail_address2, latitude, longitude, poom, content,
@@ -36,13 +39,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{userNo}, #{title}, #{area1}, #{area2}, #{detailAddress1},
 		#{detailAddress2}, #{latitude}, #{longitude}, #{poom}, #{content},
 		#{category}, #{photoUrl}, #{role}, systimestamp)
-		<selectKey keyProperty="no" resultType="Integer" order="AFTER">
+		<selectKey keyProperty="no" resultType="Integer"
+			order="AFTER">
 			SELECT services_seq.currval FROM dual
 		</selectKey>
 	</insert>
 	<update id="update" parameterType="Service">
 		UPDATE services
-		SET title = #{title}, area1 = #{area1}, area2 =#{area2}, detail_address1 =
+		SET title =
+		#{title}, area1 = #{area1}, area2 =#{area2}, detail_address1 =
 		#{detailAddress1},
 		detail_address2 = #{detailAddress2}, latitude=
 		#{latitude},longitude = #{longitude}, poom = #{poom}, content =
@@ -51,23 +56,66 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		#{role}
 		WHERE no = #{no} AND user_no = #{userNo}
 	</update>
-	
+
 	<select id="selectRecommendationList" parameterType="int"
 		resultType="Card">
 		SELECT no, title, area1, area2, poom, role,
-			nickname, profilePic, regdate, r
-			FROM(SELECT no, title, area1, area2, poom, role,
-				nickname, profilePic, regdate, rownum r
-			FROM(SELECT s.no no, s.title title, area1, area2, poom, s.role role,
-				u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
-			FROM services s,
-				users u
-				WHERE u.no = s.user_no
-				AND s.role = #{role}
-				ORDER BY s.regdate DESC))
+		nickname, profilePic, regdate, r
+		FROM(SELECT no, title, area1, area2, poom, role,
+		nickname, profilePic, regdate, rownum r
+		FROM(SELECT s.no no, s.title title, area1, area2, poom, s.role role,
+		u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
+		FROM services s,
+		users u
+		WHERE u.no = s.user_no
+		AND s.role = #{role}
+		ORDER BY s.regdate DESC))
 		WHERE r BETWEEN 1 AND 3
 	</select>
-	
+
+	<!-- 찜 목록 불러오기 -->
+	<select id="selectLikeServicesByLikeServiceUserNo"
+		parameterType="int" resultType="Card">
+		SELECT s.no no, s.title title, area1,
+		area2, poom, s.role role,
+		u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
+		FROM services s,
+		like_services ls, users u
+		WHERE s.no = ls.service_no
+		AND u.no = s.user_no
+		AND ls.user_no = #{likeServiceUserNo}
+		ORDER BY ls.regdate DESC
+	</select>
+
+	<!-- userNo와 contractStatus로 해당하는 서비스 카드 불러오기 -->
+	<select id="selectContractServiceCardList" parameterType="map"
+		resultType="Card">
+		SELECT s.no no, s.title title, s.area1 area1, s.area2 area2, s.poom
+		poom, s.role role,
+		u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
+		FROM services s,
+		users u
+		WHERE u.no = s.user_no
+		AND s.no IN (SELECT service_no
+		FROM contracts
+		WHERE (giver_no = #{userNo} or taker_no = #{userNo})
+		AND status = #{contractStatus}
+		GROUP BY service_no)
+		<if test="contractType == 'send'">
+			AND s.user_no != #{userNo}
+		</if>
+		<if test="contractType == 'receive'">
+			AND s.user_no = #{userNo}
+		</if>
+	</select>
+
+	<select id="selectFullAddress" parameterType="int"
+		resultType="Service">
+		SELECT no, user_no userNo, area1, area2, detail_address1
+		detailAddress1, detail_address2 detailAddress2, latitude, longitude, category
+		FROM services
+		WHERE no = #{serviceNo}
+	</select>
 </mapper>
 
 

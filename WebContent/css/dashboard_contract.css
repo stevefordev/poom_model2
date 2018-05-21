@@ -7,6 +7,9 @@
    	float: left;
     margin: 0px 45px;
 }
+.top_tab ul {
+	overflow: hidden;
+}
 
 .top_tab ul>li {
     background: #ccc;
@@ -41,16 +44,12 @@
 .wrap_dashboard div.box_contract {
     width: 770px;
     min-height: 860px;
-    display: none;
+    display: block;
     font-weight: bold;
     font-size: 50px;
     padding: 20px;
     float: left;
     background: #9E9E9E;
-}
-
-.wrap_dashboard div.box_contract.on {
-    display: block;
 }
 
 /*내부 내용*/
@@ -77,6 +76,7 @@
     background: transparent;
     color: #2e7965;
     font: 600 17px 'Noto Sans KR', sans-serif;
+    outline: none;
 }
 
 .box_btn_service .btn_service.on {
@@ -95,14 +95,8 @@
 	width: 750px;
 	min-height: 750px; 
 	overflow: hidden;
-	display: none;
-}
-
-.box_content .contract_service>ul.on {
-	/*background-color: lightpink;*/
 	display: block;
 }
-
 
 
 .box_content .contract_service>ul>li {
@@ -140,7 +134,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-image: url("../img/profile/profileImg2.png");
+    
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -155,7 +149,7 @@
 	height: 40px;
 	position: absolute;
     top: 20px;
-    left: 160px;
+    left: 180px;
 }
 
 .contract_list li span {
@@ -183,8 +177,12 @@
     position: absolute;
     top: 20px;
     cursor: pointer;
+    outline: none;
 }
 
+.contract_list .btn_contract:actvie {
+	background-color: #3f475a;
+}
 
 .contract_list .btn_contract_accept {
 	left: 435px;
