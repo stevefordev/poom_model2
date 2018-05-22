@@ -867,7 +867,10 @@ function deleteSchedule(scheduleNo, type, date, week, time, $td) {
     },
     success: function(data) {
       console.log(data);
-      if (data.isSuccRemove == false) { return true; }
+      if (data.isSuccRemove == false) {
+        alert("해당 일정에 등록된 계약이 있습니다.");
+        return true; 
+        }
 
       if (type == 'singleDates') {
         $.each(scheduleList.singleDates, function(index, each) {
