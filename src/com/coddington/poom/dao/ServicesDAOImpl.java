@@ -10,66 +10,73 @@ import com.coddington.poom.vo.Service;
 
 public class ServicesDAOImpl implements ServicesDAO {
 
-  private SqlSession session;
+	private SqlSession session;
 
-  public void setSession(SqlSession session) {
-    this.session = session;
-  }// setSession() end
+	public void setSession(SqlSession session) {
+		this.session = session;
+	}// setSession() end
 
-  @Override
-  public Service selectByNo(int no) {
-    // TODO Auto-generated method stub
-    return session.selectOne("services.selectByNo", no);
-  }
-
-  @Override
-  public Service selectByServiceNoAndUserNo(Service service) {
-    // TODO Auto-generated method stub
-    return session.selectOne("services.selectByServiceNoAndUserNo", service);
-  }
-
-  @Override
-  public int insert(Service service) {
-    // TODO Auto-generated method stub
-    return session.insert("services.insert", service);
-  }
-
-  @Override
-  public int update(Service service) {
-    // TODO Auto-generated method stub
-    return session.update("services.update", service);
-  } 
-  
-  @Override
-	public List<Card> selectRecommendationList(int role) {
+	@Override
+	public Service selectByNo(int no) {
 		// TODO Auto-generated method stub
-	  return session.selectList("services.selectRecommendationList", role);
+		return session.selectOne("services.selectByNo", no);
 	}
 
-//찜 목록 불러오기
+	@Override
+	public Service selectByServiceNoAndUserNo(Service service) {
+		// TODO Auto-generated method stub
+		return session.selectOne("services.selectByServiceNoAndUserNo", service);
+	}
+
+	@Override
+	public int insert(Service service) {
+		// TODO Auto-generated method stub
+		return session.insert("services.insert", service);
+	}
+
+	@Override
+	public int update(Service service) {
+		// TODO Auto-generated method stub
+		return session.update("services.update", service);
+	}
+
+	@Override
+	public List<Card> selectRecommendationList(int role) {
+		// TODO Auto-generated method stub
+		return session.selectList("services.selectRecommendationList", role);
+	}
+
+	// 찜 목록 불러오기
 	@Override
 	public List<Card> selectLikeServicesByLikeServiceUserNo(int likeServiceUserNo) {
 		// TODO Auto-generated method stub
 		return session.selectList("services.selectLikeServicesByLikeServiceUserNo", likeServiceUserNo);
-	}//selectLikeServicesByUserNo() end
-	
-	//원하는 계약이 있는 서비스카드 불러오기
+	}// selectLikeServicesByUserNo() end
+
+	// 원하는 계약이 있는 서비스카드 불러오기
 	@Override
 	public List<Card> selectContractServiceCardList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return session.selectList("services.selectContractServiceCardList", map);
 	}
-	
+
 	@Override
 	public Service selectFullAddress(int serviceNo) {
 		// TODO Auto-generated method stub
 		return session.selectOne("services.selectFullAddress", serviceNo);
 	}
-	 
-	//searchPage카드불러오기 (2)
+
+	// searchPage카드불러오기 (2)
 	@Override
 	public List<Card> selectCardList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return session.selectList("services.selectCardList",map);
-	} 
+		return session.selectList("services.selectCardList", map);
+	}
+
+	// 준품 받은 품
+	@Override
+	public List<Card> selectUserServiceList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("services.selectUserServiceList", map);
+	}// selectLikeServicesByUserNo() end
 }

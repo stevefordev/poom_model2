@@ -108,15 +108,17 @@ $(".tab_exchange li:nth-child(2) a").click(function(e) {
 $(".tab_service li:nth-child(1) a").click(
 		function(e) {
 			$("#myWritingBox").removeClass("on");
-
+		 
 			cardUtil.dataset = {
-				"level" : 2,
-				"count" : 5,
-				"pageNum" : 1
-			};
-			cardUtil.getCardList("ajax/contractCardList.json",
-					$(".list_giver_pay ul"), '.profileserviceimg_wrap');
-
+			        "level": 2,
+			        "count": 5,
+			        "pageNum": 1,
+			        "role" : 1,
+			        "profileUserNo" : profileUserNo
+			      };
+			cardUtil.getCardList("/ajax/service/getUserServiceList.poom",
+			        $(".list_giver_pay>.pay_contents>ul"), '.profileserviceimg_wrap');
+			
 			e.preventDefault();
 		});
 
@@ -125,14 +127,16 @@ $(".tab_service li:nth-child(2) a").click(
 		function(e) {
 
 			$("#myWritingBox").addClass("on");
-
+			 
 			cardUtil.dataset = {
-				"level" : 2,
-				"count" : 5,
-				"pageNum" : 1
-			};
-			cardUtil.getCardList("ajax/contractCardList.json",
-					$(".list_taker_pay ul"), '.profileserviceimg_wrap');
+			        "level": 2,
+			        "count": 5,
+			        "pageNum": 1,
+			        "role" : 2,
+			        "profileUserNo" : profileUserNo
+			      };
+			cardUtil.getCardList("/ajax/service/getUserServiceList.poom",
+			        $(".list_taker_pay>.pay_contents>ul"), '.profileserviceimg_wrap');
 
 			e.preventDefault();
 		});

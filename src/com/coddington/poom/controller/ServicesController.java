@@ -371,7 +371,7 @@ public class ServicesController {
 		User user = (User) session.getAttribute(UsersController.LOGIN);
 
 		int userNo = user.getNo();
-		System.out.println("getContractServiceCardList userNo : "+userNo);
+		System.out.println("getContractServiceCardList userNo : " + userNo);
 
 		List<Card> contractServiceCardList = servicesService.getContractServiceCardList(contractStatus, contractType,
 				userNo);
@@ -411,9 +411,7 @@ public class ServicesController {
 	// taker가 평점 남기기
 	@RequestMapping(value = "/ajax/updateScoreFromTaker.poom", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean updateScoreFromTaker(@ModelAttribute Contract contract, 
-			int coinAmount,
-			int giverNo,
+	public boolean updateScoreFromTaker(@ModelAttribute Contract contract, int coinAmount, int giverNo,
 			String reviewContent, HttpSession session) {
 		System.out.println("POST /ajax/updateScoreFromTaker.poom");
 
@@ -513,7 +511,15 @@ public class ServicesController {
 	@RequestMapping("/ajax/service/search.poom")
 	@ResponseBody
 	public List<Card> ajaxSearchService(Service service, BindingResult bindingResult, Date serviceDate, int term,
-			int score, String order, Model model) {
+			int score, String order, Model model, HttpSession session) {
+
+		User loginUser = (User) session.getAttribute(User.LOGIN_USER);
+
+		int userNo = 0;
+
+		if (loginUser != null) {
+			userNo = loginUser.getNo();
+		}
 
 		System.out.println("카테고리 : " + service.getCategory());
 		System.out.println("기간 : " + term);
@@ -522,13 +528,22 @@ public class ServicesController {
 		System.out.println("정렬 : " + order);
 		System.out.println(service.toString());
 
-		return servicesService.getServiceCard(service, serviceDate, term, score, order);
+		return servicesService.getServiceCard(service, serviceDate, term, score, order, userNo);
 
 	}
 
 	@RequestMapping(value = "/search.poom")
 	public void search(@RequestParam(required = false) String query) {
 
+	}
+
+	@RequestMapping(value = "/ajax/service/getUserServiceList.poom")
+	@ResponseBody
+	public List<Card> searsdch(int profileUserNo, int role, HttpSession session) {
+	 
+		// System.out.println("loginUser no :"+likeServiceUserNo);
+
+		return servicesService.getUserServiceCard(profileUserNo, role);
 	}
 
 }

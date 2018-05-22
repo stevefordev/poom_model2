@@ -32,6 +32,23 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         ORDER BY c.regdate DESC
 	</select>
 	  
+	  <select id="selectScoreAndCountByUserNo" parameterType="int" resultType="com.coddington.poom.util.CamelHashMap">
+	  SELECT (CASE WHEN (count_gcontract + count_tcontract) > 0 
+                     THEN ((score_user + score_price + score_kind + score_knowhow + score_honest) / (5 * (count_gcontract + count_tcontract)) * 100) 
+                     ELSE 0 END) score ,
+                 count_gcontract , count_tcontract 
+       FROM(SELECT
+            COUNT(CASE WHEN c.status = 9 AND c.score_user = 1 THEN 1 END) AS score_user,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_price = 1 THEN 1 END) AS score_price,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_kind = 1 THEN 1 END) AS score_kind,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_knowhow = 1 THEN 1 END) AS score_knowhow,
+		    COUNT(CASE WHEN c.status = 9 AND c.score_honest = 1 THEN 1 END) AS score_honest,
+            COUNT(CASE WHEN c.status = 9 AND c.giver_no = 1 THEN 1 END) count_gcontract,
+		    COUNT(CASE WHEN c.status = 9 AND c.taker_no = 1 THEN 1 END) count_tcontract
+            FROM 
+            contracts c
+            WHERE c.giver_no = 1 OR c.taker_no =1) 
+	  </select>
 	<update id="updateContractStatus" parameterType="map">
 		UPDATE contracts
 		SET status = #{status}

@@ -3,6 +3,7 @@ package com.coddington.poom.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.coddington.poom.vo.Contract;
 import com.coddington.poom.vo.Relationship;
 import com.coddington.poom.vo.User;
 
@@ -33,5 +34,7 @@ public interface UsersDAO {
 	// 유저 차단 카운트 하기
 	public int selectConfirmBlock(Relationship relationship);
 
-	public int updateCoinAmount(User user);
+	public int updateCoinAmount(User user); 
+	
+	public User selectByContractNo(int contractNo);
 }

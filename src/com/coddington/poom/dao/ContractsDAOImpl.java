@@ -19,6 +19,12 @@ public class ContractsDAOImpl implements ContractsDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("contracts.selectScoreAndCountByServiceNo", serviceNo);
 	}
+	
+	@Override
+	public Map<String, Object> selectScoreAndCountByUserNo(int userNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("contracts.selectScoreAndCountByUserNo", userNo);
+	}
 
 	@Override
 	public int insert(Contract contract) {

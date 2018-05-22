@@ -8,23 +8,30 @@ import java.util.Map;
 
 import com.coddington.poom.dao.CoinTransactionsDAO;
 import com.coddington.poom.dao.TagsDAO;
+import com.coddington.poom.dao.UsersDAO;
 import com.coddington.poom.util.PaginateUtil;
 import com.coddington.poom.vo.CoinTransaction;
+import com.coddington.poom.vo.Contract;
+import com.coddington.poom.vo.User;
 
 public class CoinTransactionsServiceImpl implements CoinTransactionsService {
 
 	private CoinTransactionsDAO coinTransactionsDAO;
-
+	private UsersDAO usersDAO;
 	private TagsDAO tagsDAO;
 
 	private Calendar cal = Calendar.getInstance();
-	
+
 	public void setCoinTransactionsDAO(CoinTransactionsDAO coinTransactionsDAO) {
 		this.coinTransactionsDAO = coinTransactionsDAO;
 	}
 
 	public void setTagsDAO(TagsDAO tagsDAO) {
 		this.tagsDAO = tagsDAO;
+	}
+
+	public void setUsersDAO(UsersDAO usersDAO) {
+		this.usersDAO = usersDAO;
 	}
 
 	@Override
@@ -54,6 +61,9 @@ public class CoinTransactionsServiceImpl implements CoinTransactionsService {
 			// System.out.println(coinTransaction.getServiceNo());
 			int contractNo = coinTransaction.getContractNo();
 			if (coinTransaction.getType() > 20) {
+
+				User user = usersDAO.selectByContractNo(contractNo);
+				coinTransaction.setNickname(user.getNickName());
 				coinTransaction.setTags(tagsDAO.selectListByContractNo(contractNo));
 			}
 		}
@@ -74,23 +84,23 @@ public class CoinTransactionsServiceImpl implements CoinTransactionsService {
 
 		return model;
 	}
-	
+
 	@Override
 	public List<CoinTransaction> getCoinListForChart(int userNo, int type, Date regdate) {
 		// TODO Auto-generated method stub
 
 		System.out.println("getCoinListForChart");
-		
+
 		Map<String, Object> map = new HashMap<>();
 		cal.setTime(regdate);
 		cal.add(Calendar.MONTH, 1);
 		Date enddate = new Date(cal.getTime().getTime());
-		  
+
 		map.put("startdate", regdate);
 		map.put("enddate", enddate);
 		map.put("userNo", userNo);
 		map.put("type", type);
- 
+
 		List<CoinTransaction> coinTransactionList = coinTransactionsDAO.selectListForChart(map);
 		System.out.println("coinTransactionList size:" + coinTransactionList.size());
 		return coinTransactionList;

@@ -938,7 +938,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 			<@  console.log('repeatFiltered', filtered); @>
 			<@  var scheduleNo = filtered.length == 0 ? 0 : filtered[0].no; @>			
    	 		<tr>
-        		<td data-schedule_no=<@=scheduleNo @> data-type='repeatDates' data-week=<@=key@> data-time=<@=time@>> [반복] 매주 <@=schedule.kor@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
+        		<td data-schedule_no=<@=scheduleNo @> data-type='repeatDates' data-week=<@=key@> data-time=<@=time@>> [반복] 매주 <@=schedule.kor@> / <@=('0' + time).slice(-2)@>-<@=('0' + (parseInt(time)+1)).slice(-2)@> 시<button type="button">X</button></td>
     		</tr>
     	<@ }); @>
     <@} }); @>
@@ -954,7 +954,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 			<@  console.log('singleFiltered', filtered); @>
 			<@  var scheduleNo = filtered.length == 0 ? 0 : filtered[0].no; @>
     		<tr>
-        		<td data-schedule_no=<@=scheduleNo @>  data-type='singleDates' data-date=<@=singleDate.date@> data-time=<@=time@>>[단일] <@=singleDate.date@> / <@=('0' + time).slice(-2)@>-<@=('0' + (time+1)).slice(-2)@> 시<button type="button">X</button></td>
+        		<td data-schedule_no=<@=scheduleNo @>  data-type='singleDates' data-date=<@=singleDate.date@> data-time=<@=time@>>[단일] <@=singleDate.date@> / <@=('0' + time).slice(-2)@>-<@=('0' + (parseInt(time)+1)).slice(-2)@> 시<button type="button">X</button></td>
     		</tr>
     	<@})@>
     <@})@>

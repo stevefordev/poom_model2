@@ -9,6 +9,8 @@ public interface ContractsDAO {
 
 	public Map<String, Object> selectScoreAndCountByServiceNo(int serviceNo);
 
+	public Map<String, Object> selectScoreAndCountByUserNo(int userNo);
+
 	public int insert(Contract contract);
 
 	public List<Contract> selectListByServiceNo(Contract contract);

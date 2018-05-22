@@ -150,6 +150,19 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 			5 DESC </when> <when test="order=='L'"> 5 ASC </when> <otherwise> 9 DESC 
 			</otherwise> </choose> -->
 	</select>
+	
+	<!-- 준품 -->
+	<select id="selectUserServiceList" parameterType="Map"
+		resultType="Card">
+		SELECT s.no no, s.title title, s.area1 area1, s.area2 area2, s.poom
+		poom, s.role role,
+		u.nick_name nickname, u.photo_url profilePic, s.regdate regdate
+		FROM services s, users u
+		WHERE u.no = s.user_no
+		AND u.no  = #{userNo}
+		AND s.role = #{role}
+	</select>
+	 
 </mapper>
 
 

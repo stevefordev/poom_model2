@@ -30,6 +30,11 @@ public class ReviewsDAOImpl implements ReviewsDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("reviews.selectCountTotal", serviceNo);
 	}
+	@Override
+	public int selectCountTotalByUserNo(int profileUserNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("reviews.selectCountTotalByUserNo", profileUserNo);
+	} 
 
 	@Override
 	public int update(Review review) {

@@ -93,5 +93,15 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SET coin = coin + #{coin}
 		WHERE no = #{no}
 	</update>
+	
+	<!-- 코인 트랜잭션 페이지 -->
+		<select id="selectByContractNo" resultType="User" parameterType="int">
+		SELECT u.no, email, password, name, nick_name nickName, phone,
+		introduction, coin, photo_url photoUrl, u.regdate
+		FROM users u, contracts c
+		WHERE u.no = c.taker_no 
+		AND  c.no = #{no} 
+	</select>
+	
  
 </mapper>

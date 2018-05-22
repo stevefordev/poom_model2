@@ -50,6 +50,8 @@ public interface ServicesService {
 
 	public boolean updateScoreFromGiver(Contract contract, int userNo, int coinAmount, int takerNo);
 	
-	public List<Card> getServiceCard(Service service, Date serviceDate, int term, int score, String order);
+	public List<Card> getServiceCard(Service service, Date serviceDate, int term, int score, String order, int userNo);
+
+	public List<Card> getUserServiceCard(int userNo, int role);
 	
 }

@@ -276,21 +276,21 @@ $detailsSendContractBtn.click(function() {
   console.log(selectedScheduleObjectArr);
   var contractSchedules = new Array();
 
+  //2018-06-04 15
   _.each(selectedScheduleObjectArr, function(selectedSchedule) {
     contractSchedules.push({
-      "serviceDate": moment(selectedSchedule.selectedMoment._i).unix(),
+      "serviceDate": moment(selectedSchedule.selectedMoment._i + ":00:00").unix() * 1000 ,
       "scheduleNo": selectedSchedule.scheduleNo
     });
   });
 
   var dataset = {
-    "giverNo": giverNo,
-    "takerNo": takerNo,
-    "serviceNo": serviceNo,
-    "poom": poom,
-    "content": $("#comment>textarea").val(),
-    "contractSchedules": contractSchedules
-  // "contractSchedules" : JSON.stringify(contractSchedules)
+    giverNo: giverNo,
+    takerNo: takerNo,
+    serviceNo: serviceNo,
+    poom: poom,
+    content: $("#comment>textarea").val(),
+    "contractSchedules" : contractSchedules
   };
   console.log(dataset);
   $.ajax({
@@ -301,6 +301,7 @@ $detailsSendContractBtn.click(function() {
     contentType: "application/json",
     success: function(data) {
       console.log(data);
+      alert("계약서를 정상적으로 발송 하였습니다.");
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log(textStatus);

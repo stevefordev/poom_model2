@@ -30,6 +30,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		
 	</select>
 	
+	<select id="selectCountTotalByUserNo" parameterType="int" resultType="int">
+        SELECT count(r.no)
+		FROM reviews r, services c, users u
+		WHERE 
+        r.service_no = c.no 
+        AND c.user_no = u.no
+        AND c.role = 1
+        AND u.no = #{profileUserNo}
+	</select>
+	 
 	<update id="update" parameterType="Question">
 		UPDATE reviews SET content = #{content}, reply = #{reply}
 		WHERE no=#{no}		

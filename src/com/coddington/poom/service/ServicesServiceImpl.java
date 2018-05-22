@@ -1516,7 +1516,7 @@ public class ServicesServiceImpl implements ServicesService {
 	}// updateScoreFromGiver() end
 
 	@Override
-	public List<Card> getServiceCard(Service service, Date serviceDate, int term, int score, String order) {
+	public List<Card> getServiceCard(Service service, Date serviceDate, int term, int score, String order, int userNo) {
 
 		Map<String, Object> map = new HashMap<>();
 
@@ -1598,6 +1598,18 @@ public class ServicesServiceImpl implements ServicesService {
 			}
 
 			searchServiceCard.setPhotos(photos);
+
+			// 찜 여부(isLike) 구하기 및 setting
+			LikeService likeServiceWithUserNoServiceNo = new LikeService();
+			likeServiceWithUserNoServiceNo.setUserNo(userNo);
+			likeServiceWithUserNoServiceNo.setServiceNo(searchServiceCard.getNo());
+
+			LikeService likeService = likeServicesDAO.selectByUserNoServiceNo(likeServiceWithUserNoServiceNo);
+
+			// isLike setting
+			if (likeService != null) {
+				searchServiceCard.setIsLike(true);
+			}
 
 			// 완료계약 정보
 			Contract contractWithInfo1 = new Contract();
@@ -1688,4 +1700,311 @@ public class ServicesServiceImpl implements ServicesService {
 
 		return searchServiceCardList;
 	}
+
+	@Override
+	public List<Card> getUserServiceCard(int userNo, int role) {
+		// TODO Auto-generated method stub
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("userNo", userNo);
+		map.put("role", role);
+		List<Card> cardList = servicesDAO.selectUserServiceList(map);
+
+		// 오늘 날짜 초기시간(00:00:00)에 해당하는 Calendar 객체 생성
+		Calendar calendarForNow = Calendar.getInstance();
+		calendarForNow.set(Calendar.HOUR_OF_DAY, 0);
+		calendarForNow.set(Calendar.MINUTE, 0);
+		calendarForNow.set(Calendar.SECOND, 0);
+		calendarForNow.set(Calendar.MILLISECOND, 0);
+		// System.out.println("오늘 날짜 : "+calendarForNow.getTime());
+
+		Calendar calendarForMaxDate = Calendar.getInstance();
+		calendarForMaxDate.add(Calendar.DATE, 56);// 오늘 날짜 기준 56일 뒤 날짜로 setting
+		calendarForMaxDate.set(Calendar.HOUR_OF_DAY, 0);
+		calendarForMaxDate.set(Calendar.MINUTE, 0);
+		calendarForMaxDate.set(Calendar.SECOND, 0);
+		calendarForMaxDate.set(Calendar.MILLISECOND, 0);
+		// System.out.println("오늘+56일 : "+calendarForMaxDate.getTime());
+
+		for (Card serviceCard : cardList) {
+
+			// tag 데이터(tags) 가공 및 setting
+			List<Tag> tags = serviceTagsDAO.selectTagNameByServiceNo(serviceCard.getNo());
+
+			String wholeTags = "";
+
+			for (Tag tag : tags) {
+				wholeTags += "#" + tag.getName() + " ";
+			} // for~each end
+
+			// tags setting
+			serviceCard.setTags(wholeTags);
+
+			// 좋아요 갯수(countLike) 값 구하기 및 setting
+			int totalLikeNum = likeServicesDAO.selectTotalLikeNumByServiceNo(serviceCard.getNo());
+
+			// countLike setting
+			serviceCard.setCountLike(totalLikeNum);
+
+			// 찜 여부(isLike) 구하기 및 setting
+			LikeService likeServiceWithUserNoServiceNo = new LikeService();
+			likeServiceWithUserNoServiceNo.setUserNo(userNo);
+			likeServiceWithUserNoServiceNo.setServiceNo(serviceCard.getNo());
+
+			LikeService likeService = likeServicesDAO.selectByUserNoServiceNo(likeServiceWithUserNoServiceNo);
+
+			// isLike setting
+			if (likeService != null) {
+				serviceCard.setIsLike(true);
+			}
+
+			// 계약 정보(contract, scoreTotal, countScore, icon) 가공
+			// 및 setting
+
+			// 완료계약 정보
+			Contract contractWithInfo1 = new Contract();
+			contractWithInfo1.setServiceNo(serviceCard.getNo());
+			contractWithInfo1.setStatus(9);
+
+			List<Contract> contractDoneList = contractsDAO.selectListByServiceNo(contractWithInfo1);
+
+			// countScore setting
+			serviceCard.setCountScore(contractDoneList.size());
+
+			// 완료계약 정보로 scoreTotal 및 icon 정보 가공
+
+			// icon default값 "rain"
+			String icon = "rain";
+
+			if (contractDoneList.size() != 0) {
+				// 완료계약건수가 0이 아닐 때 (평균 구할 때 0으로 나눌 수 x)
+
+				if (serviceCard.getRole() == 1) {
+					// giver 카드일 때 (score컬럼 4개로 계산)
+					int totalScore = 0;
+
+					for (Contract contractDone : contractDoneList) {
+						if (contractDone.getScoreHonest() == 1) {
+							// score가 good일 때
+							totalScore += 100;
+						} // if end
+						if (contractDone.getScoreKind() == 1) {
+							// score가 good일 때
+							totalScore += 100;
+						} // if end
+						if (contractDone.getScoreKnowhow() == 1) {
+							// score가 good일 때
+							totalScore += 100;
+						} // if end
+						if (contractDone.getScorePrice() == 1) {
+							// score가 good일 때
+							totalScore += 100;
+						} // if end
+					} // for end
+
+					int scoreTotal = totalScore / (contractDoneList.size() * 4);
+
+					// scoreTotal에 따른 icon
+					if (scoreTotal > 90) {
+						icon = "sun";
+					} else if (scoreTotal > 80) {
+						icon = "cloudy";
+					} else if (scoreTotal > 70) {
+						icon = "clouds";
+					}
+
+					// scoreTotal setting
+					serviceCard.setScoreTotal(scoreTotal);
+
+				} else {
+					// taker 카드일 때 (scoreUser컬럼으로 계산)
+					int totalScore = 0;
+
+					for (Contract contractDone : contractDoneList) {
+						if (contractDone.getScoreUser() == 1) {
+							// score가 good일 때
+							totalScore += 100;
+						} // if end
+					} // for end
+
+					int scoreTotal = totalScore / contractDoneList.size();
+
+					// scoreTotal에 따른 icon
+					if (scoreTotal > 90) {
+						icon = "sun";
+					} else if (scoreTotal > 80) {
+						icon = "cloudy";
+					} else if (scoreTotal > 70) {
+						icon = "clouds";
+					}
+
+					// scoreTotal setting
+					serviceCard.setScoreTotal(scoreTotal);
+
+				} // if~else end
+
+			} // if end
+
+			// icon setting
+			serviceCard.setIcon(icon);
+
+			// 진행중인 계약 정보
+			Contract contractWithInfo2 = new Contract();
+			contractWithInfo2.setServiceNo(serviceCard.getNo());
+			contractWithInfo2.setStatus(1);
+
+			List<Contract> contractProgressList = contractsDAO.selectListByServiceNo(contractWithInfo2);
+
+			String contract = "진행 중인 계약 " + contractProgressList.size() + "건 | 완료된 계약 " + contractDoneList.size() + "건";
+
+			// contract setting
+			serviceCard.setContract(contract);
+
+			// 일정(schedule)관련 정보 가공(일정 갯수, 처음 일정) 및 setting
+
+			// System.out.println("시작! 카드 서비스 번호 : "+likeServiceCard.getNo());
+
+			List<Schedule> schedules = schedulesDAO.selectListByServiceNo(serviceCard.getNo());
+
+			// 서비스에 등록된 스케줄 일정 갯수 (오늘 이후로)
+			int scheduleTotalCount = 0;
+			String representativeSchedule = "";
+
+			for (Schedule schedule : schedules) {
+
+				if (schedule.getType() == "repeat") {
+					// 반복형일 때
+					// System.out.println(likeServiceCard.getNo());
+					// System.out.println(schedule.getServiceDay().substring(0, 3));
+
+					// String형(ex:mon10) serviceDay에서 요일 String 얻어옴
+					String dayNameFromServiceDay = schedule.getServiceDay().substring(0, 3);// mon, tue,
+																							// wed...
+					int dayNumFromServiceDay = 0; // serviceDay로부터 얻은 요일의 index 넘버
+
+					// 문자열 요일을 index 숫자로 바꿔줌
+					if (dayNameFromServiceDay.equals("sun")) {
+						dayNumFromServiceDay = 1;
+					} else if (dayNameFromServiceDay.equals("mon")) {
+						dayNumFromServiceDay = 2;
+					} else if (dayNameFromServiceDay.equals("tue")) {
+						dayNumFromServiceDay = 3;
+					} else if (dayNameFromServiceDay.equals("wed")) {
+						dayNumFromServiceDay = 4;
+					} else if (dayNameFromServiceDay.equals("thu")) {
+						dayNumFromServiceDay = 5;
+					} else if (dayNameFromServiceDay.equals("fri")) {
+						dayNumFromServiceDay = 6;
+					} else if (dayNameFromServiceDay.equals("sat")) {
+						dayNumFromServiceDay = 7;
+					} // if~else if end
+						// System.out.println(dayNumFromServiceDay);
+
+					// Timestamp형인 serviceStartdate을 calendar에 setting하여 요일 숫자 얻어옴
+					Calendar calendarForServiceStartDate = Calendar.getInstance();
+					calendarForServiceStartDate.setTimeInMillis(schedule.getServiceStartdate().getTime());
+
+					int dayNumFromServiceStartDate = calendarForServiceStartDate.get(Calendar.DAY_OF_WEEK);
+					// System.out.println(dayNumFromServiceStartDate);
+					// System.out.println(calendarForServiceStartDate.getTime());
+
+					// serviceStartdate요일 숫자와 serviceDay요일 숫자 비교
+					int dayNumDiff = dayNumFromServiceDay - dayNumFromServiceStartDate;
+					// 숫자 비교해서 실제 시작날짜로(요일에 맞게) serviceStartDate 조정
+					if (dayNumDiff > 0) {
+						calendarForServiceStartDate.add(Calendar.DATE, dayNumDiff);
+						// System.out.println("실제 시작 날짜 : "+calendarForServiceStartDate.getTime());
+					} else {
+						calendarForServiceStartDate.add(Calendar.DATE, dayNumDiff + 7);
+						// System.out.println("실제 시작 날짜 : "+calendarForServiceStartDate.getTime());
+					} // if~else end
+
+					// 오늘+56일과 실제시작날짜 사이 일 수 차이
+					int dayDiff = ((int) ((calendarForMaxDate.getTimeInMillis()
+							- calendarForServiceStartDate.getTimeInMillis()) / (1000 * 60 * 60 * 24))) - 1;
+
+					// System.out.println("일 수 차이 : "+dayDiff);
+
+					if (dayDiff >= 49) {
+						scheduleTotalCount += 8;// 일 수 차이가 49일 이상이면 1개의 반복 스케쥴이 8개의 일정이다.
+					} else {
+						scheduleTotalCount += (dayDiff / 7) + 1;// 예를 들면 일 수 차이가 14~20일이면 1개의 반복 스케쥴이 3개의 일정이
+																// 된다.
+																// 0~6일이면 1개, 7~13일이면 2개, 즉, 일 수 차이를 7로 나눈 몫 +
+																// 1개의 일정이
+																// 된다.
+					} // if~else end
+
+					// System.out.println("스케쥴 갯수 : "+scheduleTotalCount);
+
+				} else {
+					// 단발성일 때
+
+					// Timestamp인 serviceDate를 calendar에 setting함
+					Calendar calendarForServiceDate = Calendar.getInstance();
+					calendarForServiceDate.setTimeInMillis(schedule.getServiceDate().getTime());
+
+					boolean isAfterToday = calendarForServiceDate.after(calendarForNow);// 단발성 스케쥴이 오늘 이후인지
+					boolean isBeforeMaxDate = calendarForServiceDate.before(calendarForMaxDate);// 단발성 스케쥴이
+																								// 56일 이후보다
+																								// 이전인지
+
+					// System.out.println("단발성 스케쥴 날짜 : "+calendarForServiceDate.getTime());
+					// System.out.println("스케줄이 오늘 날짜보다 이후인가? : "+isAfterToday);
+					// System.out.println("스케줄이 max 날짜보다 이전인가? : "+isBeforeMaxDate);
+
+					if (isAfterToday && isBeforeMaxDate) {
+						// 단발성 스케줄이 오늘부터 56일 안에 있다면 scheduleTotalCount에 1 더함
+						// System.out.println("통과");
+
+						// 맨 처음 해당하는 스케쥴 정보 입력
+						if (representativeSchedule.equals("")) {
+
+							String fullRepresentativeSchedule = schedule.getServiceDate().toString();
+							String date = fullRepresentativeSchedule.substring(0, 10);
+							String hourStr = fullRepresentativeSchedule.substring(11, 13);
+							int hour = Integer.parseInt(hourStr);
+							String fullHour = "";
+
+							if (hour > 12) {
+								fullHour += "오후 " + (hour - 12) + "-" + (hour - 11) + "시";
+							} else if (hour < 12) {
+								fullHour += "오전 " + hour + "-" + (hour + 1) + "시";
+							} else if (hour == 12) {
+								fullHour += "오후 " + hour + "-1시";
+							} // if~else if end
+
+							representativeSchedule = date + " " + fullHour;
+
+							// System.out.println(representativeSchedule);
+						} // if end
+
+						scheduleTotalCount++;
+					}
+
+					// System.out.println("스케쥴 갯수 : "+scheduleTotalCount);
+
+				} // if~else end
+
+			} // for(schedule) end
+
+			// schedule setting
+			serviceCard.setSchedule(representativeSchedule + " 외 " + (scheduleTotalCount - 1) + "개 일정");
+
+			// 사진 데이터 가공 및 세팅
+			List<Photo> photoList = photosDAO.selectByServiceNo(serviceCard.getNo());
+
+			List<String> photos = new ArrayList<String>();
+
+			for (Photo photo : photoList) {
+				photos.add(photo.getFilename());
+			}
+			// 사진 setting
+			serviceCard.setPhotos(photos);
+
+		} // for end
+
+		return cardList;
+
+	}// getLikeServiceCard() end
 }

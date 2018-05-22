@@ -63,6 +63,7 @@
 	<bean id="coinTransactionsService"
 		p:coinTransactionsDAO-ref="coinTransactionsDAO"
 		p:tagsDAO-ref="tagsDAO"
+		p:usersDAO-ref="usersDAO"
 		class="com.coddington.poom.service.CoinTransactionsServiceImpl" />
 
 	<bean id="servicesService" p:servicesDAO-ref="servicesDAO"
@@ -78,6 +79,8 @@
 
 	<bean id="usersService" p:usersDAO-ref="usersDAO"
 		p:relationshipsDAO-ref="relationshipsDAO"
+		p:contractsDAO-ref="contractsDAO"
+		p:reviewsDAO-ref="reviewsDAO"
 		class="com.coddington.poom.service.UsersServiceImpl" />
 
 	<bean id="contractsService" p:contractsDAO-ref="contractsDAO"

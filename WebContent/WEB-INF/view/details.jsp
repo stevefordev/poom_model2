@@ -99,13 +99,13 @@ body {
 					class="icon_big ${scoreAndCountContract.icon }"></span> 
 					<c:choose>
 						<c:when test="${service.role == 1 }"> 
-						<fmt:formatNumber type = "percent" maxIntegerDigits = "2" value = "${scoreAndCountContract.scoreGiver }" />
-							(${scoreAndCountContract.countDone })</c:when>
+						<fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${scoreAndCountContract.scoreGiver }" />		 
+							</c:when>
 					<c:otherwise>
-						<fmt:formatNumber type = "percent" maxIntegerDigits = "2" value = "${scoreAndCountContract.scoreTaker }" />
-							(${scoreAndCountContract.countDone })
+						<fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${scoreAndCountContract.scoreTaker }" />		
 					</c:otherwise>
 					</c:choose>
+					%(${scoreAndCountContract.countDone })
 				</li>
 				<li>지역 : ${service.area1 } ${service.area2 }</li>
 				<li>진행 중인 계약 ${scoreAndCountContract.countProgress }건</li>
@@ -444,7 +444,9 @@ body {
 					<span><@=question.content @></span>
 				</div>
 				<@ if(question.reply == null) {@>
-					<button class="btn_reply btn_question_reply">답변하기</button>
+					<@ if(${service.userNo} == ${loginUser.no}) {@>
+						<button class="btn_reply btn_question_reply">답변하기</button>
+					<@}@>
 				<@}@>
 			</div>
 			<@ if(question.reply != null) {@>
@@ -473,7 +475,7 @@ body {
 	<script src="/js/chart/tui-chart.js"></script>
 	<script src="/js/card_util.js?date=201804284"></script>
 	<script src="/js/slick/slick.min.js"></script>
-	<script src="/js/slick/slick_helper.js?date=201804281910"></script>
+	<script src="/js/slick/slick_helper.js?date=20180428191011"></script>
 	<script>
     var loginUserNo = '${loginUser.no}';
     var serviceNo = '${service.no}';
@@ -494,7 +496,7 @@ body {
       }]
     };
   </script>
-	<script src="/js/details_giver.js?date=201805191452"></script>
+	<script src="/js/details_giver.js?date=2018052012223"></script>
 	<script>
     //이미지 슬라이드 자바스크립트
     $('.profileserviceimg_wrap').imageSlide();

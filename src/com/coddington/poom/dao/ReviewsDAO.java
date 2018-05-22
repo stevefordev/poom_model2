@@ -12,6 +12,8 @@ public interface ReviewsDAO {
 
 	public int selectCountTotal(int serviceNo);
 
+	public int selectCountTotalByUserNo(int profileUserNo);
+
 	public int update(Review review);
 
 	public int insertReview(Review review);

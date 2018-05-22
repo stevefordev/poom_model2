@@ -78,4 +78,10 @@ public class UsersDAOImpl implements UsersDAO {
 		// TODO Auto-generated method stub
 		return session.update("users.updateCoinAmount", user);
 	}
+
+	@Override
+	public User selectByContractNo(int contractNo) {
+		// TODO Auto-generated method stub
+		return session.selectOne("users.selectByContractNo", contractNo);
+	}
 }

@@ -29,4 +29,6 @@ public interface ServicesDAO {
 	 
 	//serchPage 카드목록 불러오기(2)
 	public List<Card> selectCardList(Map<String, Object> map);
+
+	public List<Card> selectUserServiceList(Map<String, Object> map);
 }

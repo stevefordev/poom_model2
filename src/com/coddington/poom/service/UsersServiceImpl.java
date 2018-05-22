@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.coddington.poom.dao.ContractsDAO;
 import com.coddington.poom.dao.RelationshipsDAO;
+import com.coddington.poom.dao.ReviewsDAO;
 import com.coddington.poom.dao.UsersDAO;
 import com.coddington.poom.util.PaginateUtil;
+import com.coddington.poom.vo.Card;
 import com.coddington.poom.vo.Relationship;
 import com.coddington.poom.vo.User;
 
@@ -14,6 +17,8 @@ public class UsersServiceImpl implements UsersService {
 
 	private UsersDAO usersDAO;
 	private RelationshipsDAO relationshipsDAO;
+	private ReviewsDAO reviewsDAO;
+	private ContractsDAO contractsDAO;
 
 	public void setUsersDAO(UsersDAO usersDAO) {
 		this.usersDAO = usersDAO;
@@ -21,6 +26,14 @@ public class UsersServiceImpl implements UsersService {
 
 	public void setRelationshipsDAO(RelationshipsDAO relationshipsDAO) {
 		this.relationshipsDAO = relationshipsDAO;
+	}
+
+	public void setReviewsDAO(ReviewsDAO reviewsDAO) {
+		this.reviewsDAO = reviewsDAO;
+	}
+
+	public void setContractsDAO(ContractsDAO contractsDAO) {
+		this.contractsDAO = contractsDAO;
 	}
 
 	@Override
@@ -105,20 +118,33 @@ public class UsersServiceImpl implements UsersService {
 		String param = "no=" + profileUserNo + "&fpage=";
 		String paginate = PaginateUtil.getPaginate(page, total, numPage, numBlock, url, param);
 		userProfile.put("paginate", paginate);
+
+		userProfile.put("countReviews", reviewsDAO.selectCountTotalByUserNo(profileUserNo));
+		userProfile.put("scoreAndCountContracts", contractsDAO.selectScoreAndCountByUserNo(profileUserNo));
+		/*
+		 * Map<String, Object> scoreInfoMap =
+		 * contractsDAO.selectScoreAndCountByServiceNo(no); String icon = "sun"; int
+		 * index = scoreInfoMap.get("scoreGiver").toString().indexOf("."); if (index >
+		 * 0) { icon =
+		 * Card.getIcon(Integer.parseInt(scoreInfoMap.get("scoreGiver").toString().
+		 * substring(0, index))); } else { icon =
+		 * Card.getIcon(Integer.parseInt(scoreInfoMap.get("scoreGiver").toString())); }
+		 * scoreInfoMap.put("ICON", icon);
+		 */
 		return userProfile;
 	}// getUserInformation end
-	 
-	//차단목록 불러오기
+
+	// 차단목록 불러오기
 	@Override
 	public List<Relationship> blockList(int fromUserNo) {
 		// TODO Auto-generated method stub
 		return relationshipsDAO.selectBlockList(fromUserNo);
 	}
-	
-	//차단목록에서 삭제
+
+	// 차단목록에서 삭제
 	@Override
 	public boolean deleteBlock(int no) {
 		// TODO Auto-generated method stub
-		return 1==relationshipsDAO.deleteByNo(no);
+		return 1 == relationshipsDAO.deleteByNo(no);
 	}
 }

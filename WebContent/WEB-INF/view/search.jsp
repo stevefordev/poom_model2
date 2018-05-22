@@ -41,16 +41,16 @@
 				<div class="filter_role">
 					<h3>역 할</h3>
 					<!--기버 테이커 버튼-->
-					<button data-role="2" class="btn_role">품을 주고 싶어요</button>
 					<button data-role="1" class="btn_role">품을 받고 싶어요</button>
-
+					<button data-role="2" class="btn_role">품을 주고 싶어요</button> 
 				</div>
 				<!--제공분야-->
 				<div class="filter_providing">
 					<h3>제공분야</h3>
-					<!--가사 교육 심부름 버튼 -->
-					<button data-category="2" class="btn_providing on">가사</button>
+					<!--가사 교육 심부름 버튼 -->	
+					<button data-category="2" class="btn_providing on">가사</button>			
 					<button data-category="1" class="btn_providing">교육</button>
+			
 					<button data-category="3" class="btn_providing">심부름</button>
 
 				</div>
@@ -189,8 +189,11 @@
 	<script src="/js/calendar/tui-date-picker.min.js"></script>
 	<script src="/js/slick/slick.min.js"></script>
 	<script src="/js/slick/slick_helper.js?date=201804281"></script>
+	<script>
+		var loginUser = '${loginUser}';
+		var loginUserNo = '${loginUser.no}';
+	</script>
 	<script src="/js/card_util.js?date=201804191"></script>
-
 	<script>
 		//역할 버튼 제이커리
 		$(".filter_role .btn_role:eq(0)").click(function(e) {
@@ -388,7 +391,7 @@
 
 		//여기서부터 ajax
 
-		var role = 0;
+		var role = 1;
 		$(".btn_role").click(function() {
 			role = $(this).attr("data-role");
 			console.log(role);
@@ -452,15 +455,14 @@
 			cardUtil.getCardList("/ajax/service/search.poom", $("#cardBox"),
 					'.img_box');
 		}
-		if ('${param.query}'.length > 0) {
-			search();
-		}
-		
+ 
 		$('#searchForm').submit(function (e) {
 			console.log('searchForm');
 			search();
 			e.preventDefault();
 		})
+		
+		search();
 	</script>
 
 </body>
