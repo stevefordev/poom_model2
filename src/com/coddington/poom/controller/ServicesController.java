@@ -1,6 +1,7 @@
 package com.coddington.poom.controller;
 
 import java.io.File;
+import java.security.MessageDigest;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,8 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -467,10 +470,17 @@ public class ServicesController {
     String resizePath = path + "img/service" + File.separator;
 
     // 5) 고유한 값을 위한 UUID
-    UUID uuid = UUID.randomUUID();
-
+    UUID uuid = UUID.randomUUID();  
+    
     String ext = upload.getOriginalFilename();
-
+ 
+    /*
+    MessageDigest md = MessageDigest.getInstance("MD5");
+    md.update(ext.getBytes());
+    byte[] digest = md.digest();
+    String myHash = DatatypeConverter
+      .printHexBinary(digest).toUpperCase();
+    */
     int dotIdx = ext.lastIndexOf(".");
 
     ext = ext.substring(dotIdx, ext.length());
