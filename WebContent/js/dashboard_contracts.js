@@ -1,5 +1,14 @@
 //계약 탭 활성화
 $left_side_tab_li.removeClass("on").eq(0).addClass("on");
+ 
+var scrollBarWidth = 0;
+
+function getScrollBarWidth () {
+    var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
+        widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+    $outer.remove();
+    return 100 - widthWithScroll;
+};
 
 var $contractServiceBox = $(".contract_service"),
 	$body = $("body");
@@ -254,7 +263,7 @@ $contractServiceBox.on("click", ".btn_contract_detail", function() {
 		
 	}//if~else() end
 
-
+	$("body").addClass("noscroll").css("margin-right", getScrollBarWidth()+"px");
 
 	
 	$this.parents(".contract_list li").prepend(markup);
@@ -282,11 +291,13 @@ $contractServiceBox.on("click", ".btn_contract_detail", function() {
 $contractServiceBox.on("click", ".popup_bg", function(evt) {
 	if ($(evt.target).closest("#detailContractPopup").length === 0) {
 		$(".popup_bg").remove();
+		$("body").removeClass("noscroll").css("margin-right", "0px");
 	}
 });
 $contractServiceBox.on("click", ".container_contract_progressive", function(evt) {
 	if ($(evt.target).closest("#containerContractProgressive").length === 0) {
 		$(".container_contract_progressive").remove();
+		$("body").removeClass("noscroll").css("margin-right", "0px");
 	}
 });
 

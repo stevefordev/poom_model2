@@ -6,5 +6,59 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 
 <mapper namespace="coinTransactions">
 
+<!-- 20 보다 클때는 equal 비교 (수익, 지출) -->
+<!-- 21 보다 작을 때는 대소 비교 (충전 환전) -->
+<select id="selectTotal" resultType="int" parameterType="Map">
+	select Count(*)
+	from coin_transactions
+	where 
+	<if test="type gt 20">
+		type = #{type}
+	</if>
+	<if test="type lt 21">
+		type &lt; 21
+	</if>
+	and user_no = #{no}
+	</select>	
+	 
+	<select id="selectList" resultType="CoinTransaction" parameterType="Map">
+		select coin, contractNo, type, regDate, nickname
+		from(select coin, contractNo, type, regDate, nickname, rownum r	
+	         from(select ct.coin coin, ct.contract_no contractNo, ct.type, ct.regdate regDate, u.NICK_NAME nickname  
+		          from COIN_TRANSACTIONS ct, users u
+		          WHERE  ct.user_no = u.no
+		          AND u.no = #{userNo}
+		          AND
+		      	 <if test="type gt 20">
+					type = #{type}
+				</if>
+				<if test="type lt 21">
+					type &lt; 21
+				</if>
+		          order by regDate DESC))
+		where r BETWEEN #{start} and #{end}
+	</select>
 
+	<select id="selectListForChart" resultType="CoinTransaction" parameterType="Map">
+		 SELECT ct.coin coin, ct.contract_no contractNo, ct.type, ct.regdate, ct.user_no userNo
+          FROM COIN_TRANSACTIONS ct, users u
+          WHERE  ct.user_no = u.no
+          AND u.no = #{userNo}
+          AND #{startdate} &lt; ct.regdate
+          AND  ct.regdate &lt; #{enddate}
+          AND
+      	 <if test="type gt 20">
+			type = #{type}
+		</if>
+		<if test="type lt 21">
+			type &lt; 21
+		</if>
+         ORDER BY ct.regdate ASC 
+	</select>
+
+	
+	<insert id="insertAfterContract" parameterType="CoinTransaction">
+		INSERT INTO coin_transactions(no, user_no, contract_no, type, coin, money, regdate)
+		VALUES(coin_transactions_seq.nextval, #{userNo}, #{contractNo}, #{type}, #{coin}, 0, SYSTIMESTAMP)
+	</insert>
 </mapper>

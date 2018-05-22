@@ -32,4 +32,6 @@ public interface UsersDAO {
 
 	// 유저 차단 카운트 하기
 	public int selectConfirmBlock(Relationship relationship);
+
+	public int updateCoinAmount(User user);
 }

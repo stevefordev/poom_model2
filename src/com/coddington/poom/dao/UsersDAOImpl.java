@@ -53,6 +53,7 @@ public class UsersDAOImpl implements UsersDAO {
 		// TODO Auto-generated method stub
 		return session.update("users.update", user);
 	}
+
 	// 팔로잉 리스트 목록을 출력하고 페이징 처리 해줌
 	@Override
 	public List<User> selectFollowingList(Map<String, Object> pageUserList) {
@@ -70,5 +71,11 @@ public class UsersDAOImpl implements UsersDAO {
 	@Override
 	public int selectConfirmBlock(Relationship relationship) {
 		return session.selectOne("users.selectConfirmBlock", relationship);
+	}
+
+	@Override
+	public int updateCoinAmount(User user) {
+		// TODO Auto-generated method stub
+		return session.update("users.updateCoinAmount", user);
 	}
 }

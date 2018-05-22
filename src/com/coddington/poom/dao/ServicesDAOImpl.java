@@ -65,4 +65,11 @@ public class ServicesDAOImpl implements ServicesDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne("services.selectFullAddress", serviceNo);
 	}
+	 
+	//searchPage카드불러오기 (2)
+	@Override
+	public List<Card> selectCardList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return session.selectList("services.selectCardList",map);
+	} 
 }

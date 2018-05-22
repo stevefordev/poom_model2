@@ -116,6 +116,40 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM services
 		WHERE no = #{serviceNo}
 	</select>
+	
+	<select id="selectCardList" resultType="Card" parameterType="Map">
+		SELECT no , title , area1 , area2, poom, nickName, NVL(l.count, 0) countLike, NVL(r.count, 0) countReview, profilePic, role
+		FROM(SELECT DISTINCT s.no no, s.title title, s.area1 area1, s.area2 area2, s.poom poom, u.nick_name nickName, u.photo_url profilePic, s.role role
+			 FROM users u,services s,schedules d,(SELECT c.no no, c.service_no serviceNo, cs.service_date, cs.regdate
+												  FROM contract_schedules cs, contracts c
+												  WHERE cs.contract_no = c.no
+											      AND c.status IN (0,1,5,9)
+												  AND TO_CHAR(cs.service_date,'YYYY-MM-DD') != #{serviceDate}) c
+			 WHERE d.service_no = c.serviceNo(+)
+			 AND s.user_no = u.no
+			 AND s.no = d.service_no
+			 AND s.category = #{category}
+			
+		 	 <if test="role > 0">
+				 AND(s.role= #{role})
+			 </if>
+			 
+			 <if test="poom > 0">
+				 AND s.poom >= #{poom}
+			 </if>
+			<if test="title != null and title != ''">
+  			  AND title like #{title}
+  			</if>
+			 ORDER BY 1) s,
+		(select service_no, COUNT(*) count from reviews group by service_no) r,
+		(SELECT service_no ,COUNT(*) count FROM like_services GROUP BY
+		service_no ) l
+		WHERE s.no = l.service_no(+)
+		AND l.service_no = r.service_no(+)
+		<!-- ORDER BY <choose> <when test="order=='P'"> 8 DESC </when> <when test="order=='H'"> 
+			5 DESC </when> <when test="order=='L'"> 5 ASC </when> <otherwise> 9 DESC 
+			</otherwise> </choose> -->
+	</select>
 </mapper>
 
 

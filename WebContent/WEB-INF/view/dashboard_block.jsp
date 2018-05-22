@@ -1,5 +1,4 @@
 <%@page import="com.coddington.poom.vo.Relationship"%>
-<%@page import="java.util.List"%>
 <%@page import="com.coddington.poom.dao.RelationshipsDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>

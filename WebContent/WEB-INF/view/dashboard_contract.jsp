@@ -381,12 +381,12 @@
 	<script src="/js/card_giver_level_second.js"></script>
 	<script src="/js/card_taker_level_second.js"></script>
 	<script src="/js/popup_contract_progressive.js"></script>
-	<script src="/js/popup_score_giver.js?date=2018052106"></script>
-	<script src="/js/popup_score_taker.js?date=2018052104"></script>
+	<script src="/js/popup_score_giver.js?date=201805210111"></script>
+	<script src="/js/popup_score_taker.js?date=201805210411"></script>
 	<script src="/js/card_util.js?date=201804283"></script>
 	<script src="/js/slick/slick.min.js"></script>
 	<script src="/js/slick/slick_helper.js?date=201804291"></script>
-	<script src="/js/dashboard_contracts.js?date=2018052015"></script>
+	<script src="/js/dashboard_contracts.js?date=2018052011"></script>
 
 
 	<script>

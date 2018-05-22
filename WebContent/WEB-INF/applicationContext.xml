@@ -62,6 +62,7 @@
 	<!-- Service 설정 -->
 	<bean id="coinTransactionsService"
 		p:coinTransactionsDAO-ref="coinTransactionsDAO"
+		p:tagsDAO-ref="tagsDAO"
 		class="com.coddington.poom.service.CoinTransactionsServiceImpl" />
 
 	<bean id="servicesService" p:servicesDAO-ref="servicesDAO"
@@ -71,6 +72,8 @@
 		p:serviceTagsDAO-ref="serviceTagsDAO"
 		p:contractSchedulesDAO-ref="contractSchedulesDAO"
 		p:likeServicesDAO-ref="likeServicesDAO" p:photosDAO-ref="photosDAO"
+		p:coinTransactionsDAO-ref="coinTransactionsDAO"
+		p:usersDAO-ref="usersDAO"
 		class="com.coddington.poom.service.ServicesServiceImpl" />
 
 	<bean id="usersService" p:usersDAO-ref="usersDAO"

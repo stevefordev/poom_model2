@@ -19,6 +19,12 @@ public class TagsDAOImpl implements TagsDAO {
   }
 
   @Override
+  public List<Tag> selectListByContractNo(int no) {
+    // TODO Auto-generated method stub
+    return session.selectList("tags.selectListByContractNo", no);
+  }
+
+  @Override
   public int insert(Tag tag) {
     // TODO Auto-generated method stub
     return session.insert("tags.insert", tag);

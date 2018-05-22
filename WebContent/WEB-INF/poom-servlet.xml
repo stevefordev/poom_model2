@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
@@ -17,7 +18,8 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="" />
-			<bean class="com.coddington.poom.interceptor.LoginCheckInterceptor" />
+			<bean
+				class="com.coddington.poom.interceptor.LoginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
 
@@ -27,7 +29,8 @@
 	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/fonts/" mapping="/fonts/**" />
-	<mvc:resources location="/webfonts/" mapping="/webfonts/**" />
+	<mvc:resources location="/webfonts/"
+		mapping="/webfonts/**" />
 	<!-- MultipartResovler -->
 	<bean id="multipartResolver" p:defaultEncoding="UTF-8"
 		p:maxUploadSize="104857600"
@@ -35,20 +38,21 @@
 
 	<!-- Controller를 등록 -->
 	<bean p:coinTransactionsService-ref="coinTransactionsService"
+		p:usersService-ref="usersService"
 		class="com.coddington.poom.controller.CoinsController" />
 
 	<bean p:servicesService-ref="servicesService"
 		class="com.coddington.poom.controller.ServicesController" />
 
 	<bean p:usersService-ref="usersService"
-	p:relationshipsService-ref="relationshipsService"
+		p:relationshipsService-ref="relationshipsService"
 		class="com.coddington.poom.controller.UsersController" />
 
-	<bean p:contractsService-ref="contractsService" 
-	class="com.coddington.poom.controller.ContractsController" />
-	<bean p:questionsService-ref="questionsService" 
-	class="com.coddington.poom.controller.QuestionsController"/>
-	<bean p:reviewsService-ref="reviewsService" 
-	class="com.coddington.poom.controller.ReviewsController"/>
-	 
+	<bean p:contractsService-ref="contractsService"
+		class="com.coddington.poom.controller.ContractsController" />
+	<bean p:questionsService-ref="questionsService"
+		class="com.coddington.poom.controller.QuestionsController" />
+	<bean p:reviewsService-ref="reviewsService"
+		class="com.coddington.poom.controller.ReviewsController" />
+
 </beans>

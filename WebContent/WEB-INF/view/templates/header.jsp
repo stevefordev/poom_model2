@@ -9,7 +9,7 @@
 	</div>
 	<div class="search">
 		<form action="/search.poom" method="get" id="searchForm">
-			<input type="text" name="query" class="search" placeholder="검색" /><i
+			<input type="text" name="query" class="search" value="${param.query }" placeholder="검색" /><i
 				class="fas fa-search fa-2x"></i><input class="submit" type="submit" />
 		</form>
 	</div>

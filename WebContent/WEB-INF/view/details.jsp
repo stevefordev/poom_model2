@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +86,7 @@ body {
 		<c:if test="${service.role == 1 }">
 			<div id="userProfile">
 				<h4 class="screen_out">프로필</h4>
-				<a href="#"> <img id="giverProfileImg"
+				<a href="/profile.poom?no=${service.userNo }"> <img id="giverProfileImg"
 					src="/img/profile/${service.userPhotoUrl }" />
 					<div id="userNickname">${service.userNickName }</div>
 				</a>
@@ -95,8 +96,15 @@ body {
 			<h4 class="screen_out">상세정보내용</h4>
 			<ul>
 				<li>총 평점 : <span
-					class="icon_big ${scoreAndCountContract.icon }"></span> <c:choose>
-						<c:when test="${service.role == 1 }"> ${scoreAndCountContract.scoreGiver }%(${scoreAndCountContract.countDone })</c:when>
+					class="icon_big ${scoreAndCountContract.icon }"></span> 
+					<c:choose>
+						<c:when test="${service.role == 1 }"> 
+						<fmt:formatNumber type = "percent" maxIntegerDigits = "2" value = "${scoreAndCountContract.scoreGiver }" />
+							(${scoreAndCountContract.countDone })</c:when>
+					<c:otherwise>
+						<fmt:formatNumber type = "percent" maxIntegerDigits = "2" value = "${scoreAndCountContract.scoreTaker }" />
+							(${scoreAndCountContract.countDone })
+					</c:otherwise>
 					</c:choose>
 				</li>
 				<li>지역 : ${service.area1 } ${service.area2 }</li>

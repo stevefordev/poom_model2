@@ -365,11 +365,11 @@ body {
 			<div id="heroImageBox">
 				<div id="header">
 					<div id="logoBox">
-						<a id="logo" href="/search.poom"><img
-							src="/img/poom_logo.png"></a> <a id="searchBtn" href="">서비스
+						<a id="logo" href="/"><img
+							src="/img/poom_logo.png"></a> <a id="searchBtn" href="/search.poom">서비스
 							검색</a>
 						<!--목록페이지로 넘어가는 링크-->
-						<form method="get" action="search_page.jsp">
+						<form method="get" action="/search.poom">
 							<input type="text" name="query">
 							<button>
 								<i class="fas fa-search"></i>

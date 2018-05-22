@@ -1,5 +1,6 @@
 package com.coddington.poom.service;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,10 @@ public interface ServicesService {
 
 	public boolean updateContractStatus(int contractNo, int btnType);
 
-	public boolean updateScoreFromTaker(Contract contract, String reviewContent, int userNo);
+	public boolean updateScoreFromTaker(Contract contract, String reviewContent, int userNo, int coinAmount, int giverNo);
 
-	public boolean updateScoreFromGiver(Contract contract, int userNo);
+	public boolean updateScoreFromGiver(Contract contract, int userNo, int coinAmount, int takerNo);
+	
+	public List<Card> getServiceCard(Service service, Date serviceDate, int term, int score, String order);
+	
 }

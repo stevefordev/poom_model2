@@ -87,5 +87,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		where r.to_user_no = u.no AND r.from_user_no =#{fromUserNo} AND  type
 		= 4 AND r.to_user_no = #{toUserNo}
 	</select>
-	 
+	 	
+	<update id="updateCoinAmount" parameterType="map">
+		UPDATE users
+		SET coin = coin + #{coin}
+		WHERE no = #{no}
+	</update>
+ 
 </mapper>

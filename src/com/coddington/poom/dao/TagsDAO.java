@@ -8,6 +8,8 @@ public interface TagsDAO {
 
 	public List<Tag> selectListByServiceNo(int no);
 	
+	public List<Tag> selectListByContractNo(int no);
+	
 	public int insert(Tag tag);
 	
 	public List<Tag> selectListLikeName(String name);

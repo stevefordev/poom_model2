@@ -26,4 +26,7 @@ public interface ServicesDAO {
 	public List<Card> selectContractServiceCardList(Map<String, Object> map);
 
 	public Service selectFullAddress(int serviceNo);
+	 
+	//serchPage 카드목록 불러오기(2)
+	public List<Card> selectCardList(Map<String, Object> map);
 }
