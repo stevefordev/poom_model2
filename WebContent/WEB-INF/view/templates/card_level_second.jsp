@@ -54,7 +54,7 @@
 						<div class="taker_name"><@=card.nickname@></div>
 					</div>
 					<!--//.taker_box-->
-					<a href="/detail.poom?no=<@=card.no @>">
+					<a href="/service/details.poom?no=<@=card.no @>">
 						<div class="taker_service_inform">
 							<ul>
 							<li><@=card.title@></li>

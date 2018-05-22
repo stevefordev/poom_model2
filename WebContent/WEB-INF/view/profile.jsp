@@ -1,9 +1,7 @@
-
-<%@page import="com.coddington.poom.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,18 +108,20 @@
 			</div>
 		</c:if>
 	</div>
-	 
+
 	<div class="profile_content">
 		<div id="profileStatus">
 			<!--해당 프로필유저의 계약과 관련한 내용이 들어있는 박스-->
 			<ul id="score">
 				<li>총 평점</li>
-				<li class="emphasisContent">${scoreAndCountContracts.score }%(${scoreAndCountContracts.countGcontract + scoreAndCountContracts.countTcontract })</li>
+				<li class="emphasisContent"><fmt:formatNumber type="number"
+						pattern="###" value="${scoreAndCountContracts.score }" />
+					%(${scoreAndCountContracts.countGcontract + scoreAndCountContracts.countTcontract })</li>
 			</ul>
 			<ul id="contractNum">
 				<li class="emphasisContent">계약 건수</li>
 				<li>준 품 ${scoreAndCountContracts.countGcontract }</li>
-				<li>받은 품  ${scoreAndCountContracts.countTcontract }</li>
+				<li>받은 품 ${scoreAndCountContracts.countTcontract }</li>
 			</ul>
 			<ul id="reviewNum">
 				<li class="emphasisContent">리뷰 ${countReviews } 개</li>
@@ -195,8 +195,8 @@
 	<c:import url="/WEB-INF/view/templates/card_level_second.jsp"></c:import>
 	<c:import url="/WEB-INF/view/templates/js.jsp"></c:import>
 	<script>
-		var profileUserNo = "${param.no}";
-	</script>
+    var profileUserNo = "${param.no}";
+  </script>
 	<script src="/js/card_giver_level_second.js"></script>
 	<script src="/js/card_taker_level_second.js"></script>
 	<script src="/js/slick/slick.min.js"></script>
@@ -204,18 +204,17 @@
 	<script src="/js/card_util.js?date=201804283"></script>
 	<script src="/js/profile.js?date=2018052111"></script>
 	<script>
-		
-	// 카드 리스트 호출
-	cardUtil.dataset = {
-	        "level": 2,
-	        "count": 5,
-	        "pageNum": 1,
-	        "role" : 1,
-	        "profileUserNo" : profileUserNo
-	      };
-	cardUtil.getCardList("/ajax/service/getUserServiceList.poom",
-	        $(".list_giver_pay>.pay_contents>ul"), '.profileserviceimg_wrap');
-	</script>
+    // 카드 리스트 호출
+    cardUtil.dataset = {
+      "level": 2,
+      "count": 5,
+      "pageNum": 1,
+      "role": 1,
+      "profileUserNo": profileUserNo
+    };
+    cardUtil.getCardList("/ajax/service/getUserServiceList.poom",
+            $(".list_giver_pay>.pay_contents>ul"), '.profileserviceimg_wrap');
+  </script>
 
 </body>
 </html>

@@ -47,7 +47,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		    COUNT(CASE WHEN c.status = 9 AND c.taker_no = 1 THEN 1 END) count_tcontract
             FROM 
             contracts c
-            WHERE c.giver_no = 1 OR c.taker_no =1) 
+            WHERE c.giver_no = #{profileUserNo} OR c.taker_no = #{profileUserNo}) 
 	  </select>
 	<update id="updateContractStatus" parameterType="map">
 		UPDATE contracts

@@ -99,10 +99,10 @@ body {
 					class="icon_big ${scoreAndCountContract.icon }"></span> 
 					<c:choose>
 						<c:when test="${service.role == 1 }"> 
-						<fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${scoreAndCountContract.scoreGiver }" />		 
+						<fmt:formatNumber type = "number" pattern="###" value = "${scoreAndCountContract.scoreGiver }" />		 
 							</c:when>
 					<c:otherwise>
-						<fmt:formatNumber type = "number" maxIntegerDigits = "3" value = "${scoreAndCountContract.scoreTaker }" />		
+						<fmt:formatNumber type = "number" pattern="###" value = "${scoreAndCountContract.scoreTaker }" />		
 					</c:otherwise>
 					</c:choose>
 					%(${scoreAndCountContract.countDone })
