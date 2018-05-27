@@ -65,3 +65,7 @@ a {
 	text-indent: -9999px;
 	overflow: hidden;
 }
+/* 팝업시에 스크롤 제거 */
+body.noscroll {
+	overflow: hidden;
+}

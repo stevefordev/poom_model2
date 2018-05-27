@@ -10,7 +10,7 @@ var $blocklistTmp =$("#blocklistTmp"),
     tmp=_.template(blocklistTmp);
 
 function createBlocklist() {
-	
+	console.log('createBlocklist');
 	$.ajax({
 		url: "/ajax/getBlockList.json",
 		datatype: "json",

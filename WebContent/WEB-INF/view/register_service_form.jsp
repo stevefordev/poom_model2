@@ -936,7 +936,7 @@ dl.schedule dd .schedule_view>table td:hover button {
 	<%@ include file="/WEB-INF/view/templates/js.jsp"%>
 	<script src="/js/calendar/moment-with-locales.min.js"></script>
 	<script
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=555baa134395660cb83af73dbe87d218&libraries=services,clusterer,drawing"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ad497b5e8a09edfba5ba627dd393a592&libraries=services,clusterer,drawing"></script>
 	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	<script src="/js/common/jquery.caret.min.js"></script>
 	<script src="/js/common/jquery.tag-editor.min.js"></script>

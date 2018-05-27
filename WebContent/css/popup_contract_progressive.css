@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-body.noscroll {
-	overflow: hidden;
-}
 /* 팝업 바탕 반투명 */
 .popup.container_contract_progressive {
 	width: 100%;

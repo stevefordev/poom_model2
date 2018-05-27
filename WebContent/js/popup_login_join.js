@@ -1,3 +1,18 @@
+// 팝업시에 브라우저 스크롤 width 계산
+/*
+ * 추가
+ * $("body").addClass("noscroll").css("margin-right", getScrollBarWidth()+"px");
+ * 제거
+ * $("body").removeClass("noscroll").css("margin-right", "0px");
+ * @returns
+ */
+function getScrollBarWidth () {
+    var $outer = $('<div>').css({visibility: 'hidden', width: 100, overflow: 'scroll'}).appendTo('body'),
+        widthWithScroll = $('<div>').css({width: '100%'}).appendTo($outer).outerWidth();
+    $outer.remove();
+    return 100 - widthWithScroll;
+};
+
 
 //회원가입 로그인 팝업 javascript 시작
 
@@ -161,7 +176,7 @@ $("#heroJoinBtn").click(function (e) {
     $("#loginTab").removeClass("on");
     $("#joinTab").addClass("on");
 
-    $("body").css("overflow" ,"hidden");
+    $("body").addClass("noscroll").css("margin-right", getScrollBarWidth()+"px");
     
     //팝업창 띄우기
     $("#popupBackground").show();
@@ -173,14 +188,16 @@ $("#heroLoginBtn").click(function (e) {
     $("#loginInput").addClass("on");
     $("#loginTab").addClass("on");
     $("#joinTab").removeClass("on");
-    $("body").css("overflow" ,"hidden");
+    
+    $("body").addClass("noscroll").css("margin-right", getScrollBarWidth()+"px");
+    
     $("#popupBackground").show();
 });
 
 //popup을 클릭하면 popup이 사라짐
 $("#popupBackground").click(function () {
     $("#popupBackground").hide();
-    $("body").css("overflow" ,"visible");
+    $("body").removeClass("noscroll").css("margin-right", "0px");
 });
 //팝업창을 제외한 뒷배경을 클릭했을때 팝업창이 사라지게 하기위해서 이벤트전파를 막음
 $("#loginJoinWrap").click(function (e) {

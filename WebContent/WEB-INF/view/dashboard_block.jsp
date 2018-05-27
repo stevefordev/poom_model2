@@ -44,9 +44,9 @@
 </script>
 
 <%@ include file="/WEB-INF/view/templates/js.jsp"%>
-<script src="js/dashboard_template.js"></script>
+<script src="/js/dashboard_template.js"></script>
 
-<script src="js/dashboard_block.js"></script>
+<script src="/js/dashboard_block.js"></script>
 
 <script>
 
